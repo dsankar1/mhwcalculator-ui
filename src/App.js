@@ -43,7 +43,7 @@ class App extends Component {
                         <div className="fb-share-button" data-href="http://mhwcalculator.com" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fmhwcalculator.com%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore">Share</a></div>
                     </div>
                     <div style={{display:"inline", marginLeft:"6px"}}>
-                        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" className="tweet-button twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
+                        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" className="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
                     </div>
                 </div>
             </Grid>

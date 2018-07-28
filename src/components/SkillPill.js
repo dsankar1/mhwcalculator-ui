@@ -44,9 +44,9 @@ class SkillPill extends Component {
                 </div>
                 <FormControl
                     bsSize="small"
+                    className="large-font skill-dropdown"
                     value={this.props.skill.level}
                     onChange={e => this.props.onChange(this.props.skill.name, e.target.value)}
-                    style={{width:"50px", borderRadius:"0"}}
                     componentClass="select">
                     {options}
                 </FormControl>

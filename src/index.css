@@ -5,22 +5,18 @@ body {
   background-color: #EEE;
 }
 
+.skill-dropdown {
+  width: 50px;
+  border-radius: 0;
+}
+
 @media (max-width: 575px) {
   .large-font {
     font-size: 16px;
   }
-}
-
-.tweet-button {
-  display: inline-block;
-  width: 55px;
-  height: 21px;
-  background-image: url(http://platform.twitter.com/widgets/images/tweet.dfbf1dd98bad9f5b5addd80494650dca.png);
-  background-position: 0 0;
-}
-
-.tweet-button:hover {
-  background-position: 0 -21px;
+  .skill-dropdown {
+    width: 60px;
+  }
 }
 
 .footer-link {
