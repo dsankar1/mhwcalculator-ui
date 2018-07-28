@@ -88,7 +88,7 @@ class WeaponStatsForm extends Component {
                         <InputGroup.Addon>%</InputGroup.Addon>
                     </InputGroup>
                 </Col>
-                <Col xs={12} md={6} style={{margin:"4px 0"}}>
+                <Col xs={12} md={7} style={{margin:"4px 0"}}>
                 {
                     this.showSharpness() ?
                     <div>
@@ -123,7 +123,7 @@ class WeaponStatsForm extends Component {
                     </div> : null
                 }
                 </Col>
-                <Col xs={12} lg={6} style={{margin:"4px 0"}}>
+                <Col xs={12} lg={5} style={{margin:"4px 0"}}>
                     <div style={{display:"flex", justifyContent:"flex-end"}}>
                         <div style={{marginRight:"12px"}}>
                             <ControlLabel style={{color:"#555"}}>Attack Augments:</ControlLabel><br/>

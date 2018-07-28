@@ -35,18 +35,15 @@ class App extends Component {
                 </Switch>
                 <div style={{margin:"12px 0 22px 0", textAlign:"center"}}>
                     <div style={{marginBottom:"6px"}}>
-                        <a className="footer-link" href="https://github.com/dsankar1/mhwcalculator-ui">
+                        <a className="footer-link" rel="noopener noreferrer" target="_blank" href="https://github.com/dsankar1/mhwcalculator-ui">
                             <i className="fa fa-github fa-lg"/> github.com/dsankar1/mhwcalculator-ui
                         </a>
-                    </div>
-                    <div style={{color:"#999", display:"inline", marginRight:"6px"}}>
-                        <i className="fa fa-eye fa-lg"/> 1000
                     </div>
                     <div style={{display:"inline", margin:"0 6px"}}>
                         <div className="fb-share-button" data-href="http://mhwcalculator.com" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fmhwcalculator.com%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore">Share</a></div>
                     </div>
                     <div style={{display:"inline", marginLeft:"6px"}}>
-                        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" className="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
+                        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" className="tweet-button twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
                     </div>
                 </div>
             </Grid>

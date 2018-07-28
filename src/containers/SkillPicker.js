@@ -34,7 +34,9 @@ class SkillPicker extends Component {
                 }}>
                 <div style={{marginBottom:"6px", display:"flex", color:"#555"}}>
                     <b style={{flex:1, marginTop:"2px"}}>Skills:</b>
-                    <Button bsSize="xsmall" style={{height:"20px"}} onClick={this.props.removeAllSkills}>Remove All</Button>
+                    <Button bsSize="xsmall" style={{height:"20px"}} disabled={this.props.skills.length === 0} onClick={this.props.removeAllSkills}>
+                        Clear
+                    </Button>
                 </div>
                 <InputGroup>
                     <FormControl
@@ -52,7 +54,7 @@ class SkillPicker extends Component {
                                 style={{height:"34px"}}
                                 disabled={blank}
                                 onClick={this.addSkill}>
-                                <i className="fa fa-plus" style={{marginTop:"4px", color:blank ? "#777" : "#555"}}/>
+                                +
                             </Button>
                         </InputGroup.Button>
                     </InputGroup>

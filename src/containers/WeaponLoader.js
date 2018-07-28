@@ -27,7 +27,7 @@ class WeaponLoader extends Component {
             attack: weapon.attack,
             affinity: weapon.affinity,
             element: weapon.element,
-            sharpness: weapon.sharpness
+            sharpness: weapon.sharpness ? weapon.sharpness : this.props.sharpness
         });
     }
 
@@ -79,6 +79,12 @@ class WeaponLoader extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        sharpness: state.calculator.sharpness
+    }
+}
+
 const mapDispatchToProps = dispatch => {
     return {
         setWeapon: weapon => {
@@ -90,4 +96,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(WeaponLoader);
+export default connect(mapStateToProps, mapDispatchToProps)(WeaponLoader);
