@@ -13,6 +13,23 @@ class CalculationResults extends Component {
         this.calculateAffinity = this.calculateAffinity.bind(this);
         this.calculateMoveDamage = this.calculateMoveDamage.bind(this);
         this.includeSharpness = this.includeSharpness.bind(this);
+        this.getElement = this.getElement.bind(this);
+    }
+
+    getElement() {
+        if (this.props.element < 1) {
+            return 0;
+        }
+        if (this.props.hiddenElement) {
+            const freeElement = this.props.skills.find(skill => skill.name === "Free Element");
+            if (!freeElement || freeElement.level < 1) {
+                return 0;
+            }
+            const multiplier = freeElement.levels[freeElement.level-1];
+            return Math.floor(this.props.element * multiplier["unlock-element"]);
+        } else {
+            return this.props.element;
+        }
     }
 
     includeSharpness() {
@@ -24,23 +41,25 @@ class CalculationResults extends Component {
         let affinityModifier = .25;
         let add = 0;
         this.props.skills.forEach(skill => {
-            const modifiers = skill.modifiers;
-            if (modifiers.attack) {
-                add += modifiers.attack;
-            }
-            if (skill.name === "Bludgeoner") {
-                add += Math.floor(attack * modifiers[this.props.sharpness]);
-            }
-            if (modifiers["attack-percent"]) {
-                if (skill.name === "Non-elemental Boost") {
-                    add += this.props.element > 0 ?
-                        0 : Math.floor(attack * modifiers["attack-percent"]);
-                } else {
-                    add +=  Math.floor(attack * modifiers["attack-percent"]);
+            if (skill.level > 0) {
+                const modifiers = skill.levels[skill.level-1];
+                if (modifiers.attack) {
+                    add += modifiers.attack;
                 }
-            }
-            if (modifiers["affinity-boost"]) {
-              affinityModifier = modifiers["affinity-boost"]/100;
+                if (skill.name === "Bludgeoner") {
+                    add += Math.floor(attack * modifiers[this.props.sharpness]);
+                }
+                if (modifiers["attack-percent"]) {
+                    if (skill.name === "Non-elemental Boost") {
+                        add += this.getElement() > 0 ?
+                            0 : Math.floor(attack * modifiers["attack-percent"]);
+                    } else {
+                        add +=  Math.floor(attack * modifiers["attack-percent"]);
+                    }
+                }
+                if (modifiers["affinity-boost"]) {
+                  affinityModifier = modifiers["affinity-boost"]/100;
+                }
             }
         });
         attack += add;
@@ -57,16 +76,22 @@ class CalculationResults extends Component {
     }
 
     calculateElement(netAffinity) {
-        let element = Math.floor(this.props.element/10);
+        let element = this.getElement();
+        if (element < 1) {
+            return 0;
+        }
+        element = Math.floor(element/10);
         let includeAffinity = this.props.skills.some(skill => skill.name === "Critical Element");
         let add = 0;
         this.props.skills.forEach(skill => {
-            const modifiers = skill.modifiers;
-            if (modifiers.element) {
-                add += modifiers.element;
-            }
-            if (modifiers["element-percent"]) {
-                add += Math.floor(element * modifiers["element-percent"]);
+            if (skill.level > 0) {
+                const modifiers = skill.levels[skill.level-1];
+                if (modifiers.element) {
+                    add += modifiers.element;
+                }
+                if (modifiers["element-percent"]) {
+                    add += Math.floor(element * modifiers["element-percent"]);
+                }
             }
         });
         element += Math.floor(elementCap(this.props.element, add)/10);
@@ -85,9 +110,11 @@ class CalculationResults extends Component {
         const augmentMods = [0, 10, 15, 20];
         affinity += augmentMods[this.props.affinityAugments];
         this.props.skills.forEach(skill => {
-            const modifiers = skill.modifiers;
-            if (modifiers.affinity) {
-                affinity += modifiers.affinity;
+            if (skill.level > 0) {
+                const modifiers = skill.levels[skill.level-1];
+                if (modifiers.affinity) {
+                    affinity += modifiers.affinity;
+                }
             }
         });
         return affinity;
@@ -109,7 +136,7 @@ class CalculationResults extends Component {
     }
 
     calculate() {
-        /*const netAffinity = this.calculateAffinity();
+        const netAffinity = this.calculateAffinity();
         const trueAttack = this.calculateAttack(netAffinity);
         const trueElement = this.calculateElement(netAffinity);
         return {
@@ -117,8 +144,7 @@ class CalculationResults extends Component {
             trueElement,
             netAffinity,
             moveDamage: this.calculateMoveDamage(trueAttack, trueElement)
-        };*/
-        return { trueAttack:0, trueElement:0, netAffinity:0, moveDamage:0 };
+        };
     }
 
     render() {
@@ -168,7 +194,8 @@ const mapStateToProps = state => {
         affinityAugments: state.calculator.affAug,
         skills: state.calculator.skills,
         physicalEffectiveness: state.calculator.physicalEffectiveness,
-        elementEffectiveness: state.calculator.elementEffectiveness
+        elementEffectiveness: state.calculator.elementEffectiveness,
+        hiddenElement: state.calculator.hiddenElement
     }
 }
 

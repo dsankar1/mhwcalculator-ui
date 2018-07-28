@@ -1,19 +1,4 @@
-[
-    {
-        "name": "Critical Boost",
-        "description": "Increases the damage of critical hits.",
-        "levels": [
-            {
-                "affinity-boost": 30
-            },
-            {
-                "affinity-boost": 35
-            },
-            {
-                "affinity-boost": 40
-            }
-        ]
-    },
+export default [
     {
         "name": "Attack Boost",
         "description": "Increases attack power. Also improves affinity at higher levels.",
@@ -42,6 +27,21 @@
             {
                 "attack": 21,
                 "affinity": 5
+            }
+        ]
+    },
+    {
+        "name": "Critical Boost",
+        "description": "Increases the damage of critical hits.",
+        "levels": [
+            {
+                "affinity-boost": 30
+            },
+            {
+                "affinity-boost": 35
+            },
+            {
+                "affinity-boost": 40
             }
         ]
     },
@@ -256,5 +256,20 @@
         "name": "Critical Element",
         "description": "Increases elemental damage (fire, water, thunder, ice, dragon) when landing critical hits.",
         "levels": []
+    },
+    {
+        "name": "Free Element",
+        "description": "Draws out hidden element.",
+        "levels": [
+            {
+                "unlock-element": 0.33
+            },
+            {
+                "unlock-element": 0.66
+            },
+            {
+                "unlock-element": 1.0
+            }
+        ]
     }
 ]

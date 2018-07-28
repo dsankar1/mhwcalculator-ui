@@ -37,7 +37,7 @@ const setSkillLevel = (state, action) => {
     let copy = clone(state);
     const i = copy.skills.findIndex(skill => skill.name === action.name);
     if (i !== -1) {
-        copy.skills[i].level = action.level; 
+        copy.skills[i].level = action.level;
     }
     return copy;
 }
@@ -48,7 +48,7 @@ const addSkill = (state, action) => {
     if (skill) {
         copy.skills.push({
             ...skill,
-            level: -1
+            level: 0
         });
     }
     return copy;

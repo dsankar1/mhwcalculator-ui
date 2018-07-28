@@ -1,5 +1,5 @@
 export { default as weapons } from "./weapons";
-export { default as skills } from "./skills.min";
+export { default as skills } from "./skills";
 export { default as attacks } from "./attacks";
 
 export const elementCap = (element, bonus) => {

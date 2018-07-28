@@ -11,7 +11,7 @@ class Calculator extends Component {
     render() {
         return (
             <Row>
-              <Col xs={12} md={9} style={{marginBottom:"12px"}}>
+              <Col xs={12} md={9} style={{marginBottom:"10px"}}>
                 <WeaponLoader/>
                 <CalculationResults/>
                 <div className="bordered" style={{padding:"24px 12px 12px 12px", margin:"10px 0"}}>

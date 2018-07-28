@@ -23,12 +23,11 @@ class SkillPicker extends Component {
     }
 
     render() {
-        console.log(this.props);
         const skillPills = this.props.skills.map(skill => <SkillPill key={skill.name} skill={skill} onChange={this.props.setSkillLevel} onRemove={this.props.removeSkill}/>);
         const options = skills.map((skill, index) => <option key={index} value={skill.name}>{skill.name}</option>);
         const blank = this.state.skill.trim() === "";
         return (
-            <div className="bordered" style={{padding:"12px", marginBottom:"10px"}}>
+            <div className="bordered" style={{padding:"12px", marginBottom:"14px"}}>
                 <Form autoComplete="off" onSubmit={e => {
                     e.preventDefault();
                     this.addSkill();
@@ -39,7 +38,7 @@ class SkillPicker extends Component {
                 </div>
                 <InputGroup>
                     <FormControl
-                        list="skills" 
+                        list="skills"
                         className="large-font"
                         value={this.state.skill}
                         onChange={e => this.setState({skill:e.target.value})}

@@ -16,16 +16,16 @@ class SkillPill extends Component {
 
     render() {
         let modifiers = "";
-        let options = [<option key={-1} value={-1}>0</option>];
+        let options = [<option key={0} value={0}>0</option>];
         this.props.skill.levels.forEach((bonuses, index) => {
-            options.push(<option key={index} value={index}>{index+1}</option>)
+            options.push(<option key={index+1} value={index+1}>{index+1}</option>)
         });
-        if (this.props.skill.level >= 0) {
-            const target = this.props.skill.levels[this.props.skill.level];
+        if (this.props.skill.level > 0) {
+            const target = this.props.skill.levels[this.props.skill.level-1];
             for (let key of Object.keys(target)) {
                 modifiers += key + ": +" + target[key] + " ";
             }
-        } 
+        }
         return (
             <div className="bordered"
                 style={{display:"flex", padding:"8px", marginTop:"6px", boxShadow:"0 1px 1px rgba(0,0,0,0.1)", alignItems:"center"}}>
@@ -36,17 +36,17 @@ class SkillPill extends Component {
                         {this.props.skill.name} {this.state.hover ? <i style={{color:"#555", cursor:"pointer"}} onClick={() => this.props.onRemove(this.props.skill.name)} className="fa fa-times"/> : null}
                     </div>
                     {
-                        modifiers.trim() === "" ? null : 
+                        modifiers.trim() === "" ? null :
                         <small style={{color:"#777", fontSize:"0.8em", marginTop:"2px"}}>
                             {modifiers}
                         </small>
                     }
                 </div>
-                <FormControl 
-                    bsSize="small" 
-                    value={this.props.skill.level} 
-                    onChange={e => this.props.onChange(this.props.skill.name, e.target.value)} 
-                    style={{width:"50px"}} 
+                <FormControl
+                    bsSize="small"
+                    value={this.props.skill.level}
+                    onChange={e => this.props.onChange(this.props.skill.name, e.target.value)}
+                    style={{width:"50px", borderRadius:"0"}}
                     componentClass="select">
                     {options}
                 </FormControl>
