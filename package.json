@@ -2,6 +2,7 @@
   "name": "mhwcalculator",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://www.mhwcalculator.com",
   "dependencies": {
     "axios": "^0.18.0",
     "clone": "^2.1.1",
