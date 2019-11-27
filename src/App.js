@@ -1,55 +1,159 @@
-import React, { Component } from 'react';
-import { Switch, Route, Redirect } from "react-router-dom";
-import { Grid } from "react-bootstrap";
-import Calculator from "./containers/Calculator";
-import Info from "./components/Info";
-import AppNav from "./components/AppNav";
+import _ from 'lodash';
+import React, { createContext, Fragment, useState, useCallback } from 'react';
+import { createMuiTheme, ThemeProvider, darken } from '@material-ui/core/styles';
+import { CssBaseline, useMediaQuery, makeStyles, Box, AppBar, Toolbar, IconButton, Typography, FormControlLabel, Switch } from '@material-ui/core';
+import { Menu } from '@material-ui/icons';
+import { Switch as RouteSwitch, Route, Redirect } from 'react-router-dom';
+import DamageCalculator from './DamageCalculator';
+import NotFound from './NotFound';
 
-class App extends Component {
+export const SubtitleContext = createContext();
 
-    state = {
-        info: false
+const lightTheme = createMuiTheme({
+    palette: {
+        type: 'light',
+        background: {
+            default: '#efefef'
+        },
+        primary: {
+            main: '#81c784'
+        },
+        secondary: {
+            main: '#81c784'
+        }
     }
+});
 
-  render() {
+const darkTheme = createMuiTheme({
+    palette: {
+        type: 'dark',
+        background: {
+            default: '#212121',
+            paper: '#303030'
+        },
+        primary: {
+            main: '#81c784'
+        },
+        secondary: {
+            main: '#81c784'
+        }
+    }
+});
+
+export const App = () => {
+    const [mode, setMode] = useState('light');
+
+    const toggleMode = useCallback(() => {
+        if (mode === 'dark') {
+            setMode('light');
+        } else {
+            setMode('dark');
+        }
+    }, [mode, setMode]);
+
     return (
-        <div>
-            <Info show={this.state.info} onHide={() => this.setState({info:false})}/>
-            <div style={{backgroundColor:"#FAFAFA"}}>
-                <Grid>
-                  <h1 style={{color:"#555"}}>Monster Hunter World: Damage Calculator <span style={{cursor:"pointer"}} onClick={() => this.setState({info:true})}>&#9432;</span></h1>
-                  <p style={{color:"#666"}}>
-                      This application calculates damage numbers you can expect to hit in Monster Hunter: World.
-                      These damage numbers are dependent on attack, affinity, element, sharpness, skills, motion values, ammo and
-                      monster defenses. A detailed explaination of the calulations can be found by clicking the information icon
-                      located above.
-                  </p>
-                </Grid>
-            </div>
-            <AppNav/>
-            <Grid>
-                <Switch>
-                    <Route path="/" exact component={Calculator}/>
-                    <Route path="/presets" render={() => <div style={{textAlign:"center", color:"#555"}}><h3>Coming Soon</h3></div>}/>
-                    <Route render={() => <Redirect to="/"/>}/>
-                </Switch>
-                <div style={{margin:"12px 0 22px 0", textAlign:"center"}}>
-                    <div style={{marginBottom:"6px"}}>
-                        <a className="footer-link" rel="noopener noreferrer" target="_blank" href="https://github.com/dsankar1/mhwcalculator-ui">
-                            <i className="fa fa-github fa-lg"/> github.com/dsankar1/mhwcalculator-ui
-                        </a>
-                    </div>
-                    <div style={{display:"inline", margin:"0 6px"}}>
-                        <div className="fb-share-button" data-href="http://mhwcalculator.com" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fmhwcalculator.com%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore">Share</a></div>
-                    </div>
-                    <div style={{display:"inline", marginLeft:"6px"}}>
-                        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" className="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
-                    </div>
-                </div>
-            </Grid>
-        </div>
+        <ThemeProvider theme={mode === 'dark' ? darkTheme : lightTheme}>
+            <Route render={routeProps => (
+                <Content {...routeProps} mode={mode} toggleMode={toggleMode} />
+            )} />
+        </ThemeProvider>
+    )
+}
+
+const useStyles = makeStyles(theme => ({
+    appBar: {
+        backgroundColor: theme.palette.background.paper
+    },
+    titleBox: {
+        flexGrow: 1,
+        marginLeft: theme.spacing(1)
+    },
+    icon: {
+        width: 36,
+        height: 36,
+        cursor: 'pointer'
+    },
+    title: {
+        fontSize: 17,
+        color: darken(theme.palette.text.primary, 0.1)
+    },
+    subtitle: {
+        fontSize: 14,
+        color: darken(theme.palette.text.primary, 0.1)
+    },
+    menu: {
+        marginRight: theme.spacing(1),
+        color: darken(theme.palette.text.primary, 0.1)
+    },
+    darkModeLabel: {
+        fontSize: 14,
+        marginRight: theme.spacing(0.2),
+        color: darken(theme.palette.text.primary, 0.1)
+    }
+}));
+
+const Content = ({ history, mode, toggleMode }) => {
+    const [subtitle, setSubtitle] = useState();
+    const mobile = useMediaQuery('(min-width:500px)');
+    const classes = useStyles();
+    
+    const goHome = useCallback(() => {
+        if (_.isFunction(history.push)) {
+            history.push('/');
+        }
+    }, [history.push]);
+
+    return (
+        <Fragment>
+            <CssBaseline />
+            <SubtitleContext.Provider value={setSubtitle}>
+                <AppBar position='static' className={classes.appBar}>
+                    <Toolbar>
+                        <IconButton edge='start' color='inherit' aria-label='menu' className={classes.menu}>
+                            <Menu />
+                        </IconButton>
+                        <img
+                            alt='Monster Hunter Gem'
+                            src={process.env.PUBLIC_URL + '/favicon.png'}
+                            className={classes.icon}
+                            onClick={goHome}
+                        />
+                        <Box display='flex' flexDirection='column' justifyContent='center' className={classes.titleBox}>
+                            <Typography className={classes.title}>
+                                Monster Hunter: World
+                            </Typography>
+                            {subtitle && (
+                                <Typography className={classes.subtitle}>
+                                    {subtitle}
+                                </Typography>
+                            )}
+                        </Box>
+                        <FormControlLabel
+                            labelPlacement='start'
+                            label={mobile ? (
+                                <Typography className={classes.darkModeLabel}>
+                                    Dark Mode
+                                </Typography>
+                            ) : null}
+                            control={
+                                <Switch
+                                    checked={mode === 'dark'}
+                                    onClick={toggleMode}
+                                />
+                            }
+                        />
+                    </Toolbar>
+                </AppBar>
+                <Box>
+                    <RouteSwitch>
+                        <Route exact path='/' render={() => <Redirect to='/calculator/damage' />} />
+                        <Route path='/calculator/damage' component={DamageCalculator} />
+                        <Route component={NotFound} />
+                    </RouteSwitch>
+                </Box>
+            </SubtitleContext.Provider>
+        </Fragment>
     );
-  }
 }
 
 export default App;
