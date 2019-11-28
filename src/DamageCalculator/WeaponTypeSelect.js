@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import React, { memo } from 'react';
-import { fade } from '@material-ui/core/styles';
 import { makeStyles, Box, Button, FormControlLabel } from '@material-ui/core';
 
 export const weaponTypes = [
@@ -95,8 +94,7 @@ const useStyles = makeStyles(theme => ({
         fontSize: 12,
         fontWeight: 500,
         whiteSpace: 'nowrap',
-        marginBottom: theme.spacing(1),
-        color: fade(theme.palette.text.primary, 0.8)
+        marginBottom: theme.spacing(1)
     },
     weaponTypeIcon: {
         width: 40,

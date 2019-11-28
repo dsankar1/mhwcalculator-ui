@@ -16,6 +16,10 @@ const useStyles = makeStyles(theme => ({
     },
     card: {
         padding: theme.spacing(2)
+    },
+    weaponAttributeGrid: {
+        marginTop: theme.spacing(0.5),
+        padding: theme.spacing(0.5)
     }
 }));
 
@@ -51,24 +55,48 @@ export const DamageCalculator = props => {
                                 value={_.get(build, 'weaponType')}
                                 onChange={handleChange}
                             />
-                            <Grid container spacing={2} style={{ marginTop: 6, padding: 4 }}>
-                                <Grid item xs={4}>
-                                    <TextField label='Physical' variant='outlined' fullWidth />
+                            <Grid container spacing={2} className={classes.weaponAttributeGrid}>
+                                <Grid item xs={6} sm={4}>
+                                    <TextField
+                                        fullWidth
+                                        label='Physical'
+                                        variant='outlined'
+                                    />
+                                </Grid>
+                                <Grid item xs={6} sm={4}>
+                                    <TextField
+                                        fullWidth
+                                        label='Elemental'
+                                        variant='outlined'
+                                    />
                                 </Grid>
                                 <Grid item xs={4}>
-                                    <TextField label='Elemental' variant='outlined' fullWidth />
+                                    <TextField
+                                        fullWidth
+                                        label='Affinity'
+                                        variant='outlined'
+                                    />
                                 </Grid>
-                                <Grid item xs={4}>
-                                    <TextField label='Affinity' variant='outlined' fullWidth />
+                                <Grid item xs={8} sm={6}>
+                                    <TextField
+                                        fullWidth
+                                        label='Sharpness'
+                                        variant='outlined'
+                                    />
                                 </Grid>
-                                <Grid item xs={4}>
-                                    <TextField variant='outlined' fullWidth />
+                                <Grid item xs={6} sm={3}>
+                                    <TextField
+                                        fullWidth
+                                        label='Attack Augments'
+                                        variant='outlined'
+                                    />
                                 </Grid>
-                                <Grid item xs={4}>
-                                    <TextField variant='outlined' fullWidth />
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <TextField variant='outlined' fullWidth />
+                                <Grid item xs={6} sm={3}>
+                                    <TextField
+                                        fullWidth
+                                        label='Affinity Augments'
+                                        variant='outlined'
+                                    />
                                 </Grid>
                             </Grid>
                         </Card>

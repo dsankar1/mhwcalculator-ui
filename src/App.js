@@ -19,10 +19,10 @@ const lightTheme = createMuiTheme({
             default: '#efefef'
         },
         primary: {
-            main: '#81c784'
+            main: '#66bb6a'
         },
         secondary: {
-            main: '#81c784'
+            main: '#66bb6a'
         }
     }
 });
