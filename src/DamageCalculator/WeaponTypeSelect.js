@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { memo } from 'react';
 import { makeStyles, Box, Button, FormControlLabel } from '@material-ui/core';
 
-export const weaponTypes = [
+export const weaponTypeOptions = [
     {
         label: 'Great Sword',
         value: 'greatSword',
@@ -107,14 +107,14 @@ const useStyles = makeStyles(theme => ({
 export const WeaponTypeSelect = memo(props => {
     const classes = useStyles();
 
-    const weaponTypeButtons = _.map(weaponTypes, ({ label, value, icon }) => {
+    const weaponTypeButtons = _.map(weaponTypeOptions, ({ label, value, icon }) => {
         const selected = _.isEqual(value, props.value);
         return (
             <Button
                 key={value}
                 color={selected ? 'primary' : 'default'}
                 variant={selected ? 'contained' : 'outlined'}
-                onClick={() => _.attempt(props.onChange, props.name, value)}
+                onClick={() => _.attempt(props.onChange, value)}
                 className={classes.weaponTypeButton}
             >
                 <FormControlLabel
