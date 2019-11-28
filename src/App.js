@@ -1,7 +1,8 @@
-import React, { createContext, useState, useCallback } from 'react';
+import _ from 'lodash';
+import React, { createContext, useState, useEffect, useCallback } from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline, makeStyles, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import { Home, Info } from '@material-ui/icons';
+import { Home } from '@material-ui/icons';
 import { Switch as RouteSwitch, Route, Redirect } from 'react-router-dom';
 import DamageCalculator from './DamageCalculator';
 import Navigation from './Navigation';
@@ -57,44 +58,47 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export const App = () => {
-    const [mode, setMode] = useState('light');
+    const [theme, setTheme] = useState(localStorage.getItem('theme'));
     const [menuOpen, setMenuOpen] = useState(false);
     const [subtitle, setSubtitle] = useState('');
     const classes = useStyles();
 
-    const toggleMode = useCallback(() => {
-        setMode(mode => mode === 'dark' ? 'light' : 'dark');
-    }, [setMode]);
+    useEffect(() => {
+        localStorage.setItem('theme', theme);
+    }, [theme]);
+
+    const toggleTheme = useCallback(() => {
+        setTheme(theme => theme === 'dark' ? 'light' : 'dark');
+    }, [setTheme]);
 
     const toggleMenu = useCallback(() => {
         setMenuOpen(menuOpen => !menuOpen);
     }, [setMenuOpen]);
 
     return (
-        <ThemeProvider theme={mode === 'dark' ? darkTheme : lightTheme}>
+        <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
             <CssBaseline />
             <SubtitleContext.Provider value={setSubtitle}>
-                <Route render={({ history }) => (
+                <Route render={({ location, history }) => (
                     <Navigation
                         subtitle={subtitle}
                         menuOpen={menuOpen}
                         onMenuClick={toggleMenu}
-                        onDarkModeClick={toggleMode}
+                        onDarkThemeClick={toggleTheme}
                         onHomeClick={() => history.push('/calculator/damage')}
                         menuContent={
                             <List>
-                                <ListItem button className={classes.menuItem}>
+                                <ListItem
+                                    button
+                                    selected={_.startsWith(location.pathname, '/calculator/damage')}
+                                    onClick={() => history.push('/calculator/damage')}
+                                    className={classes.menuItem}
+                                >
                                     <ListItemIcon>
                                         <Home />
                                     </ListItemIcon>
                                     <ListItemText primary='Damage Calculator' />
                                 </ListItem>
-                                {/* <ListItem button className={classes.menuItem}>
-                                    <ListItemIcon>
-                                        <Info style={{ fontSize: 22 }} />
-                                    </ListItemIcon>
-                                    <ListItemText primary='Calculation Info' />
-                                </ListItem> */}
                             </List>
                         }
                     >

@@ -26,14 +26,14 @@ const useStyles = makeStyles(theme => ({
     menuButton: {
         marginRight: theme.spacing(1)
     },
-    darkModeLabel: {
+    darkThemeLabel: {
         fontSize: 14,
         marginRight: theme.spacing(0.2),
         color: theme.palette.text.primary
     }
 }));
 
-export const TopBar = memo(({ subtitle, onMenuClick, onHomeClick, onDarkModeClick }) => {
+export const TopBar = memo(({ subtitle, onMenuClick, onHomeClick, onDarkThemeClick }) => {
     const theme = useTheme();
     const classes = useStyles();
     const mobile = useMediaQuery('(min-width:500px)');
@@ -50,7 +50,7 @@ export const TopBar = memo(({ subtitle, onMenuClick, onHomeClick, onDarkModeClic
                 </IconButton>
                 <img
                     alt='Monster Hunter Gem'
-                    src={process.env.PUBLIC_URL + '/favicon.png'}
+                    src={process.env.PUBLIC_URL + '/images/favicon.png'}
                     className={classes.icon}
                     onClick={onHomeClick}
                 />
@@ -72,14 +72,14 @@ export const TopBar = memo(({ subtitle, onMenuClick, onHomeClick, onDarkModeClic
                 <FormControlLabel
                     labelPlacement='start'
                     label={mobile ? (
-                        <Typography className={classes.darkModeLabel}>
-                            Dark Mode
+                        <Typography className={classes.darkThemeLabel}>
+                            Dark Theme
                         </Typography>
                     ) : null}
                     control={
                         <Switch
                             checked={theme.palette.type === 'dark'}
-                            onClick={onDarkModeClick}
+                            onClick={onDarkThemeClick}
                         />
                     }
                 />
