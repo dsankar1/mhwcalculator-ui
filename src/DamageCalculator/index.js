@@ -37,7 +37,7 @@ export const DamageCalculator = props => {
                         </Card>
                     </Grid>
                     <Grid item xs={12} className={classes.item}>
-                        <Card style={{ height: 200 }}>
+                        <Card style={{ height: 800 }}>
 
                         </Card>
                     </Grid>
