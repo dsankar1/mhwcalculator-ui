@@ -1,11 +1,12 @@
 import _ from 'lodash';
 import React, { useState, useEffect, useCallback, useContext } from 'react';
-import { makeStyles, Container, Grid, Card, TextField, InputAdornment, Tooltip, Checkbox } from '@material-ui/core';
+import { makeStyles, Container, Grid, Card, TextField, InputAdornment, Tooltip, Checkbox, Typography } from '@material-ui/core';
 import { VisibilityOff } from '@material-ui/icons';
 import { SubtitleContext } from '../App';
 import WeaponTypeSelect from './WeaponTypeSelect';
 import SharpnessPicker from './SharpnessPicker';
-import AugmentPicker from './AugmentPicker';
+import CoatingPicker from './CoatingPicker';
+import ButtonPicker from './ButtonPicker';
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -19,6 +20,11 @@ const useStyles = makeStyles(theme => ({
     },
     card: {
         padding: theme.spacing(2)
+    },
+    sectionTitle: {
+        marginBottom: theme.spacing(1),
+        marginLeft: theme.spacing(1),
+        fontWeight: 200
     },
     weaponAttributeGrid: {
         marginTop: theme.spacing(0.2),
@@ -39,7 +45,8 @@ const getInitialBuild = location => {
     }
     return _.defaults(cached, {
         weapon: 'greatSword',
-        sharpness: 'purple'
+        sharpness: 'purple',
+        coating: 'power'
     });
 }
 
@@ -62,6 +69,13 @@ export const DamageCalculator = props => {
             [name]: value
         }));
     }, [setBuild]);
+
+    const isBow = _.isEqual(build.weapon, 'bow');
+
+    const isBowgun = (
+        _.isEqual(build.weapon, 'lightBowgun')
+        || _.isEqual(build.weapon, 'heavyBowgun')
+    );
 
     return (
         <Container className={classes.container}>
@@ -89,35 +103,37 @@ export const DamageCalculator = props => {
                                         onChange={e => handleChange('raw', e.target.value)}
                                     />
                                 </Grid>
-                                <Grid item xs={12} sm={4}>
-                                    <TextField
-                                        fullWidth
-                                        label='Element Damage'
-                                        variant='outlined'
-                                        type='number'
-                                        value={_.get(build, 'element', '')}
-                                        onChange={e => handleChange('element', e.target.value)}
-                                        InputProps={{
-                                            style: {
-                                                paddingRight: 8
-                                            },
-                                            endAdornment: (
-                                                <InputAdornment position='end'>
-                                                    <Tooltip title={`Hidden: ${_.get(build, 'hiddenElement', false)}`} enterDelay={500}>
-                                                        <Checkbox
-                                                            size='small'
-                                                            color='default'
-                                                            checked={_.get(build, 'hiddenElement', false)}
-                                                            onChange={() => handleChange('hiddenElement', !_.get(build, 'hiddenElement', false))}
-                                                            icon={<VisibilityOff fontSize='small' />}
-                                                            checkedIcon={<VisibilityOff fontSize='small' color='primary' />}
-                                                        />
-                                                    </Tooltip>
-                                                </InputAdornment>
-                                            )
-                                        }}
-                                    />
-                                </Grid>
+                                {!isBowgun && (
+                                    <Grid item xs={12} sm={4}>
+                                        <TextField
+                                            fullWidth
+                                            label='Element Damage'
+                                            variant='outlined'
+                                            type='number'
+                                            value={_.get(build, 'element', '')}
+                                            onChange={e => handleChange('element', e.target.value)}
+                                            InputProps={{
+                                                style: {
+                                                    paddingRight: 8
+                                                },
+                                                endAdornment: (
+                                                    <InputAdornment position='end'>
+                                                        <Tooltip title={`Hidden: ${_.get(build, 'hiddenElement', false)}`} enterDelay={500}>
+                                                            <Checkbox
+                                                                size='small'
+                                                                color='default'
+                                                                checked={_.get(build, 'hiddenElement', false)}
+                                                                onChange={() => handleChange('hiddenElement', !_.get(build, 'hiddenElement', false))}
+                                                                icon={<VisibilityOff fontSize='small' />}
+                                                                checkedIcon={<VisibilityOff fontSize='small' color='primary' />}
+                                                            />
+                                                        </Tooltip>
+                                                    </InputAdornment>
+                                                )
+                                            }}
+                                        />
+                                    </Grid>
+                                )}
                                 <Grid item xs={12} sm={4}>
                                     <TextField
                                         fullWidth
@@ -135,24 +151,34 @@ export const DamageCalculator = props => {
                                         }}
                                     />
                                 </Grid>
-                                <Grid item xs={12} sm={8}>
-                                    <SharpnessPicker
-                                        value={_.get(build, 'sharpness')}
-                                        onChange={value => handleChange('sharpness', value)}
-                                    />
-                                </Grid>
+                                {isBow && (
+                                    <Grid item xs={12}>
+                                        <CoatingPicker
+                                            value={_.get(build, 'coating', 'none')}
+                                            onChange={value => handleChange('coating', value)}
+                                        />
+                                    </Grid>
+                                )}
+                                {!isBow && !isBowgun && (
+                                    <Grid item xs={12}>
+                                        <SharpnessPicker
+                                            value={_.get(build, 'sharpness')}
+                                            onChange={value => handleChange('sharpness', value)}
+                                        />
+                                    </Grid>
+                                )}
                                 <Grid item xs={12} sm={4}>
-                                    <AugmentPicker
+                                    <ButtonPicker
                                         label='Attack Augments'
-                                        maxLevel={3}
+                                        range={3}
                                         value={_.get(build, 'attackAugments', 0)}
                                         onChange={value => handleChange('attackAugments', value)}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={4}>
-                                    <AugmentPicker
+                                    <ButtonPicker
                                         label='Affinity Augments'
-                                        maxLevel={3}
+                                        range={3}
                                         value={_.get(build, 'affinityAugments', 0)}
                                         onChange={value => handleChange('affinityAugments', value)}
                                     />
@@ -167,7 +193,7 @@ export const DamageCalculator = props => {
                     </Grid>
                 </Grid>
                 <Grid item xs={12} md={3}>
-                    <Card style={{ height: 300 }}>
+                    <Card style={{ height: 300, padding: 16 }}>
 
                     </Card>
                 </Grid>

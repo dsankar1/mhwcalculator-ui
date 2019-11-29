@@ -1,32 +1,46 @@
 import _ from 'lodash';
+import clsx from 'clsx';
 import React, { Fragment, memo } from 'react';
+import { darken } from '@material-ui/core/styles';
 import { makeStyles, ButtonGroup, InputLabel, Button } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     label: {
-        marginTop: -theme.spacing(1),
+        marginTop: -theme.spacing(0.5),
         marginBottom: theme.spacing(0.5)
     },
     button: {
         fontSize: 12
+    },
+    selected: {
+        color: theme.palette.common.black,
+        backgroundColor: theme.palette.primary.main,
+        '&:hover': {
+            backgroundColor: darken(theme.palette.primary.main, 0.2)
+        }
     }
 }));
 
-export const AugmentPicker = memo(props => {
+export const ButtonPicker = memo(props => {
     const classes = useStyles();
 
-    const augmentButtons = _.map(_.range(props.maxLevel + 1), value => {
+    const values = _.defaultTo(props.options, _.range(props.range + 1));
+
+    const augmentButtons = _.map(values, item => {
+        const label = _.get(item, 'label', item);
+        const value = _.get(item, 'value', item);
         const selected = _.isEqual(value, props.value);
         return (
             <Button
                 key={value}
                 size='small'
-                color={selected ? 'primary' : 'default'}
-                variant={selected ? 'contained' : 'outlined'}
+                variant='outlined'
                 onClick={() => _.attempt(props.onChange, value)}
-                className={classes.button}
+                className={clsx(classes.button, {
+                    [classes.selected]: selected
+                })}
             >
-                {value}
+                {label}
             </Button>
         );
     });
@@ -43,4 +57,4 @@ export const AugmentPicker = memo(props => {
     );
 });
 
-export default AugmentPicker;
+export default ButtonPicker;
