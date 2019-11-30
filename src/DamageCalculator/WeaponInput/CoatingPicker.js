@@ -4,38 +4,41 @@ import React, { memo, Fragment } from 'react';
 import { darken } from '@material-ui/core/styles';
 import { makeStyles, ButtonGroup, Button, Box, InputLabel } from '@material-ui/core';
 
-export const sharpnessOptions = [
+export const coatingOptions = [
     {
-        label: 'Red',
-        value: 'red'
+        label: 'None',
+        value: ''
     },
     {
-        label: 'Orange',
-        value: 'orange'
+        label: 'Paralysis',
+        value: 'paralysis'
     },
     {
-        label: 'Yellow',
-        value: 'yellow'
+        label: 'Sleep',
+        value: 'sleep'
     },
     {
-        label: 'Green',
-        value: 'green'
+        label: 'Poison',
+        value: 'poison'
     },
     {
-        label: 'Blue',
-        value: 'blue'
+        label: 'Blast',
+        value: 'blast'
     },
     {
-        label: 'White',
-        value: 'white'
+        label: 'Spread',
+        value: 'spread'
     },
     {
-        label: 'Purple',
-        value: 'purple'
+        label: 'Power',
+        value: 'power'
     }
 ];
 
 const useStyles = makeStyles(theme => ({
+    box: {
+        '-webkit-overflow-scrolling': 'touch'
+    },
     label: {
         marginTop: -theme.spacing(0.5),
         marginBottom: theme.spacing(0.5)
@@ -45,86 +48,88 @@ const useStyles = makeStyles(theme => ({
         fontSize: 12,
         minWidth: 70
     },
-    red: {
-        color: '#f44336'
-    },
-    redSelected: {
-        color: theme.palette.common.black,
-        backgroundColor: '#f44336',
-        '&:hover': {
-            backgroundColor: darken('#f44336', 0.2)
-        }
-    },
-    orange: {
-        color: '#d9662c'
-    },
-    orangeSelected: {
-        color: theme.palette.common.black,
-        backgroundColor: '#d9662c',
-        '&:hover': {
-            backgroundColor: darken('#d9662c', 0.2)
-        }
-    },
-    yellow: {
+    '': {
         color: theme.palette.type === 'light'
-            ? darken('#d9d12c', 0.2) : '#d9d12c'
+            ? darken('#bcaaa4', 0.4) : '#bcaaa4'
     },
-    yellowSelected: {
+    Selected: {
         color: theme.palette.common.black,
-        backgroundColor: '#d9d12c',
+        backgroundColor: '#bcaaa4',
         '&:hover': {
-            backgroundColor: darken('#d9d12c', 0.2)
+            backgroundColor: darken('#bcaaa4', 0.2)
         }
     },
-    green: {
+    poison: {
+        color: '#d769e4'
+    },
+    poisonSelected: {
+        color: theme.palette.common.black,
+        backgroundColor: '#d769e4',
+        '&:hover': {
+            backgroundColor: darken('#d769e4', 0.2)
+        }
+    },
+    blast: {
         color: theme.palette.type === 'light'
-            ? darken('#70d92c', 0.2) : '#70d92c'
+            ? darken('#c3f174', 0.4) : '#c3f174'
     },
-    greenSelected: {
+    blastSelected: {
         color: theme.palette.common.black,
-        backgroundColor: '#70d92c',
+        backgroundColor: '#c3f174',
         '&:hover': {
-            backgroundColor: darken('#70d92c', 0.2)
+            backgroundColor: darken('#c3f174', 0.2)
         }
     },
-    blue: {
-        color: '#42a5f5'
+    sleep: {
+        color: theme.palette.type === 'light'
+            ? darken('#74d9ed', 0.2) : '#74d9ed'
     },
-    blueSelected: {
+    sleepSelected: {
         color: theme.palette.common.black,
-        backgroundColor: '#42a5f5',
+        backgroundColor: '#74d9ed',
         '&:hover': {
-            backgroundColor: darken('#42a5f5', 0.2)
+            backgroundColor: darken('#74d9ed', 0.2)
         }
     },
-    white: {
+    paralysis: {
+        color: theme.palette.type === 'light'
+            ? darken('#ffee58', 0.4) : '#ffee58'
+    },
+    paralysisSelected: {
+        color: theme.palette.common.black,
+        backgroundColor: '#ffee58',
+        '&:hover': {
+            backgroundColor: darken('#ffee58', 0.2)
+        }
+    },
+    spread: {
         color: theme.palette.type === 'light'
             ? theme.palette.grey[600] : '#eeeeee'
     },
-    whiteSelected: {
+    spreadSelected: {
         color: theme.palette.common.black,
         backgroundColor: '#eeeeee',
         '&:hover': {
             backgroundColor: darken('#eeeeee', 0.2)
         }
     },
-    purple: {
+    power: {
         color: theme.palette.type === 'light'
-            ? darken('#cc99ff', 0.2) : '#cc99ff'
+            ? darken('#f85858', 0.2) : '#f85858'
     },
-    purpleSelected: {
+    powerSelected: {
         color: theme.palette.common.black,
-        backgroundColor: '#cc99ff',
+        backgroundColor: '#f85858',
         '&:hover': {
-            backgroundColor: darken('#cc99ff', 0.2)
+            backgroundColor: darken('#f85858', 0.2)
         }
     }
 }));
 
-export const SharpnessPicker = memo(props => {
+export const CoatingPicker = memo(props => {
     const classes = useStyles();
 
-    const sharpnessButtons = _.map(sharpnessOptions, ({ label, value }) => {
+    const coatingButtons = _.map(coatingOptions, ({ label, value }) => {
         const selected = _.isEqual(value, props.value);
         return (
             <Button
@@ -143,15 +148,19 @@ export const SharpnessPicker = memo(props => {
     return (
         <Fragment>
             <InputLabel shrink className={classes.label}>
-                Sharpness
+                Coating
             </InputLabel>
-            <Box overflow='auto'>
+            <Box overflow='auto' className={classes.box}>
                 <ButtonGroup fullWidth disabled={props.disabled}>
-                    {sharpnessButtons}
+                    {coatingButtons}
                 </ButtonGroup>
             </Box>
         </Fragment>
     );
 });
 
-export default SharpnessPicker;
+CoatingPicker.defaultProps = {
+    value: 'none'
+};
+
+export default CoatingPicker;

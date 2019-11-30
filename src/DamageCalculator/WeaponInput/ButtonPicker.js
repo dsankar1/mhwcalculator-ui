@@ -27,8 +27,8 @@ export const ButtonPicker = memo(props => {
     const values = _.defaultTo(props.options, _.range(props.range + 1));
 
     const augmentButtons = _.map(values, item => {
-        const label = _.get(item, 'label', item);
         const value = _.get(item, 'value', item);
+        const label = _.get(item, 'label', value);
         const selected = _.isEqual(value, props.value);
         return (
             <Button

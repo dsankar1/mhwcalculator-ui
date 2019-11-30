@@ -136,7 +136,7 @@ export const WeaponTypeSelect = memo(props => {
     });
 
     return (
-        <Box width='100%' overflow='auto' className={classes.box}>
+        <Box overflow='auto' className={classes.box}>
             <Box
                 display='flex'
                 flexWrap='none'

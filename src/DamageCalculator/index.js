@@ -1,36 +1,8 @@
 import _ from 'lodash';
 import React, { useState, useEffect, useCallback, useContext } from 'react';
-import { makeStyles, Container, Grid, Card, TextField, InputAdornment, Tooltip, Checkbox, Typography } from '@material-ui/core';
-import { VisibilityOff } from '@material-ui/icons';
+import { makeStyles, Container, Grid, Card } from '@material-ui/core';
 import { SubtitleContext } from '../App';
-import WeaponTypeSelect from './WeaponTypeSelect';
-import SharpnessPicker from './SharpnessPicker';
-import CoatingPicker from './CoatingPicker';
-import ButtonPicker from './ButtonPicker';
-
-const useStyles = makeStyles(theme => ({
-    container: {
-        marginTop: theme.spacing(2)
-    },
-    item: {
-        marginBottom: theme.spacing(2),
-        '&:last-child': {
-            marginBottom: 0
-        }
-    },
-    card: {
-        padding: theme.spacing(2)
-    },
-    sectionTitle: {
-        marginBottom: theme.spacing(1),
-        marginLeft: theme.spacing(1),
-        fontWeight: 200
-    },
-    weaponAttributeGrid: {
-        marginTop: theme.spacing(0.2),
-        padding: theme.spacing(0.5)
-    }
-}));
+import WeaponInput from './WeaponInput';
 
 const getInitialBuild = location => {
     // console.log('Location', location);
@@ -49,6 +21,21 @@ const getInitialBuild = location => {
         coating: 'power'
     });
 }
+
+const useStyles = makeStyles(theme => ({
+    container: {
+        marginTop: theme.spacing(2)
+    },
+    item: {
+        marginBottom: theme.spacing(2),
+        '&:last-child': {
+            marginBottom: 0
+        }
+    },
+    card: {
+        padding: theme.spacing(2)
+    }
+}));
 
 export const DamageCalculator = props => {
     const classes = useStyles();
@@ -70,13 +57,6 @@ export const DamageCalculator = props => {
         }));
     }, [setBuild]);
 
-    const isBow = _.isEqual(build.weapon, 'bow');
-
-    const isBowgun = (
-        _.isEqual(build.weapon, 'lightBowgun')
-        || _.isEqual(build.weapon, 'heavyBowgun')
-    );
-
     return (
         <Container className={classes.container}>
             <Grid container spacing={2}>
@@ -88,102 +68,10 @@ export const DamageCalculator = props => {
                     </Grid>
                     <Grid item xs={12} className={classes.item}>
                         <Card className={classes.card}>
-                            <WeaponTypeSelect
-                                value={_.get(build, 'weapon')}
-                                onChange={value => handleChange('weapon', value)}
+                            <WeaponInput
+                                build={build}
+                                onChange={handleChange}
                             />
-                            <Grid container spacing={2} className={classes.weaponAttributeGrid}>
-                                <Grid item xs={12} sm={4}>
-                                    <TextField
-                                        fullWidth
-                                        label='Raw Damage'
-                                        variant='outlined'
-                                        type='number'
-                                        value={_.get(build, 'raw', '')}
-                                        onChange={e => handleChange('raw', e.target.value)}
-                                    />
-                                </Grid>
-                                {!isBowgun && (
-                                    <Grid item xs={12} sm={4}>
-                                        <TextField
-                                            fullWidth
-                                            label='Element Damage'
-                                            variant='outlined'
-                                            type='number'
-                                            value={_.get(build, 'element', '')}
-                                            onChange={e => handleChange('element', e.target.value)}
-                                            InputProps={{
-                                                style: {
-                                                    paddingRight: 8
-                                                },
-                                                endAdornment: (
-                                                    <InputAdornment position='end'>
-                                                        <Tooltip title={`Hidden: ${_.get(build, 'hiddenElement', false)}`} enterDelay={500}>
-                                                            <Checkbox
-                                                                size='small'
-                                                                color='default'
-                                                                checked={_.get(build, 'hiddenElement', false)}
-                                                                onChange={() => handleChange('hiddenElement', !_.get(build, 'hiddenElement', false))}
-                                                                icon={<VisibilityOff fontSize='small' />}
-                                                                checkedIcon={<VisibilityOff fontSize='small' color='primary' />}
-                                                            />
-                                                        </Tooltip>
-                                                    </InputAdornment>
-                                                )
-                                            }}
-                                        />
-                                    </Grid>
-                                )}
-                                <Grid item xs={12} sm={4}>
-                                    <TextField
-                                        fullWidth
-                                        label='Affinity'
-                                        variant='outlined'
-                                        type='number'
-                                        value={_.get(build, 'affinity', '')}
-                                        onChange={e => handleChange('affinity', e.target.value)}
-                                        InputProps={{
-                                            endAdornment: (
-                                                <InputAdornment position='end'>
-                                                    %
-                                                </InputAdornment>
-                                            )
-                                        }}
-                                    />
-                                </Grid>
-                                {isBow && (
-                                    <Grid item xs={12}>
-                                        <CoatingPicker
-                                            value={_.get(build, 'coating', 'none')}
-                                            onChange={value => handleChange('coating', value)}
-                                        />
-                                    </Grid>
-                                )}
-                                {!isBow && !isBowgun && (
-                                    <Grid item xs={12}>
-                                        <SharpnessPicker
-                                            value={_.get(build, 'sharpness')}
-                                            onChange={value => handleChange('sharpness', value)}
-                                        />
-                                    </Grid>
-                                )}
-                                <Grid item xs={12} sm={4}>
-                                    <ButtonPicker
-                                        label='Attack Augments'
-                                        range={3}
-                                        value={_.get(build, 'attackAugments', 0)}
-                                        onChange={value => handleChange('attackAugments', value)}
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sm={4}>
-                                    <ButtonPicker
-                                        label='Affinity Augments'
-                                        range={3}
-                                        value={_.get(build, 'affinityAugments', 0)}
-                                        onChange={value => handleChange('affinityAugments', value)}
-                                    />
-                                </Grid>
-                            </Grid>
                         </Card>
                     </Grid>
                     <Grid item xs={12} className={classes.item}>
