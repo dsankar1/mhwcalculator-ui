@@ -79,8 +79,10 @@ const useStyles = makeStyles(theme => ({
     box: {
         '-webkit-overflow-scrolling': 'touch'
     },
+    topRow: {
+        marginBottom: theme.spacing(2)
+    },
     weaponTypeButton: {
-        marginBottom: theme.spacing(2),
         width: 110,
         height: 100,
         minWidth: 110,
@@ -141,6 +143,7 @@ export const WeaponTypeSelect = memo(props => {
                 display='flex'
                 flexWrap='none'
                 justifyContent='space-between'
+                className={classes.topRow}
             >
                 {_.slice(weaponTypeButtons, 0, 7)}
             </Box>

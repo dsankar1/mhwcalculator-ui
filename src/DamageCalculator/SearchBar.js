@@ -130,11 +130,11 @@ export const SearchBar = memo(({ onChange }) => {
 
                 const element = +_.get(response, ['data', 'elements', 0, 'damage'], 0);
                 const elementType = _.get(response, ['data', 'elements', 0, 'type'], '');
-                const hiddenElement = _.get(response, ['data', 'elements', 0, 'hidden', false]);
+                const hiddenElement = _.get(response, ['data', 'elements', 0, 'hidden'], false);
 
                 const secondElement = +_.get(response, ['data', 'elements', 1, 'damage'], 0);
                 const secondElementType = _.get(response, ['data', 'elements', 1, 'type'], '');
-                const hiddenSecondElement = _.get(response, ['data', 'elements', 1, 'hidden', false]);
+                const hiddenSecondElement = _.get(response, ['data', 'elements', 1, 'hidden'], false);
 
                 _.attempt(onChange, 'physical', physical);
                 _.attempt(onChange, 'affinity', affinity);
