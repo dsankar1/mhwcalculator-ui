@@ -6,7 +6,7 @@ import { makeStyles, ButtonGroup, InputLabel, Button } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     label: {
-        marginTop: -theme.spacing(0.5),
+        marginTop: -theme.spacing(1),
         marginBottom: theme.spacing(0.5)
     },
     button: {

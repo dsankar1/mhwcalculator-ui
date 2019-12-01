@@ -2,7 +2,7 @@ import _ from 'lodash';
 import clsx from 'clsx';
 import React, { memo } from 'react';
 import { darken } from '@material-ui/core/styles';
-import { makeStyles, useTheme, TextField, InputAdornment, Select, Tooltip, Checkbox, MenuItem, Divider, ListSubheader } from '@material-ui/core';
+import { makeStyles, useTheme, TextField, InputAdornment, Select, Tooltip, Checkbox, MenuItem, Divider } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 
 export const getColorMap = type => {
@@ -124,6 +124,8 @@ export const ElementInput = memo(props => {
         );
     });
 
+    const type = +props.value ? props.type : 'none';
+
     return (
         <TextField
             fullWidth
@@ -141,16 +143,16 @@ export const ElementInput = memo(props => {
                         <Divider orientation='vertical' className={classes.divider} />
                         <Select
                             disableUnderline
-                            value={props.type}
+                            placeholder='None'
+                            value={type}
                             onChange={e => _.attempt(props.onChangeType, e.target.value)}
                             style={{
-                                color: _.get(getColorMap(theme.palette.type), props.type)
+                                color: _.get(getColorMap(theme.palette.type), type)
                             }}
                         >
-                            <ListSubheader>Element Types</ListSubheader>
+                            <MenuItem value='none' disabled>None</MenuItem>
                             <Divider />
                             {elementTypeMenuItems}
-                            <ListSubheader>Abnormal Status</ListSubheader>
                             <Divider />
                             {abnormalStatusMenuItems}
                         </Select>

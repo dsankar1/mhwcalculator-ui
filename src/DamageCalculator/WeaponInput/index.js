@@ -1,26 +1,15 @@
 import _ from 'lodash';
 import React, { memo, Fragment } from 'react';
-import { makeStyles, Grid, TextField, InputAdornment } from '@material-ui/core';
+import { Grid, TextField, InputAdornment } from '@material-ui/core';
 import WeaponTypeSelect from './WeaponTypeSelect';
 import ElementInput from './ElementInput';
 import SharpnessPicker from './SharpnessPicker';
 import CoatingPicker from './CoatingPicker';
 import ButtonPicker from './ButtonPicker';
 
-const useStyles = makeStyles(theme => ({
-    container: {
-        marginTop: theme.spacing(0.2),
-        padding: theme.spacing(0.5)
-    }
-}));
-
 export const WeaponInput = memo(({ build, onChange }) => {
-    const classes = useStyles();
-
     const isDualBlades = _.isEqual(_.get(build, 'weapon'), 'dualBlades');
-
     const isBow = _.isEqual(_.get(build, 'weapon'), 'bow');
-
     const isBowgun = (
         _.isEqual(_.get(build, 'weapon'), 'lightBowgun')
         || _.isEqual(_.get(build, 'weapon'), 'heavyBowgun')
@@ -32,7 +21,7 @@ export const WeaponInput = memo(({ build, onChange }) => {
                 value={_.get(build, 'weapon')}
                 onChange={weapon => onChange('weapon', weapon)}
             />
-            <Grid container spacing={2} className={classes.container}>
+            <Grid container spacing={2}>
                 <Grid item xs={12} sm={3}>
                     <TextField
                         fullWidth

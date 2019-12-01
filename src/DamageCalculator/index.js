@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React, { useState, useEffect, useCallback, useContext } from 'react';
 import { makeStyles, Container, Grid, Card } from '@material-ui/core';
 import { SubtitleContext } from '../App';
+import SearchBar from './SearchBar';
 import WeaponInput from './WeaponInput';
 
 const getInitialBuild = location => {
@@ -68,6 +69,7 @@ export const DamageCalculator = props => {
                     </Grid>
                     <Grid item xs={12} className={classes.item}>
                         <Card className={classes.card}>
+                            <SearchBar onChange={handleChange} />
                             <WeaponInput
                                 build={build}
                                 onChange={handleChange}

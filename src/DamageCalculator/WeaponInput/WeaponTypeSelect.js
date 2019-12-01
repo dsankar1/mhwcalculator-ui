@@ -40,7 +40,7 @@ export const weaponTypeOptions = [
     },
     {
         label: 'Gunlance',
-        value: 'gunLance',
+        value: 'gunlance',
         icon: '/images/gunlance.png'
     },
     {
@@ -80,7 +80,7 @@ const useStyles = makeStyles(theme => ({
         '-webkit-overflow-scrolling': 'touch'
     },
     weaponTypeButton: {
-        margin: theme.spacing(0.5),
+        marginBottom: theme.spacing(2),
         width: 110,
         height: 100,
         minWidth: 110,
