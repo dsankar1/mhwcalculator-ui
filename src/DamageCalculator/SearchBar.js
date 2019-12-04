@@ -121,43 +121,45 @@ export const SearchBar = memo(({ onChange }) => {
             try {
                 setImporting(true);
                 const response = await getWeaponInfo(importId);
-                setImporting(false);
-
-                const weapon = _.camelCase(_.get(response, ['data', 'type'], ''));
-                const physical = +_.get(response, ['data', 'attack', 'display'], 0);
-                const affinity = +_.get(response, ['data', 'attributes', 'affinity'], 0);
-                const sharpness = getSharpness(_.get(response, ['data', 'durability'], []));
-
-                const element = +_.get(response, ['data', 'elements', 0, 'damage'], 0);
-                const elementType = _.get(response, ['data', 'elements', 0, 'type'], '');
-                const hiddenElement = _.get(response, ['data', 'elements', 0, 'hidden'], false);
-
-                const secondElement = +_.get(response, ['data', 'elements', 1, 'damage'], 0);
-                const secondElementType = _.get(response, ['data', 'elements', 1, 'type'], '');
-                const hiddenSecondElement = _.get(response, ['data', 'elements', 1, 'hidden'], false);
-
-                _.attempt(onChange, 'physical', physical);
-                _.attempt(onChange, 'affinity', affinity);
-                _.attempt(onChange, 'element', element);
-                _.attempt(onChange, 'hiddenElement', hiddenElement);
-                _.attempt(onChange, 'secondElement', secondElement);
-                _.attempt(onChange, 'hiddenSecondElement', hiddenSecondElement);
-
-                if (weapon) {
-                    _.attempt(onChange, 'weapon', weapon);
-                }
-                if (sharpness) {
-                    _.attempt(onChange, 'sharpness', sharpness);
-                }
-                if (elementType) {
-                    _.attempt(onChange, 'elementType', elementType);
-                }
-                if (secondElementType) {
-                    _.attempt(onChange, 'secondElementType', secondElementType);
+                if (_.has(response, 'data')) {
+                    const weapon = _.camelCase(_.get(response, ['data', 'type'], ''));
+                    const physical = +_.get(response, ['data', 'attack', 'display'], 0);
+                    const affinity = +_.get(response, ['data', 'attributes', 'affinity'], 0);
+                    const sharpness = getSharpness(_.get(response, ['data', 'durability'], []));
+    
+                    const element = +_.get(response, ['data', 'elements', 0, 'damage'], 0);
+                    const elementType = _.get(response, ['data', 'elements', 0, 'type'], '');
+                    const hiddenElement = _.get(response, ['data', 'elements', 0, 'hidden'], false);
+    
+                    const secondElement = +_.get(response, ['data', 'elements', 1, 'damage'], 0);
+                    const secondElementType = _.get(response, ['data', 'elements', 1, 'type'], '');
+                    const hiddenSecondElement = _.get(response, ['data', 'elements', 1, 'hidden'], false);
+    
+                    _.attempt(onChange, 'physical', physical);
+                    _.attempt(onChange, 'affinity', affinity);
+                    _.attempt(onChange, 'element', element);
+                    _.attempt(onChange, 'hiddenElement', hiddenElement);
+                    _.attempt(onChange, 'secondElement', secondElement);
+                    _.attempt(onChange, 'hiddenSecondElement', hiddenSecondElement);
+    
+                    if (weapon) {
+                        _.attempt(onChange, 'weapon', weapon);
+                    }
+                    if (sharpness) {
+                        _.attempt(onChange, 'sharpness', sharpness);
+                    }
+                    if (elementType) {
+                        _.attempt(onChange, 'elementType', elementType);
+                    }
+                    if (secondElementType) {
+                        _.attempt(onChange, 'secondElementType', secondElementType);
+                    }
                 }
             } catch (err) {
                 setSnackbarOpen(true);
                 setSnackbarMessage(`Failed to get weapon info for ${name}`);
+            } finally {
+                setImporting(false);
             }
         }
     }, [onChange, setImporting, setSnackbarOpen, setSnackbarMessage]);

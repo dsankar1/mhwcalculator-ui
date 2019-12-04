@@ -1,12 +1,25 @@
 import _ from 'lodash';
+import qs from 'qs';
 import React, { useState, useEffect, useCallback, useContext } from 'react';
 import { makeStyles, Container, Grid, Card } from '@material-ui/core';
 import { SubtitleContext } from '../App';
 import SearchBar from './SearchBar';
 import WeaponInput from './WeaponInput';
+import BuffsInput from './BuffsInput';
 
 const getInitialBuild = location => {
-    // console.log('Location', location);
+    const rawQuery = qs.parse(_.get(location, 'search'), {
+        ignoreQueryPrefix: true
+    });
+    const query = _.transform(rawQuery, (acc, value, key) => {
+        if (_.isEqual(key, 'buffs')) {
+            const split = _.split(value, /,\s?/);
+            _.set(acc, key, split);
+        } else {
+            _.set(acc, key, value);
+        }
+    }, {});
+
     let cached = {};
     try {
         const json = localStorage.getItem('build');
@@ -16,7 +29,8 @@ const getInitialBuild = location => {
     } catch (e) {
         console.error(e);
     }
-    return _.defaults(cached, {
+
+    return _.defaults(query, cached, {
         weapon: 'greatSword',
         sharpness: 'purple',
         coating: 'power'
@@ -25,7 +39,8 @@ const getInitialBuild = location => {
 
 const useStyles = makeStyles(theme => ({
     container: {
-        marginTop: theme.spacing(2)
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(2)
     },
     item: {
         marginBottom: theme.spacing(2),
@@ -77,8 +92,11 @@ export const DamageCalculator = props => {
                         </Card>
                     </Grid>
                     <Grid item xs={12} className={classes.item}>
-                        <Card style={{ height: 800 }}>
-
+                        <Card className={classes.card}>
+                            <BuffsInput
+                                value={_.get(build, 'buffs', [])}
+                                onChange={buffs => handleChange('buffs', buffs)}
+                            />
                         </Card>
                     </Grid>
                 </Grid>
