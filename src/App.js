@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { createContext, useState, useEffect, useCallback } from 'react';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme, ThemeProvider, fade } from '@material-ui/core/styles';
 import { CssBaseline, makeStyles, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { Home } from '@material-ui/icons';
 import { Switch as RouteSwitch, Route, Redirect } from 'react-router-dom';
@@ -19,10 +19,10 @@ const lightTheme = createMuiTheme({
             default: '#efefef'
         },
         primary: {
-            main: '#66bb6a'
+            main: fade('#66bb6a', 0.7)
         },
         secondary: {
-            main: '#66bb6a'
+            main: fade('#66bb6a', 0.7)
         }
     }
 });
@@ -38,10 +38,10 @@ const darkTheme = createMuiTheme({
             paper: '#303030'
         },
         primary: {
-            main: '#81c784'
+            main: fade('#81c784', 0.7)
         },
         secondary: {
-            main: '#81c784'
+            main: fade('#81c784', 0.7)
         }
     }
 });
@@ -91,7 +91,7 @@ export const App = () => {
                                 <ListItem
                                     button
                                     selected={_.startsWith(location.pathname, '/calculator/damage')}
-                                    onClick={() => history.push('/calculator/damage')}
+                                    onClick={() => history.push('/calculajtor/damage')}
                                     className={classes.menuItem}
                                 >
                                     <ListItemIcon>

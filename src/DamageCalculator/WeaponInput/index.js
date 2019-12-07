@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React, { memo } from 'react';
-import { Grid, TextField, InputAdornment } from '@material-ui/core';
+import { Grid, InputAdornment } from '@material-ui/core';
+import TextField from '../../TextField';
 import WeaponTypeSelect from './WeaponTypeSelect';
 import ElementInput from './ElementInput';
 import SharpnessPicker from './SharpnessPicker';
@@ -23,21 +24,17 @@ export const WeaponInput = memo(({ build, onChange }) => {
                     onChange={weapon => onChange('weapon', weapon)}
                 />
             </Grid>
-            <Grid item xs={12} sm={3}>
+            <Grid item xs={12} sm={6} md={isDualBlades ? 2 : 4}>
                 <TextField
-                    fullWidth
                     type='number'
-                    variant='outlined'
                     label='Physical'
                     value={_.get(build, 'physical', '')}
                     onChange={e => _.attempt(onChange, 'physical', e.target.value)}
                 />
             </Grid>
-            <Grid item xs={12} sm={3}>
+            <Grid item xs={12} sm={6} md={isDualBlades ? 2 : 4}>
                 <TextField
-                    fullWidth
                     type='number'
-                    variant='outlined'
                     label='Affinity'
                     value={_.get(build, 'affinity', '')}
                     onChange={e => _.attempt(onChange, 'affinity', e.target.value)}
@@ -46,8 +43,8 @@ export const WeaponInput = memo(({ build, onChange }) => {
                     }}
                 />
             </Grid>
-            {isBowgun ? <Grid item xs={4} /> : (
-                <Grid item xs={12} sm={6}>
+            {isBowgun ? <Grid item md={4} style={{ padding: 0 }} /> : (
+                <Grid item xs={12} sm={6} md={4}>
                     <ElementInput
                         label='Element'
                         value={_.get(build, 'element', '')}
@@ -60,7 +57,7 @@ export const WeaponInput = memo(({ build, onChange }) => {
                 </Grid>
             )}
             {isDualBlades && (
-                <Grid item xs={12} sm={8}>
+                <Grid item xs={12} sm={6} md={4}>
                     <ElementInput
                         label='Second Element'
                         value={_.get(build, 'secondElement', '')}
@@ -73,7 +70,7 @@ export const WeaponInput = memo(({ build, onChange }) => {
                 </Grid>
             )}
             {isBow && (
-                <Grid item xs={12}>
+                <Grid item xs={12} md={6}>
                     <CoatingPicker
                         value={_.get(build, 'coating', '')}
                         onChange={coating => _.attempt(onChange, 'coating', coating)}
@@ -81,14 +78,14 @@ export const WeaponInput = memo(({ build, onChange }) => {
                 </Grid>
             )}
             {!isBow && !isBowgun && (
-                <Grid item xs={12}>
+                <Grid item xs={12} md={6}>
                     <SharpnessPicker
                         value={_.get(build, 'sharpness', '')}
                         onChange={sharpness => _.attempt(onChange, 'sharpness', sharpness)}
                     />
                 </Grid>
             )}
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} md={isBowgun ? 4 : 3}>
                 <ButtonPicker
                     range={3}
                     label='Attack Augments'
@@ -96,7 +93,7 @@ export const WeaponInput = memo(({ build, onChange }) => {
                     onChange={attackAugments => _.attempt(onChange, 'attackAugments', attackAugments)}
                 />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} md={isBowgun ? 4 : 3}>
                 <ButtonPicker
                     range={3}
                     label='Affinity Augments'

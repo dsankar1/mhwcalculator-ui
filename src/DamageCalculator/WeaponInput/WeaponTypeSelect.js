@@ -1,6 +1,8 @@
 import _ from 'lodash';
-import React, { memo } from 'react';
-import { makeStyles, Box, Button, FormControlLabel } from '@material-ui/core';
+import clsx from 'clsx';
+import React, { memo, Fragment } from 'react';
+import { darken } from '@material-ui/core/styles';
+import { makeStyles, Box, InputLabel, ButtonGroup, Button, Tooltip } from '@material-ui/core';
 
 export const weaponTypeOptions = [
     {
@@ -79,26 +81,35 @@ const useStyles = makeStyles(theme => ({
     box: {
         '-webkit-overflow-scrolling': 'touch'
     },
-    topRow: {
-        marginBottom: theme.spacing(2)
+    label: {
+        marginBottom: theme.spacing(0.3)
     },
-    weaponTypeButton: {
-        width: 110,
-        height: 100,
-        minWidth: 110,
-        minHeight: 100,
+    buttonGroup: {
+        display: 'flex'
+    },
+    button: {
+        flex: 1,
+        minWidth: 80,
+        minHeight: 80,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center'
     },
-    weaponTypeLabel: {
-        fontSize: 12,
+    selected: {
+        color: theme.palette.common.black,
+        backgroundColor: theme.palette.primary.main,
+        '&:hover': {
+            backgroundColor: darken(theme.palette.primary.main, 0.2)
+        }
+    },
+    buttonLabel: {
+        fontSize: 10,
         fontWeight: 500,
         whiteSpace: 'nowrap',
         marginBottom: theme.spacing(1)
     },
-    weaponTypeIcon: {
+    icon: {
         width: 40,
         height: 40,
         maxWidth: 40,
@@ -114,47 +125,34 @@ export const WeaponTypeSelect = memo(props => {
         return (
             <Button
                 key={value}
-                color={selected ? 'primary' : 'default'}
-                variant={selected ? 'contained' : 'outlined'}
+                variant='outlined'
                 onClick={() => _.attempt(props.onChange, value)}
-                className={classes.weaponTypeButton}
+                className={clsx(classes.button, {
+                    [classes.selected]: selected
+                })}
             >
-                <FormControlLabel
-                    label={label}
-                    labelPlacement='top'
-                    control={
-                        <img
-                            alt={label}
-                            src={process.env.PUBLIC_URL + icon}
-                            className={classes.weaponTypeIcon}
-                        />
-                    }
-                    classes={{
-                        label: classes.weaponTypeLabel
-                    }}
-                />
+                <Tooltip title={label} enterDelay={500}>
+                    <img
+                        alt={label}
+                        src={process.env.PUBLIC_URL + icon}
+                        className={classes.icon}
+                    />
+                </Tooltip>
             </Button>
         );
     });
 
     return (
-        <Box overflow='auto' className={classes.box}>
-            <Box
-                display='flex'
-                flexWrap='none'
-                justifyContent='space-between'
-                className={classes.topRow}
-            >
-                {_.slice(weaponTypeButtons, 0, 7)}
+        <Fragment>
+            <InputLabel shrink className={classes.label}>
+                Weapon Class
+            </InputLabel>
+            <Box overflow='auto' className={classes.box}>
+                <ButtonGroup fullWidth className={classes.buttonGroup}>
+                    {weaponTypeButtons}
+                </ButtonGroup>
             </Box>
-            <Box
-                display='flex'
-                flexWrap='none'
-                justifyContent='space-between'
-            >
-                {_.slice(weaponTypeButtons, 7, 14)}
-            </Box>
-        </Box>
+        </Fragment>
     );
 });
 

@@ -6,11 +6,10 @@ import { makeStyles, ButtonGroup, InputLabel, Button } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     label: {
-        marginTop: -theme.spacing(1),
-        marginBottom: theme.spacing(0.5)
+        marginBottom: theme.spacing(0.3)
     },
     button: {
-        fontSize: 12
+        fontSize: 11
     },
     selected: {
         color: theme.palette.common.black,
@@ -33,7 +32,6 @@ export const ButtonPicker = memo(props => {
         return (
             <Button
                 key={value}
-                size='small'
                 variant='outlined'
                 onClick={() => _.attempt(props.onChange, value)}
                 className={clsx(classes.button, {

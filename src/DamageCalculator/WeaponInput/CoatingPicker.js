@@ -40,12 +40,11 @@ const useStyles = makeStyles(theme => ({
         '-webkit-overflow-scrolling': 'touch'
     },
     label: {
-        marginTop: -theme.spacing(1),
-        marginBottom: theme.spacing(0.5)
+        marginBottom: theme.spacing(0.3)
     },
     button: {
         color: theme.palette.common.black,
-        fontSize: 12,
+        fontSize: 11,
         minWidth: 70
     },
     '': {

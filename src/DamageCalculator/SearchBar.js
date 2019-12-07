@@ -1,9 +1,10 @@
 import _ from 'lodash';
 import axios from 'axios';
 import React, { memo, useState, useCallback, useRef } from 'react';
-import { makeStyles, Box, LinearProgress, TextField, Snackbar, Typography } from '@material-ui/core';
+import { makeStyles, Box, LinearProgress, Snackbar, Typography } from '@material-ui/core';
 import { Error } from '@material-ui/icons';
 import { Autocomplete } from '@material-ui/lab';
+import TextField from '../TextField';
 
 const instance = axios.create({
     baseURL: 'https://mhw-db.com',
@@ -194,8 +195,6 @@ export const SearchBar = memo(({ onChange }) => {
                 renderInput={params => (
                     <TextField
                         {...params}
-                        fullWidth
-                        variant='outlined'
                         label='Search Weapons'
                     />
                 )}

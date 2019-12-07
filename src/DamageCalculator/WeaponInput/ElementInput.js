@@ -2,8 +2,9 @@ import _ from 'lodash';
 import clsx from 'clsx';
 import React, { memo } from 'react';
 import { darken } from '@material-ui/core/styles';
-import { makeStyles, useTheme, TextField, InputAdornment, Select, Tooltip, Checkbox, MenuItem, Divider } from '@material-ui/core';
+import { makeStyles, useTheme, InputAdornment, Select, Tooltip, Checkbox, MenuItem, Divider } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
+import TextField from '../../TextField';
 
 export const getColorMap = type => {
     const isLight = _.isEqual(type, 'light');
@@ -76,15 +77,21 @@ export const abnormalStatusOptions = [
 
 const useStyles = makeStyles(theme => ({
     divider: {
-        height: theme.spacing(4),
+        height: theme.spacing(3),
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1)
     },
     select: {
-        width: 90
+        fontSize: 14
+    },
+    checkbox: {
+        padding: theme.spacing(0.5)
     },
     hidden: {
         opacity: 0.6
+    },
+    menuItem: {
+        fontSize: 14
     }
 }));
 
@@ -102,6 +109,7 @@ export const ElementInput = memo(props => {
                 style={{
                     color: _.get(getColorMap(theme.palette.type), value)
                 }}
+                className={classes.menuItem}
             >
                 {label}
             </MenuItem>
@@ -118,6 +126,7 @@ export const ElementInput = memo(props => {
                 style={{
                     color: _.get(getColorMap(theme.palette.type), value)
                 }}
+                className={classes.menuItem}
             >
                 {label}
             </MenuItem>
@@ -128,9 +137,7 @@ export const ElementInput = memo(props => {
 
     return (
         <TextField
-            fullWidth
             type='number'
-            variant='outlined'
             label={props.label}
             value={props.value}
             onChange={e => _.attempt(props.onChange, e.target.value)}
@@ -149,8 +156,15 @@ export const ElementInput = memo(props => {
                             style={{
                                 color: _.get(getColorMap(theme.palette.type), type)
                             }}
+                            className={classes.select}
                         >
-                            <MenuItem value='none' disabled>None</MenuItem>
+                            <MenuItem
+                                disabled
+                                value='none'
+                                className={classes.menuItem}
+                            >
+                                None
+                            </MenuItem>
                             <Divider />
                             {elementTypeMenuItems}
                             <Divider />
@@ -165,6 +179,7 @@ export const ElementInput = memo(props => {
                                 onChange={() => _.attempt(props.onToggleHidden, !_.get(props, 'hidden', false))}
                                 icon={<Visibility fontSize='small' />}
                                 checkedIcon={<VisibilityOff fontSize='small' />}
+                                className={classes.checkbox}
                             />
                         </Tooltip>
                     </InputAdornment>

@@ -42,12 +42,6 @@ const useStyles = makeStyles(theme => ({
         marginTop: theme.spacing(2),
         marginBottom: theme.spacing(2)
     },
-    item: {
-        marginBottom: theme.spacing(2),
-        '&:last-child': {
-            marginBottom: 0
-        }
-    },
     card: {
         padding: theme.spacing(2)
     }
@@ -76,33 +70,21 @@ export const DamageCalculator = props => {
     return (
         <Container className={classes.container}>
             <Grid container spacing={2}>
-                <Grid container item xs={12} md={9}>
-                    <Grid item xs={12} className={classes.item}>
-                        <Card style={{ height: 100 }}>
-
-                        </Card>
-                    </Grid>
-                    <Grid item xs={12} className={classes.item}>
-                        <Card className={classes.card}>
-                            <SearchBar onChange={handleChange} />
-                            <WeaponInput
-                                build={build}
-                                onChange={handleChange}
-                            />
-                        </Card>
-                    </Grid>
-                    <Grid item xs={12} className={classes.item}>
-                        <Card className={classes.card}>
-                            <BuffsInput
-                                value={_.get(build, 'buffs', [])}
-                                onChange={buffs => handleChange('buffs', buffs)}
-                            />
-                        </Card>
-                    </Grid>
+                <Grid item xs={12}>
+                    <Card className={classes.card}>
+                        <SearchBar onChange={handleChange} />
+                        <WeaponInput
+                            build={build}
+                            onChange={handleChange}
+                        />
+                    </Card>
                 </Grid>
-                <Grid item xs={12} md={3}>
-                    <Card style={{ height: 300, padding: 16 }}>
-
+                <Grid item xs={12}>
+                    <Card className={classes.card}>
+                        <BuffsInput
+                            value={_.get(build, 'buffs', [])}
+                            onChange={buffs => handleChange('buffs', buffs)}
+                        />
                     </Card>
                 </Grid>
             </Grid>
