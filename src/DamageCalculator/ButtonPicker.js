@@ -1,15 +1,16 @@
 import _ from 'lodash';
 import clsx from 'clsx';
-import React, { Fragment, memo } from 'react';
+import React, { memo, Fragment } from 'react';
 import { darken } from '@material-ui/core/styles';
-import { makeStyles, ButtonGroup, InputLabel, Button } from '@material-ui/core';
+import { makeStyles, Box, ButtonGroup, InputLabel, Button } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     label: {
         marginBottom: theme.spacing(0.3)
     },
     button: {
-        fontSize: 11
+        fontSize: 11,
+        whiteSpace: 'nowrap'
     },
     selected: {
         color: theme.palette.common.black,
@@ -34,6 +35,7 @@ export const ButtonPicker = memo(props => {
                 key={value}
                 variant='outlined'
                 onClick={() => _.attempt(props.onChange, value)}
+                style={{ minWidth: props.minWidth }}
                 className={clsx(classes.button, {
                     [classes.selected]: selected
                 })}
@@ -48,9 +50,11 @@ export const ButtonPicker = memo(props => {
             <InputLabel shrink className={classes.label}>
                 {props.label}
             </InputLabel>
-            <ButtonGroup fullWidth>
-                {augmentButtons}
-            </ButtonGroup>
+            <Box overflow='auto'>
+                <ButtonGroup fullWidth>
+                    {augmentButtons}
+                </ButtonGroup>
+            </Box>
         </Fragment>
     );
 });

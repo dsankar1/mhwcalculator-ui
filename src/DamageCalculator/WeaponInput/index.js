@@ -6,7 +6,7 @@ import WeaponTypeSelect from './WeaponTypeSelect';
 import ElementInput from './ElementInput';
 import SharpnessPicker from './SharpnessPicker';
 import CoatingPicker from './CoatingPicker';
-import ButtonPicker from './ButtonPicker';
+import ButtonPicker from '../ButtonPicker';
 
 export const WeaponInput = memo(({ build, onChange }) => {
     const isDualBlades = _.isEqual(_.get(build, 'weapon'), 'dualBlades');
