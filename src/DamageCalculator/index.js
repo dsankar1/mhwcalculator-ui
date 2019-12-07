@@ -82,7 +82,7 @@ export const DamageCalculator = props => {
                 <Grid item xs={12}>
                     <Card className={classes.card}>
                         <BuffsInput
-                            value={_.get(build, 'buffs', [])}
+                            buffs={_.get(build, 'buffs', [])}
                             onChange={buffs => handleChange('buffs', buffs)}
                         />
                     </Card>

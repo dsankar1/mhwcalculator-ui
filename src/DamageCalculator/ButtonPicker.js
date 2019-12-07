@@ -12,6 +12,12 @@ const useStyles = makeStyles(theme => ({
         fontSize: 11,
         whiteSpace: 'nowrap'
     },
+    buttonMargin: {
+        marginRight: theme.spacing(1),
+        '&:last-child': {
+            marginRight: 0
+        }
+    },
     selected: {
         color: theme.palette.common.black,
         backgroundColor: theme.palette.primary.main,
@@ -26,17 +32,20 @@ export const ButtonPicker = memo(props => {
 
     const values = _.defaultTo(props.options, _.range(props.range + 1));
 
-    const augmentButtons = _.map(values, item => {
+    const buttons = _.map(values, item => {
         const value = _.get(item, 'value', item);
         const label = _.get(item, 'label', value);
-        const selected = _.isEqual(value, props.value);
+        const selected = props.grouped ? _.isEqual(value, props.value) : _.includes(props.value, value);
         return (
             <Button
                 key={value}
                 variant='outlined'
                 onClick={() => _.attempt(props.onChange, value)}
-                style={{ minWidth: props.minWidth }}
+                style={{
+                    minWidth: props.minWidth
+                }}
                 className={clsx(classes.button, {
+                    [classes.buttonMargin]: !props.grouped,
                     [classes.selected]: selected
                 })}
             >
@@ -50,10 +59,12 @@ export const ButtonPicker = memo(props => {
             <InputLabel shrink className={classes.label}>
                 {props.label}
             </InputLabel>
-            <Box overflow='auto'>
-                <ButtonGroup fullWidth>
-                    {augmentButtons}
-                </ButtonGroup>
+            <Box overflow='auto' whiteSpace='nowrap'>
+                {props.grouped ? (
+                    <ButtonGroup fullWidth>
+                        {buttons}
+                    </ButtonGroup>
+                ) : buttons}
             </Box>
         </Fragment>
     );

@@ -91,7 +91,7 @@ export const App = () => {
                                 <ListItem
                                     button
                                     selected={_.startsWith(location.pathname, '/calculator/damage')}
-                                    onClick={() => history.push('/calculajtor/damage')}
+                                    onClick={() => history.push('/calculator/damage')}
                                     className={classes.menuItem}
                                 >
                                     <ListItemIcon>

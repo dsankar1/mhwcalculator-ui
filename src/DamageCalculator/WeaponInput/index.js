@@ -87,6 +87,7 @@ export const WeaponInput = memo(({ build, onChange }) => {
             )}
             <Grid item xs={12} sm={6} md={isBowgun ? 4 : 3}>
                 <ButtonPicker
+                    grouped
                     range={3}
                     label='Attack Augments'
                     value={_.get(build, 'attackAugments', 0)}
@@ -95,6 +96,7 @@ export const WeaponInput = memo(({ build, onChange }) => {
             </Grid>
             <Grid item xs={12} sm={6} md={isBowgun ? 4 : 3}>
                 <ButtonPicker
+                    grouped
                     range={3}
                     label='Affinity Augments'
                     value={_.get(build, 'affinityAugments', 0)}
