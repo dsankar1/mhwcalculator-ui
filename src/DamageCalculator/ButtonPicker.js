@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
         fontSize: 11,
         whiteSpace: 'nowrap'
     },
-    buttonMargin: {
+    margin: {
         marginRight: theme.spacing(1),
         '&:last-child': {
             marginRight: 0
@@ -30,12 +30,25 @@ const useStyles = makeStyles(theme => ({
 export const ButtonPicker = memo(props => {
     const classes = useStyles();
 
-    const values = _.defaultTo(props.options, _.range(props.range + 1));
+    let options;
+    if (props.options) {
+        if (props.mutuallyExclusive) {
+            options = _.concat({
+                label: 'None',
+                value: ''
+            }, props.options);
+        } else {
+            options = props.options;
+        }
+    } else if (props.range) {
+        options = _.range(props.range + 1);
+    }
 
-    const buttons = _.map(values, item => {
-        const value = _.get(item, 'value', item);
-        const label = _.get(item, 'label', value);
-        const selected = props.grouped ? _.isEqual(value, props.value) : _.includes(props.value, value);
+    const buttons = _.map(options, option => {
+        const value = _.get(option, 'value', option);
+        const label = _.get(option, 'label', value);
+        const selected = props.mutuallyExclusive
+            ? _.isEqual(props.value, value) : _.includes(props.value, value);
         return (
             <Button
                 key={value}
@@ -45,7 +58,7 @@ export const ButtonPicker = memo(props => {
                     minWidth: props.minWidth
                 }}
                 className={clsx(classes.button, {
-                    [classes.buttonMargin]: !props.grouped,
+                    [classes.margin]: !props.mutuallyExclusive,
                     [classes.selected]: selected
                 })}
             >
@@ -60,7 +73,7 @@ export const ButtonPicker = memo(props => {
                 {props.label}
             </InputLabel>
             <Box overflow='auto' whiteSpace='nowrap'>
-                {props.grouped ? (
+                {props.mutuallyExclusive ? (
                     <ButtonGroup fullWidth>
                         {buttons}
                     </ButtonGroup>

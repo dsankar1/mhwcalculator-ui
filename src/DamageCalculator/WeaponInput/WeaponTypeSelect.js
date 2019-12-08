@@ -131,7 +131,7 @@ export const WeaponTypeSelect = memo(props => {
                     [classes.selected]: selected
                 })}
             >
-                <Tooltip title={label} enterDelay={500}>
+                <Tooltip title={label}>
                     <img
                         alt={label}
                         src={process.env.PUBLIC_URL + icon}
