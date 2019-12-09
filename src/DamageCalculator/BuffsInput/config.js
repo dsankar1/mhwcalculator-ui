@@ -1,4 +1,4 @@
-export const independentBuffs = [
+export const buffs = [
     {
         label: 'Powertalon',
         value: 'powertalon'
@@ -112,8 +112,7 @@ export default [
         grid: {
             xs: 12
         },
-        label: 'Stacking Buffs',
-        options: independentBuffs
+        options: buffs
     },
     {
         mutuallyExclusive: true,

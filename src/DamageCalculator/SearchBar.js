@@ -186,6 +186,7 @@ export const SearchBar = memo(({ onChange }) => {
     return (
         <Box className={classes.root}>
             <Autocomplete
+                freeSolo
                 disableOpenOnFocus
                 loading={searching}
                 options={searchResults}

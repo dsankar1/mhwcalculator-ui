@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { memo, useEffect } from 'react';
+import React, { memo } from 'react';
 import { makeStyles, Grid } from '@material-ui/core';
 import ButtonPicker from '../ButtonPicker';
 import config from './config';
@@ -37,18 +37,14 @@ const getChangeHandler = (callback, values, options) => value => {
 export const BuffsInput = memo(props => {
     const classes = useStyles();
 
-    useEffect(() => {
-
-    }, [props.buffs]);
-
-    const gridItems = _.map(config, ({ grid, mutuallyExclusive, minWidth, label, options }) => {
+    const gridItems = _.map(config, ({ grid, mutuallyExclusive, minWidth, label, options }, index) => {
         const value = mutuallyExclusive ? getValue(props.buffs, options) : props.buffs;
         const handlerParams = [props.onChange, props.buffs];
         if (mutuallyExclusive) {
             handlerParams.push(options);
         }
         return (
-            <Grid key={label} item {...grid}>
+            <Grid key={index} item {...grid}>
                 <ButtonPicker
                     minWidth={minWidth}
                     label={label}
@@ -63,9 +59,6 @@ export const BuffsInput = memo(props => {
 
     return (
         <Grid container spacing={2} className={classes.container}>
-            <Grid item xs={12}>
-
-            </Grid>
             {gridItems}
         </Grid>
     );
