@@ -38,7 +38,6 @@ const searchWeapons = async name => {
             },
             cancelToken: searchSource.token
         };
-        await sleep(500);
         return instance(config);
     }
 }

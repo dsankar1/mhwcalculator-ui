@@ -5,7 +5,10 @@ import { makeStyles, Container, Grid, Card } from '@material-ui/core';
 import { SubtitleContext } from '../App';
 import SearchBar from './SearchBar';
 import WeaponInput from './WeaponInput';
-import BuffsInput from './BuffsInput';
+import SkillsInput from './SkillsInput';
+import MultiInput from './MultiInput';
+import skills from './data/skills';
+import buffs from './data/buffs';
 
 const getInitialBuild = location => {
     const rawQuery = qs.parse(_.get(location, 'search'), {
@@ -79,11 +82,30 @@ export const DamageCalculator = props => {
                         />
                     </Card>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} sm={7} md={8}>
                     <Card className={classes.card}>
-                        <BuffsInput
-                            buffs={_.get(build, 'buffs', [])}
-                            onChange={buffs => handleChange('buffs', buffs)}
+                        <MultiInput
+                            config={skills}
+                            grid={{
+                                xs: 12,
+                                sm: 6
+                            }}
+                            value={_.get(build, 'skills')}
+                            onChange={skills => {
+                                handleChange('skills', skills);
+                            }}
+                        />
+                    </Card>
+                </Grid>
+                <Grid item xs={12} sm={5} md={4}>
+                    <Card className={classes.card}>
+                        <MultiInput
+                            config={buffs}
+                            value={_.get(build, 'buffs')}
+                            onChange={buffs => {
+                                console.log('Buffs', buffs);
+                                handleChange('buffs', buffs);
+                            }}
                         />
                     </Card>
                 </Grid>

@@ -1,6 +1,6 @@
-export default [
+export const skills = [
     {
-        "label": "Attack Boost",
+        "name": "Attack Boost",
         "description": "Increases attack power. Also improves affinity at higher levels.",
         "levels": [
             {
@@ -31,7 +31,7 @@ export default [
         ]
     },
     {
-        "label": "Critical Boost",
+        "name": "Critical Boost",
         "description": "Increases the damage of critical hits.",
         "levels": [
             {
@@ -46,7 +46,7 @@ export default [
         ]
     },
     {
-        "label": "Critical Eye",
+        "name": "Critical Eye",
         "description": "Increases affinity.",
         "levels": [
             {
@@ -73,7 +73,7 @@ export default [
         ]
     },
     {
-        "label": "Weakness Exploit",
+        "name": "Weakness Exploit",
         "description": "Increases the affinity of attacks that exploit a monster weak spot.",
         "levels": [
             {
@@ -88,7 +88,7 @@ export default [
         ]
     },
     {
-        "label": "Heroics",
+        "name": "Heroics",
         "description": "Increases attack power and defense when health drops to 35% or lower.",
         "levels": [
             {
@@ -109,7 +109,7 @@ export default [
         ]
     },
     {
-        "label": "Agitator",
+        "name": "Agitator",
         "description": "Increases attack power and affinity when large monsters become enraged.",
         "levels": [
             {
@@ -135,7 +135,7 @@ export default [
         ]
     },
     {
-        "label": "Affinity Sliding",
+        "name": "Affinity Sliding",
         "description": "Sliding increases your affinity for a short time.",
         "levels": [
             {
@@ -144,7 +144,7 @@ export default [
         ]
     },
     {
-        "label": "Element Boost",
+        "name": "Element Boost",
         "description": "Increases element attack power. (Elemental attack power has a maximum limit.)",
         "levels": [
             {
@@ -167,7 +167,7 @@ export default [
         ]
     },
     {
-        "label": "Fortify",
+        "name": "Fortify",
         "description": "Increases your attack and defense every time you fall in battle. (This effect can stack twice.)",
         "levels": [
             {
@@ -179,7 +179,7 @@ export default [
         ]
     },
     {
-        "label": "Maximum Might",
+        "name": "Maximum Might",
         "description": "Increases affinity when stamina is full.",
         "levels": [
             {
@@ -194,7 +194,7 @@ export default [
         ]
     },
     {
-        "label": "Non-elemental Boost",
+        "name": "Non-elemental Boost",
         "description": "Powers up non-elemental weapons you have equipped.",
         "levels": [
             {
@@ -203,7 +203,7 @@ export default [
         ]
     },
     {
-        "label": "Peak Performance",
+        "name": "Peak Performance",
         "description": "Increases attack when your health is full.",
         "levels": [
             {
@@ -218,7 +218,7 @@ export default [
         ]
     },
     {
-        "label": "Bludgeoner",
+        "name": "Bludgeoner",
         "description": "Raises attack as your weapon loses sharpness. Also boosts ranged weapon melee attacks and odds of stunning.",
         "levels": [
             {
@@ -232,7 +232,7 @@ export default [
         ]
     },
     {
-        "label": "Resentment",
+        "name": "Resentment",
         "description": "Increases attack when you have recoverable damage (the red portion of your health gauge).",
         "levels": [
             {
@@ -253,12 +253,12 @@ export default [
         ]
     },
     {
-        "label": "Critical Element",
+        "name": "Critical Element",
         "description": "Increases elemental damage (fire, water, thunder, ice, dragon) when landing critical hits.",
         "levels": []
     },
     {
-        "label": "Free Element",
+        "name": "Free Element",
         "description": "Draws out hidden element.",
         "levels": [
             {
@@ -272,4 +272,6 @@ export default [
             }
         ]
     }
-]
+];
+
+export default skills;

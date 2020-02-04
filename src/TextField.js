@@ -3,8 +3,7 @@ import { makeStyles, TextField } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     input: {
-        fontSize: 14,
-        padding: theme.spacing(1.5)
+        fontSize: 14
     }
 }));
 
@@ -17,9 +16,6 @@ export const CustomTextField = memo(props => {
             variant='outlined'
             inputProps={{
                 className: classes.input
-            }}
-            InputLabelProps={{
-                shrink: true
             }}
             {...props}
         />
