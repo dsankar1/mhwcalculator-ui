@@ -5,6 +5,9 @@ import { darken } from '@material-ui/core/styles';
 import { makeStyles, ButtonGroup, Button, Box, FormControl, InputLabel } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
+    formControl: {
+        marginTop: theme.spacing(1)
+    },
     box: {
         marginTop: theme.spacing(3),
         '-webkit-overflow-scrolling': 'touch'
@@ -33,8 +36,8 @@ export const ButtonSelect = React.memo(props => {
 
         return (
             <Button
-                disableTouchRipple
                 key={name}
+                disableTouchRipple
                 onClick={getChangeHandler(curr)}
                 className={clsx(_.get(props.classes, 'button'), _.get(props.classes, camelCaseName), {
                     [_.defaultTo(_.get(props.classes, `${camelCaseName}Selected`), classes.selected)]: selected
@@ -46,12 +49,12 @@ export const ButtonSelect = React.memo(props => {
     });
 
     return (
-        <FormControl fullWidth>
+        <FormControl fullWidth className={classes.formControl}>
             <InputLabel shrink>
                 {props.label}
             </InputLabel>
             <Box overflow='auto' className={classes.box}>
-                <ButtonGroup variant='outlined' fullWidth>
+                <ButtonGroup size='small' variant='outlined' fullWidth>
                     {!props.isRequired && (
                         <Button
                             disableTouchRipple

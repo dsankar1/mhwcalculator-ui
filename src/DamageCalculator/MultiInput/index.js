@@ -29,12 +29,8 @@ export const MultiInput = React.memo(props => {
         let update = _.differenceBy(props.value, levels, 'name');
 
         if (Boolean(name)) {
-            const found = _.some(props.value, curr => _.isEqual(_.get(curr, 'name'), name));
             const value = configMap.get(name);
-
-            if (!found) {
-                update = _.concat(update, value);
-            }
+            update = _.concat(update, value);
         }
         _.attempt(props.onChange, update);
     }

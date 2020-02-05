@@ -98,6 +98,7 @@ export const WeaponInput = React.memo(props => {
             {isBow && (
                 <Grid item xs={12} md={6}>
                     <ButtonSelect
+                        label='Coating'
                         config={coatings}
                         classes={coatingClasses}
                         value={_.get(props.value, 'coating')}
@@ -109,6 +110,7 @@ export const WeaponInput = React.memo(props => {
                 <Grid item xs={12}>
                     <ButtonSelect
                         isRequired
+                        label='Sharpness'
                         config={sharpness}
                         classes={sharpnessClasses}
                         value={_.get(props.value, 'sharpness')}
