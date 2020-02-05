@@ -1,23 +1,15 @@
 import _ from 'lodash';
 import React from 'react';
-import { Grid, Select, FormControlLabel, Checkbox, MenuItem, FormControl, InputLabel } from '@material-ui/core';
+import { useTheme } from '@material-ui/core/styles';
+import { useMediaQuery, Grid, Select, FormControlLabel, Checkbox, MenuItem, FormControl, InputLabel } from '@material-ui/core';
+import useConfig from './useConfig';
 
-export const createDefaultLabel = (label, index) => `${label} ${index + 1}`;
+export * from './useConfig';
 
 export const MultiInput = React.memo(props => {
-    const configMap = React.useMemo(() => {
-        return _.transform(props.config, (acc, config) => {
-            if (_.has(config, 'levels')) {
-                _.forEach(config.levels, (level, index) => {
-                    const defaultLabel = createDefaultLabel(config.label, index);
-                    const label = _.defaultTo(_.get(level, 'label'), defaultLabel);
-                    acc.set(label, level);
-                });
-            } else {
-                acc.set(_.get(config, 'label'), config);
-            }
-        }, new Map());
-    }, [props.config]);
+    const theme = useTheme();
+    const native = useMediaQuery(theme.breakpoints.down('xs'));
+    const [config, configMap] = useConfig(props.config);
 
     const handleCheckbox = React.useCallback((event, checked) => {
         let update;
@@ -26,23 +18,19 @@ export const MultiInput = React.memo(props => {
         if (checked) {
             update = _.concat(props.value, value);
         } else {
-            update = _.differenceBy(props.value, [value], 'label');
+            update = _.differenceBy(props.value, [value], 'name');
         }
         _.attempt(props.onChange, update);
     }, [props.onChange]);
 
-    const getSelectHandler = config => event => {
-        const levels = _.map(config.levels, (level, index) => {
-            return _.defaults(level, {
-                label: createDefaultLabel(config.label, index)
-            });
-        });
-        let update = _.differenceBy(props.value, levels, 'label');
-        const label = _.get(event, ['target', 'value']);
+    const getSelectHandler = curr => event => {
+        const levels = _.get(curr, 'levels');
+        const name = _.get(event, ['target', 'value']);
+        let update = _.differenceBy(props.value, levels, 'name');
 
-        if (Boolean(label)) {
-            const found = _.some(props.value, item => _.isEqual(_.get(item, 'label'), label));
-            const value = configMap.get(label);
+        if (Boolean(name)) {
+            const found = _.some(props.value, curr => _.isEqual(_.get(curr, 'name'), name));
+            const value = configMap.get(name);
 
             if (!found) {
                 update = _.concat(update, value);
@@ -51,58 +39,74 @@ export const MultiInput = React.memo(props => {
         _.attempt(props.onChange, update);
     }
 
-    const inputEls = _.map(props.config, (config, index) => {
+    const inputEls = _.map(config, (curr, index) => {
         let input;
 
-        if (_.has(config, 'levels')) {
+        if (_.has(curr, 'levels')) {
             let value;
 
-            const levels = _.map(config.levels, (level, index) => {
-                const defaultLabel = createDefaultLabel(config.label, index);
-                const label = _.defaultTo(_.get(level, 'label'), defaultLabel);
+            const levels = _.map(curr.levels, level => {
+                const name = _.get(level, 'name');
 
                 if (_.isUndefined(value)) {
-                    const found = _.some(props.value, value => _.isEqual(_.get(value, 'label'), label));
+                    const found = _.some(props.value, value => (
+                        _.isEqual(_.get(value, 'name'), name)
+                    ));
 
                     if (found) {
-                        value = label;
+                        value = name;
                     }
                 }
-                return (
-                    <MenuItem key={label} value={label}>
-                        {label}
+
+                return native ? (
+                    <option key={name} value={name}>
+                        {name}
+                    </option>
+                ) : (
+                    <MenuItem key={name} value={name}>
+                        {name}
                     </MenuItem>
                 );
             });
 
+            const name = _.get(curr, 'name');
+        
             input = (
                 <FormControl fullWidth>
                     <InputLabel>
-                        {_.get(config, 'label')}
+                        {name}
                     </InputLabel>
-                    <Select value={_.defaultTo(value, '')} onChange={getSelectHandler(config)}>
-                        <MenuItem divider value=''>
-                            None
-                        </MenuItem>
+                    <Select
+                        native={native}
+                        value={_.defaultTo(value, '')}
+                        onChange={getSelectHandler(curr)}
+                    >
+                        {native ? (
+                            <option value='' />
+                        ) : (
+                            <MenuItem divider value=''>
+                                None
+                            </MenuItem>
+                        )}
                         {levels}
                     </Select>
                 </FormControl>
             );
         } else {
-            const label = _.get(config, 'label');
-            const checked = _.some(props.value, value => _.isEqual(_.get(value, 'label'), label));
-
+            const name = _.get(curr, 'name');
+            const checked = _.some(props.value, value => (
+                _.isEqual(_.get(value, 'name'), name)
+            ));
             input = (
                 <FormControlLabel
                     control={
                         <Checkbox
-                            name={label}
-                            value={label}
+                            value={name}
                             checked={checked}
                             onChange={handleCheckbox}
                         />
                     }
-                    label={label}
+                    label={name}
                 />
             );
         }
@@ -115,7 +119,7 @@ export const MultiInput = React.memo(props => {
     });
 
     return (
-        <Grid container spacing={2}>
+        <Grid container spacing={1}>
             {inputEls}
         </Grid>
     );

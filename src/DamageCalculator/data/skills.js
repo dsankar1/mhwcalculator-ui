@@ -1,274 +1,261 @@
 export default [
     {
-        "label": "Attack Boost",
-        "description": "Increases attack power. Also improves affinity at higher levels.",
-        "levels": [
+        name: "Non-elemental Boost",
+        description: "Powers up non-elemental weapons you have equipped.",
+        attackPct: 10
+    },
+    {
+        name: "Critical Element",
+        description: "Increases elemental damage (fire, water, thunder, ice, dragon) when landing critical hits."
+    },
+    {
+        name: "Affinity Sliding",
+        description: "Sliding increases your affinity for a short time.",
+        affinity: 30
+    },
+    {
+        name: "Bludgeoner",
+        description: "Raises attack as your weapon loses sharpness. Also boosts ranged weapon melee attacks and odds of stunning.",
+        "white": 0,
+        "blue": 0,
+        "green": 0.0789,
+        "yellow": 0.1315,
+        "orange": 0.1578,
+        "red": 0.1578
+    },
+    {
+        name: "Attack Boost",
+        description: "Increases attack power. Also improves affinity at higher levels.",
+        levels: [
             {
-                "attack": 3
+                attack: 3
             },
             {
-                "attack": 6
+                attack: 6
             },
             {
-                "attack": 9
+                attack: 9
             },
             {
-                "attack": 12,
-                "affinity": 5
+                attack: 12,
+                affinity: 5
             },
             {
-                "attack": 15,
-                "affinity": 5
+                attack: 15,
+                affinity: 5
             },
             {
-                "attack": 18,
-                "affinity": 5
+                attack: 18,
+                affinity: 5
             },
             {
-                "attack": 21,
-                "affinity": 5
+                attack: 21,
+                affinity: 5
             }
         ]
     },
     {
-        "label": "Critical Boost",
-        "description": "Increases the damage of critical hits.",
-        "levels": [
+        name: "Critical Boost",
+        description: "Increases the damage of critical hits.",
+        levels: [
             {
-                "affinity-boost": 30
+                criticalBoost: 30
             },
             {
-                "affinity-boost": 35
+                criticalBoost: 35
             },
             {
-                "affinity-boost": 40
+                criticalBoost: 40
             }
         ]
     },
     {
-        "label": "Critical Eye",
-        "description": "Increases affinity.",
-        "levels": [
+        name: "Critical Eye",
+        description: "Increases affinity.",
+        levels: [
             {
-                "affinity": 3
+                affinity: 3
             },
             {
-                "affinity": 6
+                affinity: 6
             },
             {
-                "affinity": 10
+                affinity: 10
             },
             {
-                "affinity": 15
+                affinity: 15
             },
             {
-                "affinity": 20
+                affinity: 20
             },
             {
-                "affinity": 25
+                affinity: 25
             },
             {
-                "affinity": 30
+                affinity: 30
             }
         ]
     },
     {
-        "label": "Weakness Exploit",
-        "description": "Increases the affinity of attacks that exploit a monster weak spot.",
-        "levels": [
+        name: "Weakness Exploit",
+        description: "Increases the affinity of attacks that exploit a monster weak spot.",
+        levels: [
             {
-                "affinity": 15
+                affinity: 15
             },
             {
-                "affinity": 30
+                affinity: 30
             },
             {
-                "affinity": 50
+                affinity: 50
             }
         ]
     },
     {
-        "label": "Heroics",
-        "description": "Increases attack power and defense when health drops to 35% or lower.",
-        "levels": [
+        name: "Heroics",
+        description: "Increases attack power and defense when health drops to 35% or lower.",
+        levels: [
             {
-                "attack-percent": 0.05
+                attackPct: 5
             },
             {
-                "attack-percent": 0.10
+                attackPct: 10
             },
             {
-                "attack-percent": 0.15
+                attackPct: 15
             },
             {
-                "attack-percent": 0.20
+                attackPct: 20
             },
             {
-                "attack-percent": 0.30
+                attackPct: 30
             }
         ]
     },
     {
-        "label": "Agitator",
-        "description": "Increases attack power and affinity when large monsters become enraged.",
-        "levels": [
+        name: "Agitator",
+        description: "Increases attack power and affinity when large monsters become enraged.",
+        levels: [
             {
-                "attack": 4,
-                "affinity": 3
+                attack: 4,
+                affinity: 3
             },
             {
-                "attack": 8,
-                "affinity": 6
+                attack: 8,
+                affinity: 6
             },
             {
-                "attack": 12,
-                "affinity": 9
+                attack: 12,
+                affinity: 9
             },
             {
-                "attack": 16,
-                "affinity": 12
+                attack: 16,
+                affinity: 12
             },
             {
-                "attack": 20,
-                "affinity": 15
+                attack: 20,
+                affinity: 15
             }
         ]
     },
     {
-        "label": "Affinity Sliding",
-        "description": "Sliding increases your affinity for a short time.",
-        "levels": [
+        name: "Element Boost",
+        description: "Increases element attack power. (Elemental attack power has a maximum limit.)",
+        levels: [
             {
-                "affinity": 30
+                element: 30
+            },
+            {
+                element: 60
+            },
+            {
+                element: 100
+            },
+            {
+                element: 100,
+                elementPct: 5
+            },
+            {
+                element: 100,
+                elementPct: 10
             }
         ]
     },
     {
-        "label": "Element Boost",
-        "description": "Increases element attack power. (Elemental attack power has a maximum limit.)",
-        "levels": [
+        name: "Fortify",
+        description: "Increases your attack and defense every time you fall in battle. (This effect can stack twice.)",
+        levels: [
             {
-                "element": 30
+                attackPct: 10
             },
             {
-                "element": 60
-            },
-            {
-                "element": 100
-            },
-            {
-                "element": 100,
-                "element-percent": 0.05
-            },
-            {
-                "element": 100,
-                "element-percent": 0.10
+                attackPct: 20
             }
         ]
     },
     {
-        "label": "Fortify",
-        "description": "Increases your attack and defense every time you fall in battle. (This effect can stack twice.)",
-        "levels": [
+        name: "Maximum Might",
+        description: "Increases affinity when stamina is full.",
+        levels: [
             {
-                "attack-percent": 0.10
+                affinity: 10
             },
             {
-                "attack-percent": 0.20
+                affinity: 20
+            },
+            {
+                affinity: 30
             }
         ]
     },
     {
-        "label": "Maximum Might",
-        "description": "Increases affinity when stamina is full.",
-        "levels": [
+        name: "Peak Performance",
+        description: "Increases attack when your health is full.",
+        levels: [
             {
-                "affinity": 10
+                attack: 5
             },
             {
-                "affinity": 20
+                attack: 10
             },
             {
-                "affinity": 30
+                attack: 20
             }
         ]
     },
     {
-        "label": "Non-elemental Boost",
-        "description": "Powers up non-elemental weapons you have equipped.",
-        "levels": [
+        name: "Resentment",
+        description: "Increases attack when you have recoverable damage (the red portion of your health gauge).",
+        levels: [
             {
-                "attack-percent": 0.10
+                attack: 5
+            },
+            {
+                attack: 10
+            },
+            {
+                attack: 15
+            },
+            {
+                attack: 20
+            },
+            {
+                attack: 25
             }
         ]
     },
     {
-        "label": "Peak Performance",
-        "description": "Increases attack when your health is full.",
-        "levels": [
+        name: "Free Element",
+        description: "Draws out hidden element.",
+        levels: [
             {
-                "attack": 5
+                freeElementPct: 33
             },
             {
-                "attack": 10
+                freeElementPct: 66
             },
             {
-                "attack": 20
-            }
-        ]
-    },
-    {
-        "label": "Bludgeoner",
-        "description": "Raises attack as your weapon loses sharpness. Also boosts ranged weapon melee attacks and odds of stunning.",
-        "levels": [
-            {
-                "white": 0,
-                "blue": 0,
-                "green": 0.0789,
-                "yellow": 0.1315,
-                "orange": 0.1578,
-                "red": 0.1578
-            }
-        ]
-    },
-    {
-        "label": "Resentment",
-        "description": "Increases attack when you have recoverable damage (the red portion of your health gauge).",
-        "levels": [
-            {
-                "attack": 5
-            },
-            {
-                "attack": 10
-            },
-            {
-                "attack": 15
-            },
-            {
-                "attack": 20
-            },
-            {
-                "attack": 25
-            }
-        ]
-    },
-    {
-        "label": "Critical Element",
-        "description": "Increases elemental damage (fire, water, thunder, ice, dragon) when landing critical hits.",
-        "levels": []
-    },
-    {
-        "label": "Free Element",
-        "description": "Draws out hidden element.",
-        "levels": [
-            {
-                "unlock-element": 0.33
-            },
-            {
-                "unlock-element": 0.66
-            },
-            {
-                "unlock-element": 1.0
+                freeElementPct: 100
             }
         ]
     }

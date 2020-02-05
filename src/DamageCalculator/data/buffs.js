@@ -1,106 +1,106 @@
 export default [
     {
-        label: 'Powertalon',
+        name: 'Powertalon',
         attack: 9
     },
     {
-        label: 'Powercharm',
+        name: 'Powercharm',
         attack: 6
     },
     {
-        label: 'Demon Powder',
+        name: 'Demon Powder',
         attack: 10
     },
     {
-        label: 'Palico Horn Attack Up',
+        name: 'Palico Horn Attack Up',
         attackPct: 15
     },
     {
-        label: 'Demon Buffs',
+        name: 'Demon Buffs',
         levels: [
             {
-                label: 'Nitroshroom',
+                name: 'Nitroshroom',
                 attack: 5
             },
             {
-                label: 'Demondrug',
+                name: 'Demondrug',
                 attack: 5
             },
             {
-                label: 'Mega Demondrug',
+                name: 'Mega Demondrug',
                 attack: 7
             }
         ]
     },
     {
-        label: 'Might Buffs',
+        name: 'Might Buffs',
         levels: [
             {
-                label: 'Might Seed',
+                name: 'Might Seed',
                 attack: 10
             },
             {
-                label: 'Might Pill',
+                name: 'Might Pill',
                 attack: 25
             }
         ]
     },
     {
-        label: 'Meal Attack Up',
+        name: 'Meal Attack Up',
         levels: [
             {
-                label: 'Meal Attack Up S',
+                name: 'Meal Attack Up S',
                 attack: 5
             },
             {
-                label: 'Meal Attack Up M',
+                name: 'Meal Attack Up M',
                 attack: 10
             },
             {
-                label: 'Meal Attack Up L',
+                name: 'Meal Attack Up L',
                 attack: 15
             }
         ]
     },
     {
-        label: 'Hunting Horn Attack Up',
+        name: 'Hunting Horn Attack Up',
         levels: [
             {
-                label: 'Hunting Horn Attack Up S',
+                name: 'Hunting Horn Attack Up S',
                 attackPct: 10
             },
             {
-                label: 'Hunting Horn Attack Up L',
+                name: 'Hunting Horn Attack Up L',
                 attackPct: 15
             },
             {
-                label: 'Hunting Horn Attack Up XL',
+                name: 'Hunting Horn Attack Up XL',
                 attackPct: 20
             }
         ]
     },
     {
-        label: 'Hunting Horn Affinity Up',
+        name: 'Hunting Horn Affinity Up',
         levels: [
             {
-                label: 'Hunting Horn Affinity Up S',
+                name: 'Hunting Horn Affinity Up S',
                 affinity: 15
             },
             {
-                label: 'Hunting Horn Affinity Up L',
+                name: 'Hunting Horn Affinity Up L',
                 affinity: 20
             }
         ]
     },
     {
-        label: 'Hunting Horn Element Boost',
+        name: 'Hunting Horn Element Boost',
         levels: [
             {
-                label: 'Hunting Horn Element Boost S',
+                name: 'Hunting Horn Element Boost S',
                 elementPct: 10
             },
             {
-                label: 'Hunting Horn Element Boost L',
+                name: 'Hunting Horn Element Boost L',
                 elementPct: 15
             }
         ]
