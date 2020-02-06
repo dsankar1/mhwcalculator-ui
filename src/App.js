@@ -1,50 +1,14 @@
 import _ from 'lodash';
 import React, { createContext, useState, useEffect, useCallback } from 'react';
-import { createMuiTheme, ThemeProvider, fade } from '@material-ui/core/styles';
-import { CssBaseline, makeStyles, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { Home } from '@material-ui/icons';
+import { ThemeProvider } from '@material-ui/core/styles';
+import { CssBaseline, makeStyles, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { Switch as RouteSwitch, Route, Redirect } from 'react-router-dom';
-import DamageCalculator from './DamageCalculator';
-import Navigation from './Navigation';
+import { lightTheme, darkTheme } from './themes';
+import DamageCalculator from './components/DamageCalculator';
+import Navigation from './components/Navigation';
 
 export const SubtitleContext = createContext();
-
-const lightTheme = createMuiTheme({
-    palette: {
-        type: 'light',
-        text: {
-            primary: '#212121'
-        },
-        background: {
-            default: '#efefef'
-        },
-        primary: {
-            main: fade('#66bb6a', 0.7)
-        },
-        secondary: {
-            main: fade('#66bb6a', 0.7)
-        }
-    }
-});
-
-const darkTheme = createMuiTheme({
-    palette: {
-        type: 'dark',
-        text: {
-            primary: '#efefef'
-        },
-        background: {
-            default: '#212121',
-            paper: '#303030'
-        },
-        primary: {
-            main: fade('#81c784', 0.7)
-        },
-        secondary: {
-            main: fade('#81c784', 0.7)
-        }
-    }
-});
 
 const useStyles = makeStyles(theme => ({
     menuItem: {
@@ -85,13 +49,13 @@ export const App = () => {
                         menuOpen={menuOpen}
                         onMenuClick={toggleMenu}
                         onDarkThemeClick={toggleTheme}
-                        onHomeClick={() => history.push('/calculator/damage')}
+                        onHomeClick={() => history.push('/')}
                         menuContent={
                             <List>
                                 <ListItem
                                     button
-                                    selected={_.startsWith(location.pathname, '/calculator/damage')}
-                                    onClick={() => history.push('/calculator/damage')}
+                                    selected={_.isEqual(location.pathname, '/')}
+                                    onClick={() => history.push('/')}
                                     className={classes.menuItem}
                                 >
                                     <ListItemIcon>
@@ -103,8 +67,8 @@ export const App = () => {
                         }
                     >
                         <RouteSwitch>
-                            <Route path='/calculator/damage' component={DamageCalculator} />
-                            <Route render={() => <Redirect to='/calculator/damage' />} />
+                            <Route exact path='/' component={DamageCalculator} />
+                            <Route render={() => <Redirect to='/' />} />
                         </RouteSwitch>
                     </Navigation>
                 )} />
