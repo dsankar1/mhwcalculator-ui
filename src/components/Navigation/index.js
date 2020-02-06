@@ -5,12 +5,12 @@ import SideDrawer from './SideDrawer';
 
 const useStyles = makeStyles(theme => ({
     container: {
-        marginTop: 56 + theme.spacing(2),
+        marginTop: 48 + theme.spacing(1),
         [`${theme.breakpoints.up('xs')} and (orientation: landscape)`]: { 
-            marginTop: 48 + theme.spacing(2)
+            marginTop: 48 + theme.spacing(1)
         }, 
         [theme.breakpoints.up('sm')]: { 
-            marginTop: 64 + theme.spacing(2)
+            marginTop: 56 + theme.spacing(1)
         }
     }
 }));

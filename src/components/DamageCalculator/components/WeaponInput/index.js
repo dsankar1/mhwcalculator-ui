@@ -27,7 +27,7 @@ export const WeaponInput = React.memo(props => {
                 [name]: value
             }, props.value));
         }
-    }, [props.onChange]);
+    }, [props.value, props.onChange]);
 
     return (
         <Grid container spacing={1}>

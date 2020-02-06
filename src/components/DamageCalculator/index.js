@@ -58,11 +58,7 @@ const getInitialBuild = location => {
 
 const useStyles = makeStyles(theme => ({
     container: {
-        marginTop: theme.spacing(2),
-        marginBottom: theme.spacing(2)
-    },
-    card: {
-        padding: theme.spacing(2)
+        padding: theme.spacing(1)
     }
 }));
 
@@ -73,7 +69,7 @@ export const DamageCalculator = props => {
 
     useEffect(() => {
         setSubtitle('Damage Calculator');
-    }, []);
+    }, [setSubtitle]);
 
     useEffect(() => {
         localStorage.setItem('build', JSON.stringify(build));
@@ -100,11 +96,9 @@ export const DamageCalculator = props => {
         }));
     }, [setBuild]);
 
-    console.log('Build', build);
-
     return (
         <Container className={classes.container}>
-            <Grid container spacing={2}>
+            <Grid spacing={1} container>
                 <Grid item xs={12}>
                     <Card>
                         <CardHeader

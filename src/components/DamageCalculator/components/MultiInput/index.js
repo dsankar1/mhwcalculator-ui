@@ -21,7 +21,7 @@ export const MultiInput = React.memo(props => {
             update = _.differenceBy(props.value, [value], 'name');
         }
         _.attempt(props.onChange, update);
-    }, [props.onChange]);
+    }, [props.value, props.onChange, configMap]);
 
     const getSelectHandler = curr => event => {
         const levels = _.get(curr, 'levels');
