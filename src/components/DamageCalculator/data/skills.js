@@ -1,62 +1,120 @@
 export default [
     {
-        name: "Non-elemental Boost",
-        description: "Powers up non-elemental weapons you have equipped.",
-        attackPct: 10
+        name: 'Non-elemental Boost',
+        description: 'Powers up non-elemental weapons you have equipped.',
+        attackMult: 1.1
     },
     {
-        name: "Critical Element",
-        description: "Increases elemental damage (fire, water, thunder, ice, dragon) when landing critical hits."
+        name: 'Critical Element',
+        description: 'Increases elemental damage (fire, water, thunder, ice, dragon) when landing critical hits.',
+        criticalElement: true
     },
     {
-        name: "Affinity Sliding",
-        description: "Sliding increases your affinity for a short time.",
-        affinity: 30
+        name: 'Affinity Sliding',
+        description: 'Sliding increases your affinity for a short time.',
+        affinity: 1.3
     },
     {
-        name: "Bludgeoner",
-        description: "Raises attack as your weapon loses sharpness. Also boosts ranged weapon melee attacks and odds of stunning.",
-        "white": 0,
-        "blue": 0,
-        "green": 0.0789,
-        "yellow": 0.1315,
-        "orange": 0.1578,
-        "red": 0.1578
+        name: 'Bludgeoner',
+        description: 'Raises attack as your weapon loses sharpness. Also boosts ranged weapon melee attacks and odds of stunning.',
+        bludgeoner: true,
+        attackMult: [
+            {
+                attribute: 'weapon.sharpness.name',
+                operator: '==',
+                value: 'red',
+                return: 1.1578
+            },
+            {
+                attribute: 'weapon.sharpness.name',
+                operator: '==',
+                value: 'orange',
+                return: 1.1578
+            },
+            {
+                attribute: 'weapon.sharpness.name',
+                operator: '==',
+                value: 'yellow',
+                return: 1.1315
+            },
+            {
+                attribute: 'weapon.sharpness.name',
+                operator: '==',
+                value: 'green',
+                return: 1.0789
+            },
+            {
+                return: 0
+            }
+        ]
     },
     {
-        name: "Attack Boost",
-        description: "Increases attack power. Also improves affinity at higher levels.",
+        name: 'Normal Shots',
         levels: [
             {
-                attack: 3
+                attackMult: 1.1
             },
             {
-                attack: 6
+                attackMult: 1.2
+            }
+        ]
+    },
+    {
+        name: 'Spread/Power Shots',
+        levels: [
+            {
+                attackMult: 1.1
             },
             {
-                attack: 9
+                attackMult: 1.15
+            }
+        ]
+    },
+    {
+        name: 'Piercing Shots',
+        levels: [
+            {
+                attackMult: 1.1
             },
             {
-                attack: 12,
+                attackMult: 1.2
+            }
+        ]
+    },
+    {
+        name: 'Attack Boost',
+        description: 'Increases attack power. Also improves affinity at higher levels.',
+        levels: [
+            {
+                rawAttack: 3
+            },
+            {
+                rawAttack: 6
+            },
+            {
+                rawAttack: 9
+            },
+            {
+                rawAttack: 12,
                 affinity: 5
             },
             {
-                attack: 15,
+                rawAttack: 15,
                 affinity: 5
             },
             {
-                attack: 18,
+                rawAttack: 18,
                 affinity: 5
             },
             {
-                attack: 21,
+                rawAttack: 21,
                 affinity: 5
             }
         ]
     },
     {
-        name: "Critical Boost",
-        description: "Increases the damage of critical hits.",
+        name: 'Critical Boost',
+        description: 'Increases the damage of critical hits.',
         levels: [
             {
                 criticalBoost: 30
@@ -70,8 +128,8 @@ export default [
         ]
     },
     {
-        name: "Critical Eye",
-        description: "Increases affinity.",
+        name: 'Critical Eye',
+        description: 'Increases affinity.',
         levels: [
             {
                 affinity: 3
@@ -97,8 +155,8 @@ export default [
         ]
     },
     {
-        name: "Weakness Exploit",
-        description: "Increases the affinity of attacks that exploit a monster weak spot.",
+        name: 'Weakness Exploit',
+        description: 'Increases the affinity of attacks that exploit a monster weak spot.',
         levels: [
             {
                 affinity: 15
@@ -112,90 +170,90 @@ export default [
         ]
     },
     {
-        name: "Heroics",
-        description: "Increases attack power and defense when health drops to 35% or lower.",
+        name: 'Heroics',
+        description: 'Increases attack power and defense when health drops to 35% or lower.',
         levels: [
             {
-                attackPct: 5
+                attackMult: 1.05
             },
             {
-                attackPct: 10
+                attackMult: 1.1
             },
             {
-                attackPct: 15
+                attackMult: 1.15
             },
             {
-                attackPct: 20
+                attackMult: 1.2
             },
             {
-                attackPct: 30
+                attackMult: 1.3
             }
         ]
     },
     {
-        name: "Agitator",
-        description: "Increases attack power and affinity when large monsters become enraged.",
+        name: 'Agitator',
+        description: 'Increases attack power and affinity when large monsters become enraged.',
         levels: [
             {
-                attack: 4,
+                rawAttack: 4,
                 affinity: 3
             },
             {
-                attack: 8,
+                rawAttack: 8,
                 affinity: 6
             },
             {
-                attack: 12,
+                rawAttack: 12,
                 affinity: 9
             },
             {
-                attack: 16,
+                rawAttack: 16,
                 affinity: 12
             },
             {
-                attack: 20,
+                rawAttack: 20,
                 affinity: 15
             }
         ]
     },
     {
-        name: "Element Boost",
-        description: "Increases element attack power. (Elemental attack power has a maximum limit.)",
+        name: 'Element Boost',
+        description: 'Increases element attack power. (Elemental attack power has a maximum limit.)',
         levels: [
             {
-                element: 30
+                rawElement: 30
             },
             {
-                element: 60
+                rawElement: 60
             },
             {
-                element: 100
+                rawElement: 100
             },
             {
-                element: 100,
-                elementPct: 5
+                rawElement: 100,
+                elementPct: 1.05
             },
             {
-                element: 100,
-                elementPct: 10
+                rawElement: 100,
+                elementPct: 1.1
             }
         ]
     },
     {
-        name: "Fortify",
-        description: "Increases your attack and defense every time you fall in battle. (This effect can stack twice.)",
+        name: 'Fortify',
+        description: 'Increases your attack and defense every time you fall in battle. (This effect can stack twice.)',
         levels: [
             {
-                attackPct: 10
+                attackMult: 1.1
             },
             {
-                attackPct: 20
+                attackMult: 1.2
             }
         ]
     },
     {
-        name: "Maximum Might",
-        description: "Increases affinity when stamina is full.",
+        name: 'Maximum Might',
+        description: 'Increases affinity when stamina is full.',
         levels: [
             {
                 affinity: 10
@@ -209,44 +267,44 @@ export default [
         ]
     },
     {
-        name: "Peak Performance",
-        description: "Increases attack when your health is full.",
+        name: 'Peak Performance',
+        description: 'Increases attack when your health is full.',
         levels: [
             {
-                attack: 5
+                rawAttack: 5
             },
             {
-                attack: 10
+                rawAttack: 10
             },
             {
-                attack: 20
+                rawAttack: 20
             }
         ]
     },
     {
-        name: "Resentment",
-        description: "Increases attack when you have recoverable damage (the red portion of your health gauge).",
+        name: 'Resentment',
+        description: 'Increases attack when you have recoverable damage (the red portion of your health gauge).',
         levels: [
             {
-                attack: 5
+                rawAttack: 5
             },
             {
-                attack: 10
+                rawAttack: 10
             },
             {
-                attack: 15
+                rawAttack: 15
             },
             {
-                attack: 20
+                rawAttack: 20
             },
             {
-                attack: 25
+                rawAttack: 25
             }
         ]
     },
     {
-        name: "Free Element",
-        description: "Draws out hidden element.",
+        name: 'Free Element',
+        description: 'Draws out hidden element.',
         levels: [
             {
                 freeElementPct: 33

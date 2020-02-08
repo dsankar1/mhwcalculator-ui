@@ -1,13 +1,48 @@
 import _ from 'lodash';
 import React from 'react';
-import { Grid, TextField, InputAdornment } from '@material-ui/core';
+import { makeStyles, Grid, TextField, InputAdornment } from '@material-ui/core';
 import augments from '../../data/augments';
-import weaponTypes, { useStyles as useWeaponTypeStyles, dualBlades, lightBowgun, heavyBowgun, bow } from '../../data/weaponTypes';
-import sharpness, { useStyles as useSharpnessStyles } from '../../data/sharpness';
+import WeaponType from '../../data/weaponTypes';
+import { sharpnessList as sharpness, useStyles as useSharpnessStyles } from '../../data/sharpness';
 import coatings, { useStyles as useCoatingStyles } from '../../data/coatings';
 import ElementInput from '../ElementInput';
 import MultiInput from '../MultiInput';
 import ButtonSelect from '../ButtonSelect';
+
+export const useWeaponTypeStyles = makeStyles(theme => ({
+    button: {
+        flex: 1,
+        minWidth: '80px',
+        minHeight: '80px',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    icon: {
+        width: '40px',
+        height: '40px',
+        maxWidth: '40px',
+        maxHeight: '40px'
+    }
+}));
+
+export const weaponTypeConfig = [
+    WeaponType.GREAT_SWORD,
+    WeaponType.DUAL_BLADES,
+    WeaponType.LONG_SWORD,
+    WeaponType.SWORD_AND_SHIELD,
+    WeaponType.HAMMER,
+    WeaponType.HUNTING_HORN,
+    WeaponType.LANCE,
+    WeaponType.GUNLANCE,
+    WeaponType.SWITCH_AXE,
+    WeaponType.CHARGE_BLADE,
+    WeaponType.INSECT_GLAIVE,
+    WeaponType.LIGHT_BOWGUN,
+    WeaponType.HEAVY_BOWGUN,
+    WeaponType.BOW
+];
 
 export const WeaponInput = React.memo(props => {
     const weaponTypeClasses = useWeaponTypeStyles();
@@ -17,9 +52,9 @@ export const WeaponInput = React.memo(props => {
     const coatingClasses = useCoatingStyles();
 
     const typeName = _.get(props.value, ['type', 'name']);
-    const isBow = _.isEqual(typeName, bow.name);
-    const isDualBlades = _.isEqual(typeName, dualBlades.name);
-    const isBowgun = _.isEqual(typeName, lightBowgun.name) || _.isEqual(typeName, heavyBowgun.name);
+    const isBow = _.isEqual(typeName, WeaponType.BOW.name);
+    const isDualBlades = _.isEqual(typeName, WeaponType.DUAL_BLADES.name);
+    const isBowgun = _.isEqual(typeName, WeaponType.LIGHT_BOWGUN.name) || _.isEqual(typeName, WeaponType.HEAVY_BOWGUN.name);
 
     const handleChange = React.useCallback((name, value) => {
         if (_.isFunction(props.onChange)) {
@@ -35,7 +70,7 @@ export const WeaponInput = React.memo(props => {
                 <ButtonSelect
                     isRequired
                     label='Weapon Type'
-                    config={weaponTypes}
+                    config={weaponTypeConfig}
                     classes={weaponTypeClasses}
                     value={_.get(props.value, 'type')}
                     onChange={type => handleChange('type', type)}

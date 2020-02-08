@@ -3,13 +3,16 @@ import qs from 'qs';
 import React, { useState, useEffect, useCallback, useContext } from 'react';
 import { makeStyles, Container, Grid, Card, CardHeader, CardContent, Divider, Switch } from '@material-ui/core';
 import { SubtitleContext } from '../../App';
-import { greatSword } from './data/weaponTypes';
-import { purple } from './data/sharpness';
+import { calculateDamage, exampleBuild } from './calculator';
+import WeaponTypes from './data/weaponTypes';
+import Sharpness from './data/sharpness';
 import skills from './data/skills';
 import buffs from './data/buffs';
 import SearchBar from './components/SearchBar';
 import WeaponInput from './components/WeaponInput';
 import MultiInput, { formatConfig } from './components/MultiInput';
+
+console.log(calculateDamage(exampleBuild));
 
 const selectAll = config => {
     return _.map(formatConfig(config)[0], curr => {
@@ -50,8 +53,8 @@ const getInitialBuild = location => {
 
     return _.defaults(query, cached, {
         weapon: {
-            type: greatSword,
-            sharpness: purple
+            type: WeaponTypes.GREAT_SWORD,
+            sharpness: Sharpness.PURPLE
         }
     });
 }

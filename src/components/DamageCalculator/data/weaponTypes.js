@@ -1,4 +1,3 @@
-import { makeStyles } from '@material-ui/core';
 import greatSwordIcon from '../../../assets/great-sword.png';
 import dualBladesIcon from '../../../assets/dual-blades.png';
 import longSwordIcon from '../../../assets/long-sword.png';
@@ -14,107 +13,77 @@ import lightBowgunIcon from '../../../assets/light-bowgun.png';
 import heavyBowgunIcon from '../../../assets/heavy-bowgun.png';
 import bowIcon from '../../../assets/bow.png';
 
-export const useStyles = makeStyles(theme => ({
-    button: {
-        flex: 1,
-        minWidth: '80px',
-        minHeight: '80px',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center'
+export const WeaponType = {
+    GREAT_SWORD: {
+        name: 'Great Sword',
+        icon: greatSwordIcon,
+        attackBloat: 4.8
     },
-    icon: {
-        width: '40px',
-        height: '40px',
-        maxWidth: '40px',
-        maxHeight: '40px'
+    DUAL_BLADES: {
+        name: 'Dual Blades',
+        icon: dualBladesIcon,
+        attackBloat: 1.4
+    },
+    LONG_SWORD: {
+        name: 'Long Sword',
+        icon: longSwordIcon,
+        attackBloat: 3.3
+    },
+    SWORD_AND_SHIELD: {
+        name: 'Sword & Shield',
+        icon: swordAndShieldIcon,
+        attackBloat: 1.4
+    },
+    HAMMER: {
+        name: 'Hammer',
+        icon: hammerIcon,
+        attackBloat: 5.2
+    },
+    HUNTING_HORN: {
+        name: 'Hunting Horn',
+        icon: huntingHornIcon,
+        attackBloat: 4.2
+    },
+    LANCE: {
+        name: 'Lance',
+        icon: lanceIcon,
+        attackBloat: 2.3
+    },
+    GUNLANCE: {
+        name: 'Gunlance',
+        icon: gunlanceIcon,
+        attackBloat: 2.3
+    },
+    SWITCH_AXE: {
+        name: 'Switch Axe',
+        icon: switchAxeIcon,
+        attackBloat: 3.5
+    },
+    CHARGE_BLADE: {
+        name: 'Charge Blade',
+        icon: chargeBladeIcon,
+        attackBloat: 3.6
+    },
+    INSECT_GLAIVE: {
+        name: 'Insect Glaive',
+        icon: insectGlaiveIcon,
+        attackBloat: 3.1
+    },
+    LIGHT_BOWGUN: {
+        name: 'Light Bowgun',
+        icon: lightBowgunIcon,
+        attackBloat: 1.3
+    },
+    HEAVY_BOWGUN: {
+        name: 'Heavy Bowgun',
+        icon: heavyBowgunIcon,
+        attackBloat: 1.5
+    },
+    BOW: {
+        name: 'Bow',
+        icon: bowIcon,
+        attackBloat: 1.2
     }
-}));
-
-export const greatSword = {
-    name: 'Great Sword',
-    icon: greatSwordIcon
 };
 
-export const dualBlades = {
-    name: 'Dual Blades',
-    icon: dualBladesIcon
-};
-
-export const longSword = {
-    name: 'Long Sword',
-    icon: longSwordIcon
-};
-
-export const swordAndShield = {
-    name: 'Sword & Shield',
-    icon: swordAndShieldIcon
-};
-
-export const hammer = {
-    name: 'Hammer',
-    icon: hammerIcon
-};
-
-export const huntingHorn = {
-    name: 'Hunting Horn',
-    icon: huntingHornIcon
-};
-
-export const lance = {
-    name: 'Lance',
-    icon: lanceIcon
-};
-
-export const gunlance = {
-    name: 'Gunlance',
-    icon: gunlanceIcon
-};
-
-export const switchAxe = {
-    name: 'Switch Axe',
-    icon: switchAxeIcon
-};
-
-export const chargeBlade = {
-    name: 'Charge Blade',
-    icon: chargeBladeIcon
-};
-
-export const insectGlaive = {
-    name: 'Insect Glaive',
-    icon: insectGlaiveIcon
-};
-
-export const lightBowgun = {
-    name: 'Light Bowgun',
-    icon: lightBowgunIcon
-};
-
-export const heavyBowgun = {
-    name: 'Heavy Bowgun',
-    icon: heavyBowgunIcon
-};
-
-export const bow = {
-    name: 'Bow',
-    icon: bowIcon
-};
-
-export default [
-    greatSword,
-    dualBlades,
-    longSword,
-    swordAndShield,
-    hammer,
-    huntingHorn,
-    lance,
-    gunlance,
-    switchAxe,
-    chargeBlade,
-    insectGlaive,
-    lightBowgun,
-    heavyBowgun,
-    bow
-];
+export default WeaponType;

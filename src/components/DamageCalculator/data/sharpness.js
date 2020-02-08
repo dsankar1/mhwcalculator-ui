@@ -98,32 +98,52 @@ export const useStyles = makeStyles(theme => ({
     }
 }));
 
-export const red = {
-    name: 'Red'
+export const Sharpness = {
+    PURPLE: {
+        name: 'Purple',
+        attackMult: 1.39,
+        elementMult: 1.3
+    },
+    WHITE: {
+        name: 'White',
+        attackMult: 1.32,
+        elementMult: 1.125
+    },
+    BLUE: {
+        name: 'Blue',
+        attackMult: 1.2,
+        elementMult: 1.0625
+    },
+    GREEN: {
+        name: 'Green',
+        attackMult: 1.05,
+        elementMult: 1
+    },
+    YELLOW: {
+        name: 'Yellow',
+        attackMult: 1,
+        elementMult: 0.75
+    },
+    ORANGE: {
+        name: 'Orange',
+        attackMult: 0.75,
+        elementMult: 0.5
+    },
+    RED: {
+        name: 'Red',
+        attackMult: 0.5,
+        elementMult: 0.25
+    }
 };
 
-export const orange = {
-    name: 'Orange'
-};
+export const sharpnessList = [
+    Sharpness.RED,
+    Sharpness.ORANGE,
+    Sharpness.YELLOW,
+    Sharpness.GREEN,
+    Sharpness.BLUE,
+    Sharpness.WHITE,
+    Sharpness.PURPLE
+];
 
-export const yellow = {
-    name: 'Yellow'
-};
-
-export const green = {
-    name: 'Green'
-};
-
-export const blue = {
-    name: 'Blue'
-};
-
-export const white = {
-    name: 'White'
-};
-
-export const purple = {
-    name: 'Purple'
-};
-
-export default [red, orange, yellow, green, blue, white, purple];
+export default Sharpness;
