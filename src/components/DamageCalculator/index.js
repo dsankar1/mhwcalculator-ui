@@ -1,32 +1,14 @@
 import _ from 'lodash';
 import qs from 'qs';
 import React, { useState, useEffect, useCallback, useContext } from 'react';
-import { makeStyles, Container, Grid, Card, CardHeader, CardContent, Divider, Switch } from '@material-ui/core';
+import { makeStyles, Container, Grid, Card, CardHeader, CardContent, Divider } from '@material-ui/core';
 import { SubtitleContext } from '../../App';
-import { calculateDamage, exampleBuild } from './calculator';
-import WeaponTypes from './data/weaponTypes';
-import Sharpness from './data/sharpness';
-import skills from './data/skills';
-import buffs from './data/buffs';
+import calculateDamage from './calculator';
+import { WeaponType, Sharpness } from './calculator';
 import SearchBar from './components/SearchBar';
 import WeaponInput from './components/WeaponInput';
-import MultiInput, { formatConfig } from './components/MultiInput';
-
-console.log(calculateDamage(exampleBuild));
-
-const selectAll = config => {
-    return _.map(formatConfig(config)[0], curr => {
-        if (_.has(curr, 'levels')) {
-            return _.last(curr.levels);
-        } else {
-            return curr;
-        }
-    });
-}
-
-const allSkills = selectAll(skills);
-
-const allBuffs = selectAll(buffs);
+import SkillsInput from './components/SkillsInput';
+import ItemsInput from './components/ItemsInput';
 
 const getInitialBuild = location => {
     const rawQuery = qs.parse(_.get(location, 'search'), {
@@ -53,7 +35,7 @@ const getInitialBuild = location => {
 
     return _.defaults(query, cached, {
         weapon: {
-            type: WeaponTypes.GREAT_SWORD,
+            type: WeaponType.GREAT_SWORD,
             sharpness: Sharpness.PURPLE
         }
     });
@@ -85,23 +67,17 @@ export const DamageCalculator = props => {
         }));
     }, [setBuild]);
 
-    const toggleSkills = useCallback((__, checked) => {
-        setBuild(build => ({
-            ...build,
-            skills: checked ? allSkills : []
-        }));
-    }, [setBuild]);
+    const calculations = React.useMemo(() => calculateDamage(build), [build]);
 
-    const toggleBuffs = useCallback((__, checked) => {
-        setBuild(build => ({
-            ...build,
-            buffs: checked ? allBuffs : []
-        }));
-    }, [setBuild]);
+    console.log('Build', build);
+    console.log('Calculations', calculations);
 
     return (
         <Container className={classes.container}>
             <Grid spacing={1} container>
+                <Grid item xs={12}>
+                    {JSON.stringify(calculations.buffs)}
+                </Grid>
                 <Grid item xs={12}>
                     <Card>
                         <CardHeader
@@ -126,58 +102,28 @@ export const DamageCalculator = props => {
                     </Card>
                 </Grid>
                 <Grid item xs={12} sm={7} md={6}>
-                    <Card>
-                        <CardHeader
-                            title='Skills'
-                            action={
-                                <Switch
-                                    checked={_.size(build.skills) === _.size(skills)}
-                                    onChange={toggleSkills}
-                                />
-                            }
-                        />
-                        <Divider />
-                        <CardContent>
-                            <MultiInput
-                                config={skills}
-                                grid={{
-                                    xs: 12,
-                                    sm: 6
-                                }}
-                                value={_.get(build, 'skills')}
-                                onChange={skills => {
-                                    handleChange('skills', skills);
-                                }}
-                            />
-                        </CardContent>
-                    </Card>
+                    <SkillsInput
+                        grid={{
+                            xs: 12,
+                            sm: 6
+                        }}
+                        value={_.get(build, 'buffs')}
+                        onChange={skills => {
+                            handleChange('buffs', skills);
+                        }}
+                    />
                 </Grid>
                 <Grid item xs={12} sm={5} md={6}>
-                    <Card>
-                        <CardHeader
-                            title='Buffs'
-                            action={
-                                <Switch
-                                    checked={_.size(build.buffs) === _.size(buffs)}
-                                    onChange={toggleBuffs}
-                                />
-                            }
-                        />
-                        <Divider />
-                        <CardContent>
-                            <MultiInput
-                                config={buffs}
-                                grid={{
-                                    xs: 12,
-                                    md: 6
-                                }}
-                                value={_.get(build, 'buffs')}
-                                onChange={buffs => {
-                                    handleChange('buffs', buffs);
-                                }}
-                            />
-                        </CardContent>
-                    </Card>
+                    <ItemsInput
+                        grid={{
+                            xs: 12,
+                            md: 6
+                        }}
+                        value={_.get(build, 'buffs')}
+                        onChange={items => {
+                            handleChange('buffs', items);
+                        }}
+                    />
                 </Grid>
             </Grid>
         </Container>
