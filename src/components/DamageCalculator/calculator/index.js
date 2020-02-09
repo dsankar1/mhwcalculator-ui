@@ -4,10 +4,10 @@ import { attackMultMap, elementMultMap } from './sharpness';
 
 export const exampleBuild = {
     weapon: {
-        type: 'bow',
-        sharpness: 'blue',
-        attack: 1000,
-        affinity: 10,
+        type: 'longSword',
+        sharpness: 'yellow',
+        affinityPct: 0,
+        attack: 264,
         elements: [],
         statuses: [],
         augments: []
@@ -21,7 +21,7 @@ export const BuildAccessor = {
     WEAPON_TYPE: 'weapon.type',
     SHARPNESS: 'weapon.sharpness',
     ATTACK: 'weapon.attack',
-    AFFINITY: 'weapon.affinity',
+    AFFINITY_PCT: 'weapon.affinityPct',
     ELEMENTS: 'weapon.elements',
     STATUSES: 'weapon.statuses',
     AUGMENTS: 'weapon.augments',
@@ -33,7 +33,7 @@ export const BuildAccessor = {
 export const BuffAccessor = {
     TRUE_ATTACK: 'trueAttack',
     ATTACK_MULT: 'attackMult',
-    AFFINITY: 'affinity',
+    AFFINITY_PCT: 'affinityPct',
     TRUE_ELEMENT: 'trueElement',
     ELEMENT_MULT: 'elementMult',
     FREE_ELEMENT: 'freeElement',
@@ -42,39 +42,63 @@ export const BuffAccessor = {
 };
 
 export const calculateDamage = build => {
-    const baseAffinity = +_.get(build, BuildAccessor.AFFINITY, 0);
+    const baseAffinityPct = +_.get(build, BuildAccessor.AFFINITY_PCT, 0);
     const weaponType = _.get(build, BuildAccessor.WEAPON_TYPE);
     const attackBloat = _.get(attackBloatMap, weaponType);
     const baseTrueAttack = +_.get(build, BuildAccessor.ATTACK, 0) / attackBloat;
-    const baseTrueElement = +_.get(build, `${BuildAccessor.ELEMENTS}[0]`, 0) / 10;
+    const baseTrueElement = +_.get(build, `${BuildAccessor.ELEMENTS}[0].damage`, 0) / 10;
+    const hiddenElement = _.get(build, `${BuildAccessor.ELEMENTS}[0].hidden`, false);
 
-    const aggregateBuffs = createAggregateBuffs(baseTrueAttack, baseTrueElement);
+    const callBuffFuncs = createBuffFuncCaller(build);
+    const aggregateBuffs = createBuffsAggregator(baseTrueAttack, baseTrueElement);
+    const processBuffs = _.flow(callBuffFuncs, aggregateBuffs);
+
     const augments = _.get(build, BuildAccessor.AUGMENTS, []);
     const skills = _.get(build, BuildAccessor.SKILLS, []);
     const items = _.get(build, BuildAccessor.ITEMS, []);
-    const buffs = aggregateBuffs(_.concat(augments, skills, items));
+    const [buffs, buffsBreakdown] = processBuffs(_.concat(augments, skills, items));
     
     const trueAttack = Math.round(baseTrueAttack + buffs.trueAttack);
-    const trueElement = Math.round((baseTrueElement + buffs.trueElement) * buffs.freeElement);
+    const trueElement = Math.round((baseTrueElement + buffs.trueElement) * (hiddenElement ? buffs.freeElement : 1));
+
+    const affinityPct = baseAffinityPct + buffs.affinityPct;
+    const criticalAttackMult = _.get(buffs, BuffAccessor.CRITICAL_ATTACK_MULT, 1.25);
+    const criticalElementMult = _.get(criticalElementMultMap, weaponType);
+    const affinityAttackMult = calculateAffinityDamageMult(affinityPct, criticalAttackMult);
+    const affinityElementMult = buffs.criticalElement ? calculateAffinityDamageMult(affinityPct, criticalElementMult) : 1;
 
     const sharpness = _.get(build, BuildAccessor.SHARPNESS);
     const sharpnessAttackMult = _.get(attackMultMap, sharpness);
     const sharpnessElementMult = _.get(elementMultMap, sharpness);
 
-    const affinity = baseAffinity + buffs.affinity;
-    const clampedAffinity = _.clamp(affinity, -100, 100);
-    const criticalAttackMult = affinity > 0 ? _.get(buffs, BuffAccessor.CRITICAL_ATTACK_MULT, 1.25) : 0.75;
-    const criticalElementMult = buffs.criticalElement ? _.get(criticalElementMultMap, weaponType) : 1;
+    const effectiveAttackDamage = Math.floor(trueAttack * sharpnessAttackMult * affinityAttackMult * 0.21 * 0.8);
+    console.log('EFFECTIVE ATTACK', effectiveAttackDamage);
 
     return {
-        affinity,
+        buffs,
+        buffsBreakdown,
+        attack: Math.round(trueAttack * attackBloat),
+        element: Math.round(trueElement * 10),
         trueAttack,
         trueElement,
-        sharpnessAttackMult,
-        sharpnessElementMult,
+        affinityPct,
         criticalAttackMult,
-        criticalElementMult
+        criticalElementMult,
+        affinityAttackMult,
+        affinityElementMult,
+        sharpnessAttackMult,
+        sharpnessElementMult
     };
+}
+
+export const calculateAffinityDamageMult = (affinityPct, criticalMult) => {
+    if (affinityPct === 0) {
+        return 1;
+    }
+
+    const affinity = _.clamp(affinityPct, -100, 100) / 100;
+    const adjustedCritMult = criticalMult - 1;
+    return 1 + affinity * adjustedCritMult;
 }
 
 export const getTrueElementCap = baseTrueElement => {
@@ -105,45 +129,84 @@ export const getTrueElementCap = baseTrueElement => {
     }
 }
 
-export const createAggregateBuffs = (baseTrueAttack, baseTrueElement) => buffs => {
-    let totalAffinity = 0;
+export const createBuffFuncCaller = build => buffs => {
+    return _.map(buffs, buff => {
+        return _.transform(buff, (acc, value, key) => {
+            if (_.isFunction(value)) {
+                _.set(acc, key, value(build));
+            } else {
+                _.set(acc, key, value);
+            }
+        }, {});
+    });
+}
+
+export const createBuffsAggregator = (baseTrueAttack, baseTrueElement) => buffs => {
+    const breakdownList = [];
+    let totalAffinityPct = 0;
     let totalTrueAttack = 0
     let totalTrueElement = 0;
     let totalFreeElement = 0;
     let netCriticalElement = false;
-    let criticalAttackMult = 1.25;
+    let topCriticalAttackMult = 1.25;
 
     _.forEach(buffs, buff => {
-        let trueAttack = +_.get(buff, BuffAccessor.TRUE_ATTACK, 0);
-        const attackMult = +_.get(buff, BuffAccessor.ATTACK_MULT, 0);
-        trueAttack = (attackMult * baseTrueAttack) - baseTrueAttack + trueAttack;
-        totalTrueAttack += trueAttack;
+        const breakdownEntry = {
+            original: buff
+        };
 
-        let trueElement = +_.get(buff, BuffAccessor.TRUE_ELEMENT, 0);
-        const elementMult = +_.get(buff, BuffAccessor.ELEMENT_MULT, 0);
-        trueElement = (elementMult * baseTrueElement) - baseTrueElement + trueElement;
-        totalTrueElement += trueElement;
+        if (_.has(buff, BuffAccessor.TRUE_ATTACK) || _.has(buff, BuffAccessor.ATTACK_MULT)) {
+            let trueAttack = +_.get(buff, BuffAccessor.TRUE_ATTACK, 0);
+            const attackMult = +_.get(buff, BuffAccessor.ATTACK_MULT, 1);
+            trueAttack = (attackMult - 1) * baseTrueAttack + trueAttack;
+            totalTrueAttack += trueAttack;
+            _.set(breakdownEntry, BuffAccessor.TRUE_ATTACK, trueAttack);
+        }
 
-        totalAffinity += +_.get(buff, BuffAccessor.AFFINITY, 0);
+        if (_.has(buff, BuffAccessor.TRUE_ELEMENT) || _.has(buff, BuffAccessor.ELEMENT_MULT)) {
+            let trueElement = +_.get(buff, BuffAccessor.TRUE_ELEMENT, 0);
+            const elementMult = +_.get(buff, BuffAccessor.ELEMENT_MULT, 1);
+            trueElement = (elementMult - 1) * baseTrueElement + trueElement;
+            totalTrueElement += trueElement;
+            _.set(breakdownEntry, BuffAccessor.TRUE_ELEMENT, trueElement);
+        }
 
-        const freeElement = +_.get(buff, BuffAccessor.FREE_ELEMENT, 0);
-        totalFreeElement = Math.min(totalFreeElement + freeElement, 1);
+        if (_.has(buff, BuffAccessor.AFFINITY_PCT)) {
+            const affinityPct = +_.get(buff, BuffAccessor.AFFINITY_PCT, 0)
+            totalAffinityPct += affinityPct;
+            _.set(breakdownEntry, BuffAccessor.AFFINITY_PCT, affinityPct);
+        }
 
-        const criticalElement = _.get(buff, BuffAccessor.CRITICAL_ELEMENT, false);
-        netCriticalElement = netCriticalElement || criticalElement;
+        if (_.has(buff, BuffAccessor.FREE_ELEMENT)) {
+            const freeElement = +_.get(buff, BuffAccessor.FREE_ELEMENT, 0);
+            totalFreeElement = Math.min(totalFreeElement + freeElement, 1);
+            _.set(breakdownEntry, BuffAccessor.FREE_ELEMENT, freeElement);
+        }
 
-        criticalAttackMult = Math.max(criticalAttackMult, +_.get(buff, BuffAccessor.CRITICAL_ATTACK_MULT, 0));
+        if (_.has(buff, BuffAccessor.CRITICAL_ELEMENT)) {
+            const criticalElement = _.get(buff, BuffAccessor.CRITICAL_ELEMENT, false);
+            netCriticalElement = netCriticalElement || criticalElement;
+            _.set(breakdownEntry, BuffAccessor.CRITICAL_ELEMENT, criticalElement);
+        }
+
+        if (_.has(buff, BuffAccessor.CRITICAL_ATTACK_MULT)) {
+            const criticalAttackMult = +_.get(buff, BuffAccessor.CRITICAL_ATTACK_MULT, 0);
+            topCriticalAttackMult = Math.max(topCriticalAttackMult, criticalAttackMult);
+            _.set(breakdownEntry, BuffAccessor.CRITICAL_ATTACK_MULT, criticalAttackMult);
+        }
+
+        breakdownList.push(breakdownEntry);
     });
 
     const trueElementCap = getTrueElementCap(baseTrueElement);    
     totalTrueElement = Math.min(totalTrueElement, trueElementCap);
 
-    return {
-        [BuffAccessor.AFFINITY]: totalAffinity,
+    return [{
+        [BuffAccessor.AFFINITY_PCT]: totalAffinityPct,
         [BuffAccessor.TRUE_ATTACK]: totalTrueAttack,
         [BuffAccessor.TRUE_ELEMENT]: totalTrueElement,
         [BuffAccessor.FREE_ELEMENT]: totalFreeElement,
         [BuffAccessor.CRITICAL_ELEMENT]: netCriticalElement,
-        [BuffAccessor.CRITICAL_ATTACK_MULT]: criticalAttackMult
-    };
+        [BuffAccessor.CRITICAL_ATTACK_MULT]: topCriticalAttackMult
+    }, breakdownList];
 }
