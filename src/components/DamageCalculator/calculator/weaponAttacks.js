@@ -5,7 +5,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 48
             ],
             name: 'Charged Slash Lv1'
@@ -13,7 +13,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 77
             ],
             name: 'Charged Slash Lv2'
@@ -21,7 +21,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 105
             ],
             name: 'Charged Slash Lv3'
@@ -29,7 +29,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 77
             ],
             name: 'Charged Slash Lv4'
@@ -37,7 +37,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 48
             ],
             name: 'Overhead Slash'
@@ -45,7 +45,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 65
             ],
             name: 'Strong Charged Slash Lv1'
@@ -53,7 +53,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 90
             ],
             name: 'Strong Charged Slash Lv2'
@@ -61,7 +61,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 115
             ],
             name: 'Strong Charged Slash Lv3'
@@ -69,7 +69,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 90
             ],
             name: 'Strong Charged Slash Lv4'
@@ -77,7 +77,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 15,
                 165
             ],
@@ -86,7 +86,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 20,
                 182
             ],
@@ -95,7 +95,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 22,
                 211
             ],
@@ -104,7 +104,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 20,
                 182
             ],
@@ -113,7 +113,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 26
             ],
             name: 'Wide Slash'
@@ -121,7 +121,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 38
             ],
             name: 'Rising Slash'
@@ -129,7 +129,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 16
             ],
             name: 'Side Blow'
@@ -137,7 +137,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 26
             ],
             name: 'Tackle Lv1'
@@ -145,7 +145,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 35
             ],
             name: 'Tackle Lv2'
@@ -153,7 +153,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 48
             ],
             name: 'Tackle Lv3'
@@ -161,7 +161,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 71
             ],
             name: 'Jumping Wide Slash Lv1'
@@ -169,7 +169,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 85
             ],
             name: 'Jumping Wide Slash Lv2'
@@ -177,7 +177,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 110
             ],
             name: 'Jumping Wide Slash Lv3'
@@ -185,7 +185,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 70
             ],
             name: 'Jumping Slash'
@@ -193,7 +193,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 70
             ],
             name: 'Midair Charged Slash Lv1'
@@ -201,7 +201,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 92
             ],
             name: 'Midair Charged Slash Lv2'
@@ -209,7 +209,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 106
             ],
             name: 'Midair Charged Slash Lv3'
@@ -217,7 +217,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 59
             ],
             name: 'Strong Wide Slash Lv1'
@@ -225,7 +225,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 66
             ],
             name: 'Strong Wide Slash Lv2'
@@ -233,7 +233,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 78
             ],
             name: 'Strong Wide Slash Lv3'
@@ -241,7 +241,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 48
             ],
             name: 'Charged Rising Slash Lv1'
@@ -249,7 +249,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 72
             ],
             name: 'Charged Rising Slash Lv2'
@@ -257,7 +257,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 98
             ],
             name: 'Charged Rising Slash Lv3'
@@ -265,7 +265,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 16
             ],
             name: 'Plunging Thrust Lv1'
@@ -273,7 +273,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 22
             ],
             name: 'Plunging Thrust Lv2'
@@ -281,7 +281,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GREAT_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 27
             ],
             name: 'Plunging Thrust Lv3'
@@ -291,7 +291,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LONG_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 24
             ],
             name: 'Step Slash'
@@ -299,7 +299,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LONG_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 12
             ],
             name: 'Thrust'
@@ -307,7 +307,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LONG_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 21
             ],
             name: 'Overhead Slash'
@@ -315,7 +315,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LONG_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 18
             ],
             name: 'Rising Slash'
@@ -323,7 +323,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LONG_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 22
             ],
             name: 'Fade Slash'
@@ -331,7 +331,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LONG_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 22
             ],
             name: 'Lateral Fade Slash'
@@ -339,7 +339,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LONG_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 18
             ],
             name: 'Spirit Jumping Slash'
@@ -347,7 +347,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LONG_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 14
             ],
             name: 'Spirit Blade I'
@@ -355,7 +355,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LONG_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 30
             ],
             name: 'Spirit Blade II'
@@ -363,7 +363,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LONG_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 12,
                 14,
                 34
@@ -373,7 +373,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LONG_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 38
             ],
             name: 'Spirit Roundslash'
@@ -381,7 +381,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LONG_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 42
             ],
             name: 'Spirit Thrust'
@@ -389,7 +389,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LONG_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 10,
                 10,
                 10,
@@ -403,7 +403,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LONG_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 10,
                 10,
                 10,
@@ -417,7 +417,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LONG_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 25,
                 25,
                 25,
@@ -431,7 +431,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LONG_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 14
             ],
             name: 'Foresight Slash'
@@ -439,7 +439,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LONG_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 26
             ],
             name: 'Jumping Slash'
@@ -447,7 +447,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LONG_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 20
             ],
             name: 'Jumping Rising Slash'
@@ -455,7 +455,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LONG_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 26
             ],
             name: 'Aerial Draw Spirit Blade'
@@ -463,7 +463,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LONG_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 16
             ],
             name: 'Jumping Spirit Blade'
@@ -471,7 +471,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LONG_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 4,
                 16
             ],
@@ -480,7 +480,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LONG_SWORD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 4,
                 16,
                 28
@@ -492,7 +492,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWORD_AND_SHIELD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 14
             ],
             name: 'Chop'
@@ -500,7 +500,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWORD_AND_SHIELD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 13
             ],
             name: 'Side Slash'
@@ -508,7 +508,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWORD_AND_SHIELD,
             damageType: 'sever + blunt',
-            hits: [
+            motionValues: [
                 10,
                 20
             ],
@@ -517,7 +517,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWORD_AND_SHIELD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 16
             ],
             name: 'Spiral Slash (Right)'
@@ -525,7 +525,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWORD_AND_SHIELD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 16
             ],
             name: 'Spiral Slash (Left)'
@@ -533,7 +533,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWORD_AND_SHIELD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 17
             ],
             name: 'Spiral Slash (Back)'
@@ -541,7 +541,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWORD_AND_SHIELD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 22
             ],
             name: 'Thrust'
@@ -549,7 +549,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWORD_AND_SHIELD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 22
             ],
             name: 'Lateral Slash'
@@ -557,7 +557,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWORD_AND_SHIELD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 21
             ],
             name: 'Return Stroke'
@@ -565,7 +565,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWORD_AND_SHIELD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 18
             ],
             name: 'Advancing Slash'
@@ -573,7 +573,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWORD_AND_SHIELD,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 6
             ],
             name: 'Short Shield Bash'
@@ -581,7 +581,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWORD_AND_SHIELD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 30
             ],
             name: 'Round Slash'
@@ -589,7 +589,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWORD_AND_SHIELD,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 8
             ],
             name: 'Shield Attack'
@@ -597,7 +597,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWORD_AND_SHIELD,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 16
             ],
             name: 'Shield Bash'
@@ -605,7 +605,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWORD_AND_SHIELD,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 31
             ],
             name: 'Hard Bash'
@@ -613,7 +613,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWORD_AND_SHIELD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 10,
                 35
             ],
@@ -622,7 +622,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWORD_AND_SHIELD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 14
             ],
             name: 'Guard Slash'
@@ -630,7 +630,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWORD_AND_SHIELD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 14
             ],
             name: 'Rising Slash'
@@ -638,7 +638,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWORD_AND_SHIELD,
             damageType: 'sever + blunt',
-            hits: [
+            motionValues: [
                 29,
                 40
             ],
@@ -647,7 +647,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWORD_AND_SHIELD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 15
             ],
             name: 'Scaling Slash'
@@ -655,7 +655,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWORD_AND_SHIELD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 20
             ],
             name: 'Jumping Slash'
@@ -663,7 +663,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWORD_AND_SHIELD,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 39
             ],
             name: 'Falling Bash'
@@ -671,7 +671,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWORD_AND_SHIELD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 20
             ],
             name: 'Jumping Rising Slash'
@@ -679,7 +679,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWORD_AND_SHIELD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 18
             ],
             name: 'Jumping Advancing Slash'
@@ -687,7 +687,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWORD_AND_SHIELD,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 20
             ],
             name: 'Helm Breaker'
@@ -697,7 +697,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.DUAL_BLADES,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 8,
                 10
             ],
@@ -706,7 +706,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.DUAL_BLADES,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 9,
                 10
             ],
@@ -715,7 +715,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.DUAL_BLADES,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 11,
                 9,
                 11
@@ -725,7 +725,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.DUAL_BLADES,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 3,
                 3,
                 5,
@@ -736,7 +736,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.DUAL_BLADES,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 7,
                 5,
                 15
@@ -746,7 +746,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.DUAL_BLADES,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 7,
                 5,
                 15
@@ -756,7 +756,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.DUAL_BLADES,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 5,
                 5
             ],
@@ -765,7 +765,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.DUAL_BLADES,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 7
             ],
             name: 'Rising Slash'
@@ -773,7 +773,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.DUAL_BLADES,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 10,
                 10,
                 13,
@@ -784,7 +784,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.DUAL_BLADES,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 11
             ],
             name: 'Demon Fangs'
@@ -792,7 +792,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.DUAL_BLADES,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 7,
                 14
             ],
@@ -801,7 +801,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.DUAL_BLADES,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 10,
                 10,
                 9,
@@ -814,7 +814,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.DUAL_BLADES,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 5,
                 5,
                 4,
@@ -827,7 +827,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.DUAL_BLADES,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 7
             ],
             name: 'Right Fade Slash'
@@ -835,7 +835,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.DUAL_BLADES,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 7
             ],
             name: 'Left Fade Slash'
@@ -843,7 +843,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.DUAL_BLADES,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 19,
                 7,
                 11
@@ -853,7 +853,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.DUAL_BLADES,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 19,
                 7,
                 11
@@ -863,7 +863,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.DUAL_BLADES,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 17,
                 17,
                 6,
@@ -885,7 +885,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.DUAL_BLADES,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 9,
                 9,
                 7,
@@ -899,7 +899,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.DUAL_BLADES,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 9,
                 12
             ],
@@ -908,7 +908,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.DUAL_BLADES,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 17,
                 11,
                 11,
@@ -925,7 +925,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.DUAL_BLADES,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 15,
                 10,
                 15,
@@ -936,7 +936,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.DUAL_BLADES,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 20,
                 20,
                 20,
@@ -951,7 +951,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HAMMER,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 20
             ],
             name: 'Swing'
@@ -959,7 +959,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HAMMER,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 16
             ],
             name: 'Backswing'
@@ -967,7 +967,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HAMMER,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 37
             ],
             name: 'Overhead Smash I'
@@ -975,7 +975,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HAMMER,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 15
             ],
             name: 'Side Smash'
@@ -983,7 +983,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HAMMER,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 23
             ],
             name: 'Overhead Smash II'
@@ -991,7 +991,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HAMMER,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 86
             ],
             name: 'Upswing'
@@ -999,7 +999,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HAMMER,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 28
             ],
             name: 'Big Bang I'
@@ -1007,7 +1007,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HAMMER,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 32
             ],
             name: 'Big Bang II'
@@ -1015,7 +1015,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HAMMER,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 45
             ],
             name: 'Big Bang III'
@@ -1023,7 +1023,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HAMMER,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 65
             ],
             name: 'Big Bang IV'
@@ -1031,7 +1031,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HAMMER,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 28,
                 28,
                 0,
@@ -1042,7 +1042,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HAMMER,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 18
             ],
             name: 'Charged Side Blow'
@@ -1050,7 +1050,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HAMMER,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 38
             ],
             name: 'Charged Upswing'
@@ -1058,7 +1058,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HAMMER,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 15,
                 76
             ],
@@ -1067,7 +1067,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HAMMER,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 26,
                 18,
                 18,
@@ -1082,7 +1082,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HAMMER,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 45
             ],
             name: 'Charged Brutal Upswing'
@@ -1090,7 +1090,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HAMMER,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 15,
                 15,
                 0,
@@ -1101,7 +1101,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HAMMER,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 25
             ],
             name: 'Charged Follow Up'
@@ -1109,7 +1109,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HAMMER,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 55
             ],
             name: 'Charged Follow Up (Power Charge)'
@@ -1117,7 +1117,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HAMMER,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 15
             ],
             name: 'Spinning Side Smash'
@@ -1125,7 +1125,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HAMMER,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 55
             ],
             name: 'Spinning Follow Up'
@@ -1133,7 +1133,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HAMMER,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 90
             ],
             name: 'Spinning Strong Upswing'
@@ -1141,7 +1141,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HAMMER,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 37
             ],
             name: 'Jumping Smash'
@@ -1149,7 +1149,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HAMMER,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 25,
                 100
             ],
@@ -1158,7 +1158,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HAMMER,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 65
             ],
             name: 'Jumping Charge Attack'
@@ -1166,7 +1166,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HAMMER,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 70
             ],
             name: 'Jumping Charge Attack II'
@@ -1174,7 +1174,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HAMMER,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 80
             ],
             name: 'Jumping Charge Attack III'
@@ -1184,7 +1184,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HUNTING_HORN,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 27
             ],
             name: 'Right Swing'
@@ -1192,7 +1192,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HUNTING_HORN,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 22
             ],
             name: 'Left Swing'
@@ -1200,7 +1200,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HUNTING_HORN,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 28
             ],
             name: 'Forward Swing'
@@ -1208,7 +1208,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HUNTING_HORN,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 34
             ],
             name: 'Backward Slam'
@@ -1216,7 +1216,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HUNTING_HORN,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 10
             ],
             name: 'Handle Poke'
@@ -1224,7 +1224,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HUNTING_HORN,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 14,
                 39
             ],
@@ -1233,7 +1233,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HUNTING_HORN,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 15,
                 22
             ],
@@ -1242,7 +1242,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HUNTING_HORN,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 29
             ],
             name: 'Performance'
@@ -1250,7 +1250,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HUNTING_HORN,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 35
             ],
             name: 'Encore'
@@ -1258,7 +1258,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HUNTING_HORN,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 27
             ],
             name: 'Shockwave'
@@ -1266,7 +1266,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HUNTING_HORN,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 35
             ],
             name: 'Jumping Smash'
@@ -1274,7 +1274,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HUNTING_HORN,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 55
             ],
             name: 'Jumping Strong Overhead Smash'
@@ -1282,7 +1282,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HUNTING_HORN,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 35
             ],
             name: 'Mid-air Performance'
@@ -1292,7 +1292,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 20
             ],
             name: 'Mid Thrust I'
@@ -1300,7 +1300,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 20
             ],
             name: 'Mid Thrust II'
@@ -1308,7 +1308,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 27
             ],
             name: 'Mid Thrust III'
@@ -1316,7 +1316,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 22
             ],
             name: 'High Thrust I'
@@ -1324,7 +1324,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 22
             ],
             name: 'High Thrust II'
@@ -1332,7 +1332,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 27
             ],
             name: 'High Thrust III'
@@ -1340,7 +1340,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 20
             ],
             name: 'Wide Sweep I'
@@ -1348,7 +1348,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 20
             ],
             name: 'Wide Sweep II'
@@ -1356,7 +1356,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 20
             ],
             name: 'Wide Sweep III'
@@ -1364,7 +1364,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 40
             ],
             name: 'Counter Thrust'
@@ -1372,7 +1372,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 22
             ],
             name: 'Cancel Thrust'
@@ -1380,7 +1380,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 20
             ],
             name: 'Guard Thrust'
@@ -1388,7 +1388,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 11
             ],
             name: 'Dash Attack'
@@ -1396,7 +1396,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 25
             ],
             name: 'Mid-Air Dash Attack'
@@ -1404,7 +1404,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 50
             ],
             name: 'Reverse Attack'
@@ -1412,7 +1412,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 50
             ],
             name: 'Advancing Jump Thrust'
@@ -1420,7 +1420,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 50
             ],
             name: 'Finishing Thrust'
@@ -1428,7 +1428,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 25,
                 50
             ],
@@ -1437,7 +1437,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LANCE,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 14
             ],
             name: 'Shield Attack'
@@ -1445,7 +1445,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 8,
                 8,
                 8
@@ -1455,7 +1455,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 30
             ],
             name: 'Jumping Thrust'
@@ -1465,7 +1465,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GUNLANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 30
             ],
             name: 'Lunging Upthrust'
@@ -1473,7 +1473,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GUNLANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 24
             ],
             name: 'Lateral Thrust I, II, III'
@@ -1481,7 +1481,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GUNLANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 30
             ],
             name: 'Rising Slash'
@@ -1489,7 +1489,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GUNLANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 48
             ],
             name: 'Overhead Smash'
@@ -1497,7 +1497,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GUNLANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 68
             ],
             name: 'Wide Sweep'
@@ -1505,7 +1505,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GUNLANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 18
             ],
             name: 'Guard Thrust I, II, III'
@@ -1513,7 +1513,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GUNLANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 25
             ],
             name: 'Jumping Thrust'
@@ -1521,7 +1521,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GUNLANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 44
             ],
             name: 'Jumping Reload Smash'
@@ -1529,7 +1529,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GUNLANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 44
             ],
             name: 'Jumping Smash'
@@ -1537,7 +1537,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.GUNLANCE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 35
             ],
             name: 'Jumping Rising Slash'
@@ -1547,7 +1547,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 29
             ],
             name: 'Axe: Morph Slash'
@@ -1555,7 +1555,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 23
             ],
             name: 'Axe: Side Slash'
@@ -1563,7 +1563,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 19
             ],
             name: 'Axe: Forward Slash'
@@ -1571,7 +1571,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 25
             ],
             name: 'Axe: Rising Slash'
@@ -1579,7 +1579,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 40
             ],
             name: 'Axe: Overhead Slash'
@@ -1587,7 +1587,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 21,
                 23
             ],
@@ -1596,7 +1596,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 23
             ],
             name: 'Axe: Fade Slash'
@@ -1604,7 +1604,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 20,
                 70,
                 35
@@ -1614,7 +1614,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 43
             ],
             name: 'Axe: Jumping Slash'
@@ -1622,7 +1622,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 35
             ],
             name: 'Axe: Jumping Morph Slash'
@@ -1630,7 +1630,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 74
             ],
             name: 'Axe: Jumping Sweep'
@@ -1638,7 +1638,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 23
             ],
             name: 'Sword: Morph Slash'
@@ -1646,7 +1646,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 45
             ],
             name: 'Sword: Downward Fade Slash'
@@ -1654,7 +1654,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 29
             ],
             name: 'Sword: Overhead Slash'
@@ -1662,7 +1662,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 21
             ],
             name: 'Sword: Right Rising Slash'
@@ -1670,7 +1670,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 18
             ],
             name: 'Sword: Left Rising Slash'
@@ -1678,7 +1678,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 22,
                 26
             ],
@@ -1687,7 +1687,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 24,
                 32
             ],
@@ -1696,7 +1696,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 10
             ],
             name: 'Sword: Element Discharge'
@@ -1704,7 +1704,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 6
             ],
             name: 'Sword: Element Discharge (Bash )'
@@ -1712,7 +1712,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 80
             ],
             name: 'Element Discharge Finisher'
@@ -1720,7 +1720,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 67
             ],
             name: 'Element Discharge Finisher (Early release)'
@@ -1728,7 +1728,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 15
             ],
             name: 'Zero Sum Discharge (Initial hit)'
@@ -1736,7 +1736,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 12
             ],
             name: 'Zero Sum Discharge (Bash )'
@@ -1744,7 +1744,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 96
             ],
             name: 'Zero Sum Discharge Finisher'
@@ -1752,7 +1752,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 35
             ],
             name: 'Sword: Jumping Slash'
@@ -1760,7 +1760,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 10
             ],
             name: 'Sword: Jumping Element Discharge'
@@ -1768,7 +1768,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 43
             ],
             name: 'Sword: Jumping Morph Slash'
@@ -1776,7 +1776,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.SWITCH_AXE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 35
             ],
             name: 'Sword: Jumping Rising Slash'
@@ -1786,7 +1786,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.CHARGE_BLADE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 20
             ],
             name: 'Sword: Forward Slash'
@@ -1794,7 +1794,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.CHARGE_BLADE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 12
             ],
             name: 'Sword: Weak Slash'
@@ -1802,7 +1802,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.CHARGE_BLADE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 13
             ],
             name: 'Sword: Charged Rising Slash'
@@ -1810,7 +1810,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.CHARGE_BLADE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 27,
                 18
             ],
@@ -1819,7 +1819,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.CHARGE_BLADE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 25
             ],
             name: 'Sword: Sliding Slash'
@@ -1827,7 +1827,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.CHARGE_BLADE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 15
             ],
             name: 'Sword: Return Stroke'
@@ -1835,7 +1835,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.CHARGE_BLADE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 12,
                 8
             ],
@@ -1844,7 +1844,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.CHARGE_BLADE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 28
             ],
             name: 'Sword: Spinning Slash'
@@ -1852,7 +1852,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.CHARGE_BLADE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 44
             ],
             name: 'Sword: Morph Slash'
@@ -1860,7 +1860,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.CHARGE_BLADE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 75
             ],
             name: 'Sword: Condensed Element Slash'
@@ -1868,7 +1868,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.CHARGE_BLADE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 22
             ],
             name: 'Sword: Jumping Slash'
@@ -1876,7 +1876,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.CHARGE_BLADE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 46
             ],
             name: 'Sword: Jumping Morph Slash'
@@ -1884,7 +1884,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.CHARGE_BLADE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 21
             ],
             name: 'Sword: Jumping Rising Slash'
@@ -1892,7 +1892,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.CHARGE_BLADE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 44
             ],
             name: 'Axe: Smash'
@@ -1900,7 +1900,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.CHARGE_BLADE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 28
             ],
             name: 'Axe: Morph Slash'
@@ -1908,7 +1908,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.CHARGE_BLADE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 50
             ],
             name: 'Elemental Roundslash'
@@ -1916,7 +1916,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.CHARGE_BLADE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 35
             ],
             name: 'Axe: Rising Slash'
@@ -1924,7 +1924,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.CHARGE_BLADE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 37
             ],
             name: 'Axe: Overhead Slash'
@@ -1932,7 +1932,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.CHARGE_BLADE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 45
             ],
             name: 'Axe: Dash Slam'
@@ -1940,7 +1940,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.CHARGE_BLADE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 21
             ],
             name: 'Axe: ED I'
@@ -1948,7 +1948,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.CHARGE_BLADE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 21
             ],
             name: 'Axe: Rushing ED I'
@@ -1956,7 +1956,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.CHARGE_BLADE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 10,
                 66
             ],
@@ -1965,7 +1965,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.CHARGE_BLADE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 90
             ],
             name: 'Axe: Amped Element Discharge'
@@ -1973,7 +1973,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.CHARGE_BLADE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 15,
                 90,
                 97
@@ -1983,7 +1983,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.CHARGE_BLADE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 15,
                 97
             ],
@@ -1992,7 +1992,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.CHARGE_BLADE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 46
             ],
             name: 'Axe: Jumping Slash'
@@ -2000,7 +2000,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.CHARGE_BLADE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 22
             ],
             name: 'Axe: Jumping Morph Slash'
@@ -2010,7 +2010,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.INSECT_GLAIVE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 26
             ],
             name: 'Leaping Slash'
@@ -2018,7 +2018,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.INSECT_GLAIVE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 16,
                 14
             ],
@@ -2027,7 +2027,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.INSECT_GLAIVE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 22
             ],
             name: 'Wide Sweep'
@@ -2035,7 +2035,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.INSECT_GLAIVE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 30
             ],
             name: 'Overhead Smash'
@@ -2043,7 +2043,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.INSECT_GLAIVE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 10
             ],
             name: 'Thrust'
@@ -2051,7 +2051,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.INSECT_GLAIVE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 18
             ],
             name: 'Reaping Slash'
@@ -2059,7 +2059,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.INSECT_GLAIVE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 18,
                 24
             ],
@@ -2068,7 +2068,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.INSECT_GLAIVE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 16,
                 14,
                 15
@@ -2078,7 +2078,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.INSECT_GLAIVE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 18,
                 26
             ],
@@ -2087,7 +2087,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.INSECT_GLAIVE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 24,
                 42
             ],
@@ -2096,7 +2096,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.INSECT_GLAIVE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 12,
                 11
             ],
@@ -2105,7 +2105,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.INSECT_GLAIVE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 15,
                 19
             ],
@@ -2114,7 +2114,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.INSECT_GLAIVE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 16,
                 14,
                 28
@@ -2124,7 +2124,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.INSECT_GLAIVE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 17
             ],
             name: 'Dodge Slash'
@@ -2132,7 +2132,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.INSECT_GLAIVE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 15
             ],
             name: 'Jumping Slash'
@@ -2140,7 +2140,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.INSECT_GLAIVE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 10
             ],
             name: 'Strong Jumping Slash'
@@ -2148,7 +2148,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.INSECT_GLAIVE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 28
             ],
             name: 'Jumping Advancing Slash'
@@ -2156,7 +2156,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.INSECT_GLAIVE,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 6,
                 4,
                 7,
@@ -2169,7 +2169,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.INSECT_GLAIVE,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 5
             ],
             name: 'Kinsect (Mark Target)'
@@ -2177,7 +2177,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.INSECT_GLAIVE,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 20
             ],
             name: 'Kinsect: Harvest Extract'
@@ -2187,7 +2187,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 25
             ],
             name: 'Melee Attack'
@@ -2195,7 +2195,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 25
             ],
             name: 'Jumping Reload'
@@ -2203,7 +2203,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 26
             ],
             name: 'Wyvernblast (S)'
@@ -2211,7 +2211,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 32
             ],
             name: 'Wyvernblast (M)'
@@ -2219,7 +2219,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 49
             ],
             name: 'Wyvernblast (L)'
@@ -2227,7 +2227,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 10
             ],
             name: 'Normal 1'
@@ -2235,7 +2235,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 20
             ],
             name: 'Normal 2'
@@ -2243,7 +2243,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 32
             ],
             name: 'Normal 3'
@@ -2251,7 +2251,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 7
             ],
             name: 'Pierce 1'
@@ -2259,7 +2259,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 7
             ],
             name: 'Pierce 2'
@@ -2267,7 +2267,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 8
             ],
             name: 'Pierce 3'
@@ -2275,7 +2275,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 6
             ],
             name: 'Spread 1'
@@ -2283,7 +2283,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 7
             ],
             name: 'Spread 2'
@@ -2291,7 +2291,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 8
             ],
             name: 'Spread 3'
@@ -2299,7 +2299,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 12
             ],
             name: 'Sticky 1'
@@ -2307,7 +2307,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 16
             ],
             name: 'Sticky 2'
@@ -2315,7 +2315,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 19
             ],
             name: 'Sticky 3'
@@ -2323,7 +2323,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 1
             ],
             name: 'Sticky Projectile'
@@ -2331,7 +2331,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 19
             ],
             name: 'Cluster Bomb 1'
@@ -2339,7 +2339,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 22
             ],
             name: 'Cluster Bomb 2'
@@ -2347,7 +2347,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 28
             ],
             name: 'Cluster Bomb 3'
@@ -2355,7 +2355,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 1
             ],
             name: 'Cluster Projectile'
@@ -2363,7 +2363,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 0
             ],
             name: 'Recover 1'
@@ -2371,7 +2371,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 0
             ],
             name: 'Recover 2'
@@ -2379,7 +2379,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 1
             ],
             name: 'Poison 1'
@@ -2387,7 +2387,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 1
             ],
             name: 'Poison 2'
@@ -2395,7 +2395,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 1
             ],
             name: 'Paralysis 1'
@@ -2403,7 +2403,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 1
             ],
             name: 'Paralysis 2'
@@ -2411,7 +2411,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 1
             ],
             name: 'Sleep 1'
@@ -2419,7 +2419,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 1
             ],
             name: 'Sleep 2'
@@ -2427,7 +2427,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 1
             ],
             name: 'Exhaust 1'
@@ -2435,7 +2435,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 1
             ],
             name: 'Exhaust 2'
@@ -2443,7 +2443,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 5
             ],
             name: 'Flaming'
@@ -2451,7 +2451,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 5
             ],
             name: 'Water'
@@ -2459,7 +2459,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 5
             ],
             name: 'Freeze'
@@ -2467,7 +2467,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 5
             ],
             name: 'Thunder'
@@ -2475,7 +2475,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 2
             ],
             name: 'Dragon'
@@ -2483,7 +2483,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 1
             ],
             name: 'Slicing Projectile'
@@ -2491,7 +2491,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 6
             ],
             name: 'Slicing'
@@ -2499,7 +2499,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 70
             ],
             name: 'Wyvern (Primary)'
@@ -2507,7 +2507,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 16
             ],
             name: 'Wyvern (Additional)'
@@ -2515,7 +2515,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 0
             ],
             name: 'Demon'
@@ -2523,7 +2523,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 0
             ],
             name: 'Armor'
@@ -2531,7 +2531,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.LIGHT_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 0
             ],
             name: 'Tranq'
@@ -2541,7 +2541,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 10
             ],
             name: 'Normal 1'
@@ -2549,7 +2549,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 20
             ],
             name: 'Normal 2'
@@ -2557,7 +2557,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 32
             ],
             name: 'Normal 3'
@@ -2565,7 +2565,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 7
             ],
             name: 'Pierce 1'
@@ -2573,7 +2573,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 7
             ],
             name: 'Pierce 2'
@@ -2581,7 +2581,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 8
             ],
             name: 'Pierce 3'
@@ -2589,7 +2589,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 6
             ],
             name: 'Spread 1'
@@ -2597,7 +2597,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 7
             ],
             name: 'Spread 2'
@@ -2605,7 +2605,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 8
             ],
             name: 'Spread 3'
@@ -2613,7 +2613,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 12
             ],
             name: 'Sticky 1'
@@ -2621,7 +2621,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 16
             ],
             name: 'Sticky 2'
@@ -2629,7 +2629,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 19
             ],
             name: 'Sticky 3'
@@ -2637,7 +2637,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 1
             ],
             name: 'Sticky Projectile'
@@ -2645,7 +2645,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 19
             ],
             name: 'Cluster Bomb 1'
@@ -2653,7 +2653,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 22
             ],
             name: 'Cluster Bomb 2'
@@ -2661,7 +2661,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 28
             ],
             name: 'Cluster Bomb 3'
@@ -2669,7 +2669,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 1
             ],
             name: 'Cluster Projectile'
@@ -2677,7 +2677,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 0
             ],
             name: 'Recover 1'
@@ -2685,7 +2685,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 0
             ],
             name: 'Recover 2'
@@ -2693,7 +2693,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 1
             ],
             name: 'Poison 1'
@@ -2701,7 +2701,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 1
             ],
             name: 'Poison 2'
@@ -2709,7 +2709,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 1
             ],
             name: 'Paralysis 1'
@@ -2717,7 +2717,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 1
             ],
             name: 'Paralysis 2'
@@ -2725,7 +2725,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 1
             ],
             name: 'Sleep 1'
@@ -2733,7 +2733,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 1
             ],
             name: 'Sleep 2'
@@ -2741,7 +2741,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 1
             ],
             name: 'Exhaust 1'
@@ -2749,7 +2749,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 1
             ],
             name: 'Exhaust 2'
@@ -2757,7 +2757,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 5
             ],
             name: 'Flaming'
@@ -2765,7 +2765,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 5
             ],
             name: 'Water'
@@ -2773,7 +2773,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 5
             ],
             name: 'Freeze'
@@ -2781,7 +2781,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 5
             ],
             name: 'Thunder'
@@ -2789,7 +2789,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 2
             ],
             name: 'Dragon'
@@ -2797,7 +2797,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 1
             ],
             name: 'Slicing Projectile'
@@ -2805,7 +2805,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 6
             ],
             name: 'Slicing'
@@ -2813,7 +2813,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 70
             ],
             name: 'Wyvern (Primary)'
@@ -2821,7 +2821,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 16
             ],
             name: 'Wyvern (Additional)'
@@ -2829,7 +2829,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 0
             ],
             name: 'Demon'
@@ -2837,7 +2837,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 0
             ],
             name: 'Armor'
@@ -2845,7 +2845,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 0
             ],
             name: 'Tranq'
@@ -2853,7 +2853,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 30
             ],
             name: 'Melee Attack'
@@ -2861,7 +2861,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 30
             ],
             name: 'Jumping Reload'
@@ -2869,7 +2869,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 9
             ],
             name: 'Wyvernheart'
@@ -2877,7 +2877,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 20
             ],
             name: 'Wyvernsnipe'
@@ -2885,7 +2885,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 38
             ],
             name: 'Wyvernsnipe Explosion (S)'
@@ -2893,7 +2893,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 49
             ],
             name: 'Wyvernsnipe Explosion (M)'
@@ -2901,7 +2901,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.HEAVY_BOWGUN,
             damageType: 'blunt',
-            hits: [
+            motionValues: [
                 81
             ],
             name: 'Wyvernsnipe Explosion (L)'
@@ -2911,7 +2911,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.BOW,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 7
             ],
             name: 'Charged Shot (Lv 1)'
@@ -2919,7 +2919,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.BOW,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 10
             ],
             name: 'Charged Shot (Lv 2)'
@@ -2927,7 +2927,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.BOW,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 11
             ],
             name: 'Charged Shot (Lv 3)'
@@ -2935,7 +2935,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.BOW,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 12
             ],
             name: 'Charged Shot (Lv 4)'
@@ -2943,7 +2943,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.BOW,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 6
             ],
             name: 'Power Shot (Lv 1)'
@@ -2951,7 +2951,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.BOW,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 9
             ],
             name: 'Power Shot (Lv 2)'
@@ -2959,7 +2959,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.BOW,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 11
             ],
             name: 'Power Shot (Lv 3)'
@@ -2967,7 +2967,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.BOW,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 13
             ],
             name: 'Power Shot (Lv 4)'
@@ -2975,7 +2975,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.BOW,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 1
             ],
             name: 'Arc Shot (Lv 1)'
@@ -2983,7 +2983,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.BOW,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 2
             ],
             name: 'Arc Shot (Lv 2)'
@@ -2991,7 +2991,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.BOW,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 2
             ],
             name: 'Arc Shot (Lv 3)'
@@ -2999,7 +2999,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.BOW,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 2
             ],
             name: 'Arc Shot (Lv 4)'
@@ -3007,7 +3007,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.BOW,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 19
             ],
             name: 'Dragon Piercer (Lv 1)'
@@ -3015,7 +3015,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.BOW,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 20
             ],
             name: 'Dragon Piercer (Lv 2)'
@@ -3023,7 +3023,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.BOW,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 23
             ],
             name: 'Dragon Piercer (Lv 3)'
@@ -3031,7 +3031,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.BOW,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 6
             ],
             name: 'Quick Shot'
@@ -3039,7 +3039,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.BOW,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 35
             ],
             name: 'Lunging Melee Attack'
@@ -3047,7 +3047,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.BOW,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 35
             ],
             name: 'Wall Climb Power Shot'
@@ -3055,7 +3055,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.BOW,
             damageType: 'sever',
-            hits: [
+            motionValues: [
                 10
             ],
             name: 'Jumping Melee Attack'
@@ -3063,7 +3063,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.BOW,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 7
             ],
             name: 'Mid-air Charged Shot (Lv 1)'
@@ -3071,7 +3071,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.BOW,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 10
             ],
             name: 'Mid-air Charged Shot (Lv 2)'
@@ -3079,7 +3079,7 @@ export const weaponAttackMap = {
         {
             weaponType: WeaponType.BOW,
             damageType: 'projectile',
-            hits: [
+            motionValues: [
                 11
             ],
             name: 'Mid-air Charged Shot (Lv 3)'

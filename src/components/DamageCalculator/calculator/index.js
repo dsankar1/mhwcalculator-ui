@@ -1,19 +1,18 @@
 import _ from 'lodash';
 import { attackBloatMap, criticalElementMultMap } from './weaponType';
 import { attackMultMap, elementMultMap } from './sharpness';
-import weaponAttackMap from './attacks';
+import weaponAttackMap from './weaponAttacks';
 
 export const exampleBuild = {
     weapon: {
         type: 'longSword',
-        sharpness: 'yellow',
+        sharpness: 'blue',
         affinityPct: 0,
-        attack: 264,
+        attack: 693,
         elements: [],
         statuses: [],
         augments: []
     },
-    combo: [],
     skills: [],
     items: []
 };
@@ -26,7 +25,6 @@ export const BuildAccessor = {
     ELEMENTS: 'weapon.elements',
     STATUSES: 'weapon.statuses',
     AUGMENTS: 'weapon.augments',
-    COMBO: 'combo',
     SKILLS: 'skills',
     ITEMS: 'items'
 };
@@ -72,10 +70,24 @@ export const calculateDamage = build => {
     const sharpnessAttackMult = _.get(attackMultMap, sharpness);
     const sharpnessElementMult = _.get(elementMultMap, sharpness);
 
-    const effectiveAttackDamage = Math.floor(trueAttack * sharpnessAttackMult * affinityAttackMult * 0.21 * 0.8);
-    console.log('EFFECTIVE ATTACK', effectiveAttackDamage);
+    const weaponAttacks = _.get(weaponAttackMap, weaponType);
 
-    console.log('Attacks', _.get(weaponAttackMap, weaponType));
+    const weaponAttackDamages = _.map(weaponAttacks, weaponAttack => {
+        const damageValues = _.map(weaponAttack.motionValues, motionValue => {
+            const physical = Math.floor(trueAttack * sharpnessAttackMult * affinityAttackMult * (motionValue / 100));
+            const element = Math.floor(trueElement * sharpnessElementMult * affinityElementMult);
+            const total = physical + element;
+            return {
+                physical,
+                element,
+                total
+            };
+        });
+        return {
+            ...weaponAttack,
+            damageValues
+        };
+    });
 
     return {
         buffs,
@@ -90,7 +102,8 @@ export const calculateDamage = build => {
         affinityAttackMult,
         affinityElementMult,
         sharpnessAttackMult,
-        sharpnessElementMult
+        sharpnessElementMult,
+        weaponAttackDamages
     };
 }
 
