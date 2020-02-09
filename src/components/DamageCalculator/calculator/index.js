@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import { attackBloatMap, criticalElementMultMap } from './weaponType';
 import { attackMultMap, elementMultMap } from './sharpness';
+import weaponAttackMap from './attacks';
 
 export const exampleBuild = {
     weapon: {
@@ -73,6 +74,8 @@ export const calculateDamage = build => {
 
     const effectiveAttackDamage = Math.floor(trueAttack * sharpnessAttackMult * affinityAttackMult * 0.21 * 0.8);
     console.log('EFFECTIVE ATTACK', effectiveAttackDamage);
+
+    console.log('Attacks', _.get(weaponAttackMap, weaponType));
 
     return {
         buffs,
