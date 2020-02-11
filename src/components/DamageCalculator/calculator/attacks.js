@@ -3060,6 +3060,6 @@ export const attacks = [
     }
 ];
 
-export const weaponTypeAttackMap = _.groupBy(attacks, attack => _.get(attack, 'weaponType'));
+export const attacksMap = _.groupBy(attacks, attack => _.get(attack, 'weaponType'));
 
 export default attacks;

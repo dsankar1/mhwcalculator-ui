@@ -34,10 +34,9 @@ const getInitialBuild = location => {
     }
 
     return _.defaults(query, cached, {
-        weapon: {
-            type: WeaponType.GREAT_SWORD,
-            sharpness: Sharpness.PURPLE
-        }
+        attack: 693,
+        weaponType: WeaponType.LONG_SWORD,
+        sharpness: Sharpness.PURPLE
     });
 }
 

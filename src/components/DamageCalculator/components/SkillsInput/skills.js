@@ -5,17 +5,17 @@ export default [
     {
         name: 'Non-elemental Boost',
         description: 'Powers up non-elemental weapons you have equipped.',
-        [BuffAccessor.ATTACK_MULT]: build => {
-            const element = +_.get(build, `${BuildAccessor.ELEMENTS}[0].damage`, 0);
-            const hiddenElement = _.get(build, `${BuildAccessor.ELEMENTS}[0].hidden`, false);
-            const skills = _.get(build, BuildAccessor.SKILLS);
-            const freeElement = _.some(skills, skill => Boolean(_.get(skill, BuffAccessor.FREE_ELEMENT)));
-
-            if (element <= 0 || (hiddenElement && !freeElement)) {
-                return 1.1;
+        [BuffAccessor.ATTACK_MULT]: [
+            {
+                accessor: 'baseTrueFreeElement',
+                operator: '==',
+                value: 0,
+                return: 1.1
+            },
+            {
+                return: 1
             }
-            return 1;
-        }
+        ]
     },
     {
         name: 'Critical Element',
@@ -30,22 +30,21 @@ export default [
     {
         name: 'Bludgeoner',
         description: 'Raises attack as your weapon loses sharpness. Also boosts ranged weapon melee attacks and odds of stunning.',
-        bludgeoner: true,
-        [BuffAccessor.ATTACK_MULT]: build => {
-            const sharpness = _.get(build, BuildAccessor.SHARPNESS);
-            switch (sharpness) {
-                case Sharpness.RED:
-                    return 1.1578;
-                case Sharpness.ORANGE:
-                    return 1.1578;
-                case Sharpness.YELLOW:
-                    return 1.1315;
-                case Sharpness.GREEN:
-                    return 1.0789;
-                default:
-                    return 1;
-            }
-        }
+        // [BuffAccessor.ATTACK_MULT]: build => {
+        //     const sharpness = _.get(build, BuildAccessor.SHARPNESS);
+        //     switch (sharpness) {
+        //         case Sharpness.RED:
+        //             return 1.1578;
+        //         case Sharpness.ORANGE:
+        //             return 1.1578;
+        //         case Sharpness.YELLOW:
+        //             return 1.1315;
+        //         case Sharpness.GREEN:
+        //             return 1.0789;
+        //         default:
+        //             return 1;
+        //     }
+        // }
     },
     {
         name: 'Normal Shots',

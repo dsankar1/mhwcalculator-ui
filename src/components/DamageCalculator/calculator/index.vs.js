@@ -49,6 +49,7 @@ export const resolveCondition = (conditions, data, defaultResult) => {
     return result;
 }
 
+// Resolves the bonuses of build dependent buffs
 export const getBuffResolver = data => unresolvedBuffs => {
     return _.map(unresolvedBuffs, unresolvedBuff => {
         return _.transform(unresolvedBuff, (resolvedBuff, value, key) => {
@@ -74,8 +75,10 @@ export const BuildAccessor = {
 
 export const BuffAccessor = {
     COMBO_DEPENDENT: 'comboDependent',
+    ATTACK: 'attack',
     TRUE_ATTACK: 'trueAttack',
     ATTACK_MULT: 'attackMult',
+    ELEMENT: 'element',
     TRUE_ELEMENT: 'trueElement',
     ELEMENT_MULT: 'elementMult',
     AFFINITY_PCT: 'affinityPct',
@@ -93,7 +96,7 @@ export const calculateDamage = build => {
     const baseTrueElement = +_.get(build, BuildAccessor.ELEMENT, 0) / 10;
 
     const unresolvedBuffs = _.get(build, BuildAccessor.BUFFS);
-    const unresolvedGeneralBuffs = _.filter(unresolvedBuffs, buff => !_.get(buff, BuffAccessor.COMBO_DEPENDENT));
+    const unresolvedGeneralBuffs = _.filter(unresolvedBuffs, [BuffAccessor.COMBO_DEPENDENT, false]);
     const unresolvedComboBuffs = _.filter(unresolvedBuffs, BuffAccessor.COMBO_DEPENDENT);
 
     const baseAffinityPct = +_.get(build, BuildAccessor.AFFINITY_PCT, 0);
@@ -141,7 +144,7 @@ export const calculateDamage = build => {
     const trueElement = baseTrueFreeElement + trueElementBoost;
 
     const combos = _.map(_.get(combosMap, weaponType), combo => {
-        const comboBuffResolver = getBuffResolver({ ...resolverData, combo });
+        const comboBuffResolver = getBuffResolver(_.defaults(resolverData, { combo }));
         const [comboBuffs, comboBuffList] = _.flow(comboBuffResolver, buffAggregator)(unresolvedComboBuffs);
 
         let physical = Math.round(trueAttack + _.get(comboBuffs, BuffAccessor.TRUE_ATTACK));
@@ -168,16 +171,14 @@ export const calculateDamage = build => {
             }
         });
 
-        return {
-            ...combo,
+        return _.defaults(combo, {
             damageValues,
             buffs: comboBuffs,
             buffList: comboBuffList
-        };
+        });
     });
 
-    return {
-        ...resolverData,
+    return _.defaults({
         combos,
         buffs: generalBuffs,
         buffList: generalBuffList,
@@ -185,7 +186,7 @@ export const calculateDamage = build => {
         element: Math.round(trueElement * 10),
         trueAttack: Math.round(trueAttack),
         trueElement: Math.round(trueElement)
-    };
+    }, resolverData);
 }
 
 export const calculateAffinityDamageMult = (affinityPct, criticalMult) => {
