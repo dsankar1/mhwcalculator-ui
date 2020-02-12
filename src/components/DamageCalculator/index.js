@@ -3,13 +3,12 @@ import qs from 'qs';
 import React, { useState, useEffect, useCallback, useContext } from 'react';
 import { makeStyles, Container, Grid, Card, CardHeader, CardContent, Divider } from '@material-ui/core';
 import { SubtitleContext } from '../../App';
-import calculateDamage from './calculator';
-import { WeaponType, Sharpness } from './calculator';
+import calculateDamage, { BuildAccessor, WeaponType, Sharpness } from './calculator';
 import SearchBar from './components/SearchBar';
 import WeaponInput from './components/WeaponInput';
+import AugmentsInput from './components/AugmentsInput';
 import SkillsInput from './components/SkillsInput';
 import ItemsInput from './components/ItemsInput';
-import { BuildAccessor } from './calculator';
 
 const getInitialBuild = location => {
     const rawQuery = qs.parse(_.get(location, 'search'), {
@@ -69,7 +68,15 @@ export const DamageCalculator = props => {
         }));
     }, [setBuild]);
 
-    const calculations = React.useMemo(() => calculateDamage(build), [build]);
+    const calculations = React.useMemo(() => {
+        const cleanedBuild = _.omit(build, ['augments', 'skills', 'items']);
+        const buffs = _.concat(
+            _.get(build, 'augments', []),
+            _.get(build, 'skills', []),
+            _.get(build, 'items', [])
+        );
+        return calculateDamage({ ...cleanedBuild, buffs });
+    }, [build]);
 
     console.log('Build', build);
     console.log('Calculations', calculations);
@@ -77,10 +84,7 @@ export const DamageCalculator = props => {
     return (
         <Container className={classes.container}>
             <Grid spacing={1} container>
-                <Grid item xs={12}>
-                    {JSON.stringify(calculations.buffs)}
-                </Grid>
-                <Grid item xs={8}>
+                <Grid item xs={12} md={9}>
                     <Card>
                         <CardHeader
                             title='Weapon'
@@ -104,36 +108,42 @@ export const DamageCalculator = props => {
                                     BuildAccessor.SHARPNESS
                                 ])}
                                 onChange={weapon => {
-                                    setBuild(build => ({
-                                        ...build,
-                                        ...weapon
-                                    }));
+                                    setBuild(build => ({ ...build, ...weapon }));
                                 }}
                             />
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={12} sm={7} md={6}>
+                <Grid item xs={12} md={3}>
+                    <AugmentsInput
+                        grid={{
+                            xs: 12,
+                            sm: 4,
+                            md: 12
+                        }}
+                        value={_.get(build, 'augments')}
+                        onChange={augments => {
+                            setBuild(build => ({ ...build, augments }));
+                        }}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={7}>
                     <SkillsInput
                         grid={{
                             xs: 12,
                             sm: 6
                         }}
-                        value={_.get(build, 'buffs')}
+                        value={_.get(build, 'skills')}
                         onChange={skills => {
-                            handleChange('buffs', skills);
+                            setBuild(build => ({ ...build, skills }));
                         }}
                     />
                 </Grid>
-                <Grid item xs={12} sm={5} md={6}>
+                <Grid item xs={12} sm={5}>
                     <ItemsInput
-                        grid={{
-                            xs: 12,
-                            md: 6
-                        }}
-                        value={_.get(build, 'buffs')}
+                        value={_.get(build, 'items')}
                         onChange={items => {
-                            handleChange('buffs', items);
+                            setBuild(build => ({ ...build, items }));
                         }}
                     />
                 </Grid>

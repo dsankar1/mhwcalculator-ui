@@ -1,5 +1,4 @@
-import _ from 'lodash';
-import { BuildAccessor, BuffAccessor, Sharpness } from '../../calculator';
+import { BuffAccessor, Sharpness } from '../../calculator';
 
 export default [
     {
@@ -30,21 +29,35 @@ export default [
     {
         name: 'Bludgeoner',
         description: 'Raises attack as your weapon loses sharpness. Also boosts ranged weapon melee attacks and odds of stunning.',
-        // [BuffAccessor.ATTACK_MULT]: build => {
-        //     const sharpness = _.get(build, BuildAccessor.SHARPNESS);
-        //     switch (sharpness) {
-        //         case Sharpness.RED:
-        //             return 1.1578;
-        //         case Sharpness.ORANGE:
-        //             return 1.1578;
-        //         case Sharpness.YELLOW:
-        //             return 1.1315;
-        //         case Sharpness.GREEN:
-        //             return 1.0789;
-        //         default:
-        //             return 1;
-        //     }
-        // }
+        [BuffAccessor.ATTACK_MULT]: [
+            {
+                accessor: 'build.sharpness',
+                operator: '==',
+                value: Sharpness.RED,
+                return: 1.1578
+            },
+            {
+                accessor: 'build.sharpness',
+                operator: '==',
+                value: Sharpness.ORANGE,
+                return: 1.1578
+            },
+            {
+                accessor: 'build.sharpness',
+                operator: '==',
+                value: Sharpness.YELLOW,
+                return: 1.1315
+            },
+            {
+                accessor: 'build.sharpness',
+                operator: '==',
+                value: Sharpness.GREEN,
+                return: 1.0789
+            },
+            {
+                return: 1
+            }
+        ]
     },
     {
         name: 'Normal Shots',

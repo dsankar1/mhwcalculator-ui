@@ -25,7 +25,7 @@ export const BuffsInput = React.memo(props => {
     }
 
     return (
-        <Card>
+        <Card style={{ height: '100%' }}>
             <CardHeader
                 title={props.title}
                 action={
