@@ -22,13 +22,13 @@ const useStyles = makeStyles(theme => ({
 export const ElementInput = React.memo(props => {
     const classes = useStyles();
 
+    const { disabled, hidden, onHiddenChange, ...others } = props;
+
     return (
         <TextField
-            fullWidth
+            {...others}
+            disabled={disabled}
             type='number'
-            label={props.label}
-            value={props.value}
-            onChange={props.onChange}
             InputProps={{
                 endAdornment: (
                     <InputAdornment position='end'>
@@ -37,8 +37,9 @@ export const ElementInput = React.memo(props => {
                             <Checkbox
                                 size='small'
                                 color='default'
-                                checked={Boolean(props.hidden)}
-                                onChange={props.onHiddenChange}
+                                disabled={disabled}
+                                checked={Boolean(hidden)}
+                                onChange={onHiddenChange}
                                 icon={<Visibility fontSize='small' />}
                                 checkedIcon={<VisibilityOff fontSize='small' />}
                                 className={classes.checkbox}

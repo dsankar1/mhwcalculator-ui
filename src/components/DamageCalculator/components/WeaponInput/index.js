@@ -2,12 +2,14 @@ import _ from 'lodash';
 import React from 'react';
 import { makeStyles, Grid, TextField, InputAdornment } from '@material-ui/core';
 import augments from '../../data/augments';
-import WeaponType from '../../data/weaponTypes';
+// import WeaponType from '../../data/weaponTypes';
 import { sharpnessList as sharpness, useStyles as useSharpnessStyles } from '../../data/sharpness';
 import coatings, { useStyles as useCoatingStyles } from '../../data/coatings';
 import ElementInput from '../ElementInput';
 import MultiInput from '../MultiInput';
 import ButtonSelect from '../ButtonSelect';
+import { BuildAccessor, WeaponType } from '../../calculator';
+import SharpnessSelect from './SharpnessSelect';
 
 export const useWeaponTypeStyles = makeStyles(theme => ({
     button: {
@@ -49,18 +51,16 @@ export const WeaponInput = React.memo(props => {
 
     const sharpnessClasses = useSharpnessStyles();
 
-    const coatingClasses = useCoatingStyles();
-
-    const typeName = _.get(props.value, ['type', 'name']);
-    const isBow = _.isEqual(typeName, WeaponType.BOW.name);
-    const isDualBlades = _.isEqual(typeName, WeaponType.DUAL_BLADES.name);
-    const isBowgun = _.isEqual(typeName, WeaponType.LIGHT_BOWGUN.name) || _.isEqual(typeName, WeaponType.HEAVY_BOWGUN.name);
+    const weaponType = _.get(props.value, BuildAccessor.WEAPON_TYPE);
+    const isBow = _.isEqual(weaponType, WeaponType.BOW);
+    const isBowgun = _.isEqual(weaponType, WeaponType.LIGHT_BOWGUN) || _.isEqual(weaponType, WeaponType.HEAVY_BOWGUN);
 
     const handleChange = React.useCallback((name, value) => {
         if (_.isFunction(props.onChange)) {
-            _.attempt(props.onChange, _.defaults({
+            _.attempt(props.onChange, {
+                ...props.value,
                 [name]: value
-            }, props.value));
+            });
         }
     }, [props.value, props.onChange]);
 
@@ -72,26 +72,28 @@ export const WeaponInput = React.memo(props => {
                     label='Weapon Type'
                     config={weaponTypeConfig}
                     classes={weaponTypeClasses}
-                    value={_.get(props.value, 'type')}
-                    onChange={type => handleChange('type', type)}
+                    value={_.get(props.value, BuildAccessor.WEAPON_TYPE)}
+                    onChange={weaponType => handleChange(BuildAccessor.WEAPON_TYPE, weaponType)}
                 />
             </Grid>
-            <Grid item xs={12} sm={isDualBlades ? 6 : 4} md={isDualBlades ? 3 : 2}>
+            <Grid item xs={12} sm={4}>
                 <TextField
                     fullWidth
                     type='number'
                     label='Attack'
-                    value={_.get(props.value, 'attack', '')}
-                    onChange={e => handleChange('attack', e.target.value)}
+                    title='Attack'
+                    value={_.get(props.value, BuildAccessor.ATTACK, '')}
+                    onChange={e => handleChange(BuildAccessor.ATTACK, e.target.value)}
                 />
             </Grid>
-            <Grid item xs={12} sm={isDualBlades ? 6 : 4} md={isDualBlades ? 3 : 2}>
+            <Grid item xs={12} sm={4}>
                 <TextField
                     fullWidth
                     type='number'
                     label='Affinity'
-                    value={_.get(props.value, 'affinity', '')}
-                    onChange={e => handleChange('affinity', e.target.value)}
+                    title='Affinity'
+                    value={_.get(props.value, BuildAccessor.AFFINITY_PCT, '')}
+                    onChange={e => handleChange(BuildAccessor.AFFINITY_PCT, e.target.value)}
                     InputProps={{
                         endAdornment: (
                             <InputAdornment position='end'>
@@ -101,61 +103,23 @@ export const WeaponInput = React.memo(props => {
                     }}
                 />
             </Grid>
-            {!isBowgun && (
-                <Grid item xs={12} sm={isDualBlades ? 6 : 4} md={isDualBlades ? 3 : 2}>
-                    <ElementInput
-                        label='Element'
-                        value={_.get(props.value, 'element')}
-                        hidden={_.get(props.value, 'hiddenElement')}
-                        onChange={e => handleChange('element', e.target.value)}
-                        onHiddenChange={(__, hidden) => handleChange('hiddenElement', hidden)}
-                    />
-                </Grid>
-            )}
-            {isDualBlades && (
-                <Grid item xs={12} sm={6} md={3}>
-                    <ElementInput
-                        label='Second Element'
-                        value={_.get(props.value, 'secondElement')}
-                        hidden={_.get(props.value, 'hiddenSecondElement')}
-                        onChange={e => handleChange('secondElement', e.target.value)}
-                        onHiddenChange={(__, hidden) => handleChange('hiddenSecondElement', hidden)}
-                    />
-                </Grid>
-            )}
-            <Grid item xs={12} md={isDualBlades ? 9 : 6}>
-                <MultiInput
-                    config={augments}
-                    grid={{
-                        xs: 12,
-                        sm: 4
-                    }}
-                    value={_.get(props.value, 'augments')}
-                    onChange={augments => {
-                        handleChange('augments', augments);
-                    }}
+            <Grid item xs={12} sm={4}>
+                <ElementInput
+                    fullWidth
+                    label='Element'
+                    disabled={isBowgun}
+                    title={isBowgun ? 'Element isn\'t available on bowguns' : 'Element'}
+                    value={isBowgun ? '' : _.get(props.value, BuildAccessor.ELEMENT)}
+                    hidden={Boolean(_.get(props.value, BuildAccessor.HIDDEN_ELEMENT))}
+                    onChange={e => handleChange(BuildAccessor.ELEMENT, e.target.value)}
+                    onHiddenChange={(__, hiddenElement) => handleChange(BuildAccessor.HIDDEN_ELEMENT, hiddenElement)}
                 />
             </Grid>
-            {isBow && (
-                <Grid item xs={12} md={6}>
-                    <ButtonSelect
-                        label='Coating'
-                        config={coatings}
-                        classes={coatingClasses}
-                        value={_.get(props.value, 'coating')}
-                        onChange={coating => handleChange('coating', coating)}
-                    />
-                </Grid>
-            )}
             {!isBow && !isBowgun && (
                 <Grid item xs={12}>
-                    <ButtonSelect
-                        isRequired
-                        label='Sharpness'
-                        config={sharpness}
-                        classes={sharpnessClasses}
-                        value={_.get(props.value, 'sharpness')}
-                        onChange={sharpness => handleChange('sharpness', sharpness)}
+                    <SharpnessSelect
+                        value={_.get(props.value, BuildAccessor.SHARPNESS)}
+                        onChange={sharpness => handleChange(BuildAccessor.SHARPNESS, sharpness)}
                     />
                 </Grid>
             )}

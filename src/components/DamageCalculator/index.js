@@ -9,6 +9,7 @@ import SearchBar from './components/SearchBar';
 import WeaponInput from './components/WeaponInput';
 import SkillsInput from './components/SkillsInput';
 import ItemsInput from './components/ItemsInput';
+import { BuildAccessor } from './calculator';
 
 const getInitialBuild = location => {
     const rawQuery = qs.parse(_.get(location, 'search'), {
@@ -35,8 +36,10 @@ const getInitialBuild = location => {
 
     return _.defaults(query, cached, {
         attack: 693,
+        element: 100,
+        hiddenElement: true,
         weaponType: WeaponType.LONG_SWORD,
-        sharpness: Sharpness.PURPLE
+        sharpness: Sharpness.BLUE
     });
 }
 
@@ -77,7 +80,7 @@ export const DamageCalculator = props => {
                 <Grid item xs={12}>
                     {JSON.stringify(calculations.buffs)}
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={8}>
                     <Card>
                         <CardHeader
                             title='Weapon'
@@ -92,9 +95,19 @@ export const DamageCalculator = props => {
                         <Divider />
                         <CardContent>
                             <WeaponInput
-                                value={_.get(build, 'weapon')}
+                                value={_.pick(build, [
+                                    BuildAccessor.WEAPON_TYPE,
+                                    BuildAccessor.ATTACK,
+                                    BuildAccessor.ELEMENT,
+                                    BuildAccessor.HIDDEN_ELEMENT,
+                                    BuildAccessor.AFFINITY_PCT,
+                                    BuildAccessor.SHARPNESS
+                                ])}
                                 onChange={weapon => {
-                                    handleChange('weapon', weapon);
+                                    setBuild(build => ({
+                                        ...build,
+                                        ...weapon
+                                    }));
                                 }}
                             />
                         </CardContent>
