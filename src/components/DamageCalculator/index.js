@@ -1,9 +1,12 @@
 import _ from 'lodash';
 import qs from 'qs';
-import React, { useState, useEffect, useCallback, useContext } from 'react';
-import { makeStyles, Container, Grid, Card, CardHeader, CardContent, Divider } from '@material-ui/core';
+import React from 'react';
+import useWindowScroll from '@react-hook/window-scroll';
+import { Refresh, KeyboardArrowUp } from '@material-ui/icons';
+import { makeStyles, Container, Grid, Card, CardHeader, CardContent, Divider, IconButton, Tooltip, Fab, Fade } from '@material-ui/core';
 import { SubtitleContext } from '../../App';
 import calculateDamage, { BuildAccessor, WeaponType, Sharpness } from './calculator';
+import CalculationsDisplay from './components/CalculationsDisplay';
 import SearchBar from './components/SearchBar';
 import WeaponInput from './components/WeaponInput';
 import AugmentsInput from './components/AugmentsInput';
@@ -45,28 +48,32 @@ const getInitialBuild = location => {
 const useStyles = makeStyles(theme => ({
     container: {
         padding: theme.spacing(1)
+    },
+    fab: {
+        position: 'fixed',
+        bottom: theme.spacing(2),
+        right: theme.spacing(2),
+        color: theme.palette.background.paper,
+        [theme.breakpoints.up('sm')]: {
+            display: 'none'
+        }
     }
 }));
 
 export const DamageCalculator = props => {
     const classes = useStyles();
-    const setSubtitle = useContext(SubtitleContext);
-    const [build, setBuild] = useState(getInitialBuild(props.location));
+    const setSubtitle = React.useContext(SubtitleContext);
+    const [build, setBuild] = React.useState(getInitialBuild(props.location));
 
-    useEffect(() => {
+    React.useEffect(() => {
         setSubtitle('Damage Calculator');
     }, [setSubtitle]);
 
-    useEffect(() => {
+    React.useEffect(() => {
         localStorage.setItem('build', JSON.stringify(build));
     }, [build]);
 
-    const handleChange = useCallback((name, value) => {
-        setBuild(build => ({
-            ...build,
-            [name]: value
-        }));
-    }, [setBuild]);
+    const scrollY = useWindowScroll(60);
 
     const calculations = React.useMemo(() => {
         const cleanedBuild = _.omit(build, ['augments', 'skills', 'items']);
@@ -84,6 +91,27 @@ export const DamageCalculator = props => {
     return (
         <Container className={classes.container}>
             <Grid spacing={1} container>
+                <Grid item xs={12}>
+                    <Card>
+                        <CardHeader
+                            title='Results'
+                            action={
+                                <IconButton>
+                                    <Tooltip
+                                        title='Reset Build'
+                                        enterDelay={1000}
+                                    >
+                                        <Refresh />
+                                    </Tooltip>
+                                </IconButton>
+                            }
+                        />
+                        <Divider />
+                        <CardContent>
+                            <CalculationsDisplay calculations={calculations} />
+                        </CardContent>
+                    </Card>
+                </Grid>
                 <Grid item xs={12} md={9}>
                     <Card>
                         <CardHeader
@@ -91,7 +119,7 @@ export const DamageCalculator = props => {
                             action={
                                 <SearchBar
                                     onChange={weapon => {
-                                        handleChange('weapon', _.defaults(weapon, build.weapon));
+                                        setBuild(build => ({ ...build, ...weapon }));
                                     }}
                                 />
                             }
@@ -148,6 +176,20 @@ export const DamageCalculator = props => {
                     />
                 </Grid>
             </Grid>
+            <Fade in={scrollY > 100}>
+                <Fab
+                    color='primary'
+                    aria-label='Back to top'
+                    className={classes.fab}
+                    onClick={() => window.scrollTo({
+                        top: 0,
+                        left: 0,
+                        behavior: 'smooth'
+                    })}
+                >
+                    <KeyboardArrowUp fontSize='large' />
+                </Fab>
+            </Fade>
         </Container>
     );
 }

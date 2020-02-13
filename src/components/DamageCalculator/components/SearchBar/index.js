@@ -4,8 +4,6 @@ import React from 'react';
 import { Error } from '@material-ui/icons';
 import { Autocomplete } from '@material-ui/lab';
 import { makeStyles, LinearProgress, Snackbar, Box, TextField, Typography } from '@material-ui/core';
-import * as typeMap from '../../data/weaponTypes';
-import * as sharpnessMap from '../../data/sharpness';
 
 const instance = axios.create({
     baseURL: 'https://mhw-db.com',
@@ -120,33 +118,22 @@ export const SearchBar = React.memo(props => {
                 setImporting(true);
                 const response = await getWeaponInfo(importId);
                 if (_.has(response, 'data')) {
-                    const type = _.camelCase(_.get(response, ['data', 'type'], ''));
+                    const weaponType = _.camelCase(_.get(response, ['data', 'type'], ''));
                     const attack = +_.get(response, ['data', 'attack', 'display'], 0);
-                    const affinity = +_.get(response, ['data', 'attributes', 'affinity'], 0);
-                    const sharpness = getSharpness(_.get(response, ['data', 'durability'], []));
                     const element = +_.get(response, ['data', 'elements', 0, 'damage'], 0);
                     const hiddenElement = _.get(response, ['data', 'elements', 0, 'hidden'], false);
-                    const secondElement = +_.get(response, ['data', 'elements', 1, 'damage'], 0);
-                    const hiddenSecondElement = _.get(response, ['data', 'elements', 1, 'hidden'], false);
-    
-                    const weapon = {
-                        attack,
-                        affinity,
-                        element,
-                        hiddenElement,
-                        secondElement,
-                        hiddenSecondElement
-                    };
-    
-                    if (_.has(typeMap, type)) {
-                        _.set(weapon, 'type', _.get(typeMap, type));
-                    }
-                    if (_.has(sharpnessMap, sharpness)) {
-                        _.set(weapon, 'sharpness', _.get(sharpnessMap, sharpness));
-                    }
+                    const affinityPct = +_.get(response, ['data', 'attributes', 'affinity'], 0);
+                    const sharpness = getSharpness(_.get(response, ['data', 'durability'], []));
 
                     if (_.isFunction(props.onChange)) {
-                        _.attempt(props.onChange, weapon);
+                        _.attempt(props.onChange, {
+                            weaponType,
+                            attack,
+                            element,
+                            hiddenElement,
+                            affinityPct,
+                            sharpness
+                        });
                     }
                 }
             } catch (err) {

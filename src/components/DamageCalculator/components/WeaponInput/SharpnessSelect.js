@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import clsx from 'clsx';
 import React from 'react';
-import { makeStyles, fade, darken } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { Box, ButtonGroup, Button } from '@material-ui/core';
 import { Sharpness } from '../../calculator';
 
@@ -22,93 +22,79 @@ const useStyles = makeStyles(theme => ({
     red: {
         color: '#f44336',
         '&:hover': {
-            backgroundColor: fade('#f44336', 0.3)
+            color: theme.palette.common.black,
+            backgroundColor: '#f44336'
         }
     },
     redSelected: {
         color: theme.palette.common.black,
-        backgroundColor: '#f44336',
-        '&:hover': {
-            backgroundColor: darken('#f44336', 0.2)
-        }
+        backgroundColor: '#f44336'
     },
     orange: {
         color: '#d9662c',
         '&:hover': {
-            backgroundColor: fade('#d9662c', 0.3)
+            color: theme.palette.common.black,
+            backgroundColor: '#d9662c'
         }
     },
     orangeSelected: {
         color: theme.palette.common.black,
-        backgroundColor: '#d9662c',
-        '&:hover': {
-            backgroundColor: darken('#d9662c', 0.2)
-        }
+        backgroundColor: '#d9662c'
     },
     yellow: {
         color: '#d9d12c',
         '&:hover': {
-            backgroundColor: fade('#d9d12c', 0.2)
+            color: theme.palette.common.black,
+            backgroundColor: '#d9d12c'
         }
     },
     yellowSelected: {
         color: theme.palette.common.black,
-        backgroundColor: '#d9d12c',
-        '&:hover': {
-            backgroundColor: darken('#d9d12c', 0.2)
-        }
+        backgroundColor: '#d9d12c'
     },
     green: {
         color: '#70d92c',
         '&:hover': {
-            backgroundColor: fade('#70d92c', 0.3)
+            color: theme.palette.common.black,
+            backgroundColor: '#70d92c'
         }
     },
     greenSelected: {
         color: theme.palette.common.black,
-        backgroundColor: '#70d92c',
-        '&:hover': {
-            backgroundColor: darken('#70d92c', 0.2)
-        }
+        backgroundColor: '#70d92c'
     },
     blue: {
         color: '#42a5f5',
         '&:hover': {
-            backgroundColor: fade('#42a5f5', 0.3)
+            color: theme.palette.common.black,
+            backgroundColor: '#42a5f5'
         }
     },
     blueSelected: {
         color: theme.palette.common.black,
-        backgroundColor: '#42a5f5',
-        '&:hover': {
-            backgroundColor: darken('#42a5f5', 0.2)
-        }
+        backgroundColor: '#42a5f5'
     },
     white: {
         color: theme.palette.grey[500],
         '&:hover': {
-            backgroundColor: fade('#eeeeee', 0.2)
+            color: theme.palette.common.black,
+            backgroundColor: '#eeeeee'
         }
     },
     whiteSelected: {
         color: theme.palette.common.black,
-        backgroundColor: '#eeeeee',
-        '&:hover': {
-            backgroundColor: darken('#eeeeee', 0.2)
-        }
+        backgroundColor: '#eeeeee'
     },
     purple: {
         color: '#cc99ff',
         '&:hover': {
-            backgroundColor: fade('#cc99ff', 0.3)
+            color: theme.palette.common.black,
+            backgroundColor: '#cc99ff'
         }
     },
     purpleSelected: {
         color: theme.palette.common.black,
-        backgroundColor: '#cc99ff',
-        '&:hover': {
-            backgroundColor: darken('#cc99ff', 0.2)
-        }
+        backgroundColor: '#cc99ff'
     }
 }));
 
@@ -151,11 +137,7 @@ export const SharpnessSelect = React.memo(props => {
 
     return (
         <Box className={classes.box}>
-            <ButtonGroup
-                fullWidth
-                size='small'
-                className={classes.buttonGroup}
-            >
+            <ButtonGroup size='small' fullWidth className={classes.buttonGroup}>
                 {buttons}
             </ButtonGroup>
         </Box>

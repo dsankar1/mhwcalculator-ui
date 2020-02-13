@@ -1,4 +1,4 @@
-import { fade, createMuiTheme } from "@material-ui/core/styles";
+import { createMuiTheme } from "@material-ui/core/styles";
 
 const query = '@media (min-width: 600px)';
 
@@ -58,6 +58,12 @@ export const baseTheme = createMuiTheme({
             root: {
                 padding: `2px 8px !important`
             }
+        },
+        MuiButton: {
+            root: {
+                fontWeight: 400,
+                textTransform: 'capitalize'
+            }
         }
     }
 });
@@ -73,10 +79,10 @@ export const lightTheme = createMuiTheme({
             default: '#efefef'
         },
         primary: {
-            main: fade('#66bb6a', 0.7)
+            main: '#81c784'
         },
         secondary: {
-            main: fade('#66bb6a', 0.7)
+            main: '#81c784'
         }
     }
 });
@@ -93,10 +99,10 @@ export const darkTheme = createMuiTheme({
             paper: '#303030'
         },
         primary: {
-            main: fade('#81c784', 0.7)
+            main: '#81c784'
         },
         secondary: {
-            main: fade('#81c784', 0.7)
+            main: '#81c784'
         }
     }
 });

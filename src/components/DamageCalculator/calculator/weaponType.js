@@ -1,4 +1,18 @@
 import _ from 'lodash';
+import greatSwordIcon from '../../../assets/great-sword.png';
+import dualBladesIcon from '../../../assets/dual-blades.png';
+import longSwordIcon from '../../../assets/long-sword.png';
+import swordAndShieldIcon from '../../../assets/sword-and-shield.png';
+import hammerIcon from '../../../assets/hammer.png';
+import huntingHornIcon from '../../../assets/hunting-horn.png';
+import lanceIcon from '../../../assets/lance.png';
+import gunlanceIcon from '../../../assets/gunlance.png';
+import switchAxeIcon from '../../../assets/switch-axe.png';
+import chargeBladeIcon from '../../../assets/charge-blade.png';
+import insectGlaiveIcon from '../../../assets/insect-glaive.png';
+import lightBowgunIcon from '../../../assets/light-bowgun.png';
+import heavyBowgunIcon from '../../../assets/heavy-bowgun.png';
+import bowIcon from '../../../assets/bow.png';
 
 export const WeaponType = {
     GREAT_SWORD: 'greatSword',
@@ -49,6 +63,23 @@ export const criticalElementMultMap = {
     [WeaponType.LIGHT_BOWGUN]: 1.3,
     [WeaponType.HEAVY_BOWGUN]: 1.3,
     [WeaponType.BOW]: 1.35
+};
+
+export const iconMap = {
+    [WeaponType.GREAT_SWORD]: greatSwordIcon,
+    [WeaponType.DUAL_BLADES]: dualBladesIcon,
+    [WeaponType.LONG_SWORD]: longSwordIcon,
+    [WeaponType.SWORD_AND_SHIELD]: swordAndShieldIcon,
+    [WeaponType.HAMMER]: hammerIcon,
+    [WeaponType.HUNTING_HORN]: huntingHornIcon,
+    [WeaponType.LANCE]: lanceIcon,
+    [WeaponType.GUNLANCE]: gunlanceIcon,
+    [WeaponType.SWITCH_AXE]: switchAxeIcon,
+    [WeaponType.CHARGE_BLADE]: chargeBladeIcon,
+    [WeaponType.INSECT_GLAIVE]: insectGlaiveIcon,
+    [WeaponType.LIGHT_BOWGUN]: lightBowgunIcon,
+    [WeaponType.HEAVY_BOWGUN]: heavyBowgunIcon,
+    [WeaponType.BOW]: bowIcon
 };
 
 export const combos = [

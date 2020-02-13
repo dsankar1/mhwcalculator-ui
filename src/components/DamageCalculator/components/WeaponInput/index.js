@@ -1,33 +1,10 @@
 import _ from 'lodash';
 import React from 'react';
-import { makeStyles, Grid, TextField, InputAdornment } from '@material-ui/core';
-import augments from '../../data/augments';
-// import WeaponType from '../../data/weaponTypes';
-import { sharpnessList as sharpness, useStyles as useSharpnessStyles } from '../../data/sharpness';
-import coatings, { useStyles as useCoatingStyles } from '../../data/coatings';
-import ElementInput from '../ElementInput';
-import MultiInput from '../MultiInput';
-import ButtonSelect from '../ButtonSelect';
+import { Grid, TextField, InputAdornment } from '@material-ui/core';
 import { BuildAccessor, WeaponType } from '../../calculator';
+import ElementInput from './ElementInput';
+import WeaponSelect from './WeaponSelect';
 import SharpnessSelect from './SharpnessSelect';
-
-export const useWeaponTypeStyles = makeStyles(theme => ({
-    button: {
-        flex: 1,
-        minWidth: '80px',
-        minHeight: '80px',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    icon: {
-        width: '40px',
-        height: '40px',
-        maxWidth: '40px',
-        maxHeight: '40px'
-    }
-}));
 
 export const weaponTypeConfig = [
     WeaponType.GREAT_SWORD,
@@ -47,10 +24,6 @@ export const weaponTypeConfig = [
 ];
 
 export const WeaponInput = React.memo(props => {
-    const weaponTypeClasses = useWeaponTypeStyles();
-
-    const sharpnessClasses = useSharpnessStyles();
-
     const weaponType = _.get(props.value, BuildAccessor.WEAPON_TYPE);
     const isBow = _.isEqual(weaponType, WeaponType.BOW);
     const isBowgun = _.isEqual(weaponType, WeaponType.LIGHT_BOWGUN) || _.isEqual(weaponType, WeaponType.HEAVY_BOWGUN);
@@ -67,11 +40,7 @@ export const WeaponInput = React.memo(props => {
     return (
         <Grid container spacing={1}>
             <Grid item xs={12}>
-                <ButtonSelect
-                    isRequired
-                    label='Weapon Type'
-                    config={weaponTypeConfig}
-                    classes={weaponTypeClasses}
+                <WeaponSelect
                     value={_.get(props.value, BuildAccessor.WEAPON_TYPE)}
                     onChange={weaponType => handleChange(BuildAccessor.WEAPON_TYPE, weaponType)}
                 />
