@@ -6,7 +6,7 @@ import { Refresh, KeyboardArrowUp } from '@material-ui/icons';
 import { makeStyles, Container, Grid, Card, CardHeader, CardContent, Divider, IconButton, Tooltip, Fab, Fade } from '@material-ui/core';
 import { SubtitleContext } from '../../App';
 import calculateDamage, { BuildAccessor, WeaponType, Sharpness } from './calculator';
-import CalculationsDisplay from './components/CalculationsDisplay';
+import ResultTable from './components/ResultTable';
 import SearchBar from './components/SearchBar';
 import WeaponInput from './components/WeaponInput';
 import AugmentsInput from './components/AugmentsInput';
@@ -75,7 +75,7 @@ export const DamageCalculator = props => {
 
     const scrollY = useWindowScroll(60);
 
-    const calculations = React.useMemo(() => {
+    const results = React.useMemo(() => {
         const cleanedBuild = _.omit(build, ['augments', 'skills', 'items']);
         const buffs = _.concat(
             _.get(build, 'augments', []),
@@ -84,9 +84,6 @@ export const DamageCalculator = props => {
         );
         return calculateDamage({ ...cleanedBuild, buffs });
     }, [build]);
-
-    console.log('Build', build);
-    console.log('Calculations', calculations);
 
     return (
         <Container className={classes.container}>
@@ -108,7 +105,7 @@ export const DamageCalculator = props => {
                         />
                         <Divider />
                         <CardContent>
-                            <CalculationsDisplay calculations={calculations} />
+                            <ResultTable combos={results.combos} />
                         </CardContent>
                     </Card>
                 </Grid>

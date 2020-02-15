@@ -63,6 +63,9 @@ export const baseTheme = createMuiTheme({
             root: {
                 fontWeight: 400,
                 textTransform: 'capitalize'
+            },
+            sizeSmall: {
+                fontSize: '0.875rem'
             }
         }
     }
@@ -84,6 +87,20 @@ export const lightTheme = createMuiTheme({
         secondary: {
             main: '#81c784'
         }
+    },
+    overrides: {
+        ...baseTheme.overrides,
+        MuiTableCell: {
+            root: {
+                padding: '8px'
+            },
+            head: {
+                fontWeight: 400
+            },
+            stickyHeader: {
+                backgroundColor: '#fff'
+            }
+        }
     }
 });
 
@@ -103,6 +120,20 @@ export const darkTheme = createMuiTheme({
         },
         secondary: {
             main: '#81c784'
+        }
+    },
+    overrides: {
+        ...baseTheme.overrides,
+        MuiTableCell: {
+            root: {
+                padding: '8px'
+            },
+            head: {
+                fontWeight: 400
+            },
+            stickyHeader: {
+                backgroundColor: '#303030'
+            }
         }
     }
 });

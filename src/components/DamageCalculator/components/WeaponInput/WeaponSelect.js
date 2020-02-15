@@ -20,10 +20,12 @@ const useStyles = makeStyles(theme => ({
         minHeight: '90px',
         minWidth: '100px',
         '&:hover': {
+            color: theme.palette.common.black,
             backgroundColor: theme.palette.primary.main
         }
     },
     selected: {
+        color: theme.palette.common.black,
         backgroundColor: theme.palette.primary.main
     },
     icon: {

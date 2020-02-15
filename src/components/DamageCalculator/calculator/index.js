@@ -335,7 +335,7 @@ export const calculateDamage = build => {
         sharpnessAttackMult,
         sharpnessElementMult,
         buffs: generalBuffList,
-        combos
+        combos: _.sortBy(combos, 'name')
     };
 }
 
