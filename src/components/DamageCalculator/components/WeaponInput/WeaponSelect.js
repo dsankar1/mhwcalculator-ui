@@ -2,11 +2,14 @@ import _ from 'lodash';
 import clsx from 'clsx';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, ButtonGroup, Button } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 import { WeaponType, iconMap } from '../../calculator';
 
 const useStyles = makeStyles(theme => ({
     box: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
         overflowX: 'auto',
         [theme.breakpoints.down('xs')]: {
             overflowX: 'scroll',
@@ -17,16 +20,13 @@ const useStyles = makeStyles(theme => ({
         marginBottom: theme.spacing(1)
     },
     button: {
-        minHeight: '90px',
-        minWidth: '100px',
-        '&:hover': {
-            color: theme.palette.common.black,
-            backgroundColor: theme.palette.primary.main
-        }
+        minHeight: '72px',
+        minWidth: '72px',
+        margin: theme.spacing(0.5)
     },
     selected: {
-        color: theme.palette.common.black,
-        backgroundColor: theme.palette.primary.main
+        color: `${theme.palette.common.black} !important`,
+        backgroundColor: `${theme.palette.primary.main} !important`
     },
     icon: {
         height: '30px',
@@ -73,6 +73,7 @@ export const WeaponSelect = React.memo(props => {
                 disableRipple
                 disableFocusRipple
                 disableTouchRipple
+                variant='outlined'
                 onClick={() => handleChange(weaponType)}
                 className={clsx(classes.button, {
                     [classes.selected]: selected
@@ -88,7 +89,6 @@ export const WeaponSelect = React.memo(props => {
                         alt={label}
                         className={classes.icon}
                     />
-                    {label}
                 </Box>
             </Button>
         );
@@ -96,12 +96,7 @@ export const WeaponSelect = React.memo(props => {
 
     return (
         <Box className={classes.box}>
-            <ButtonGroup size='small' fullWidth className={classes.buttonGroup}>
-                {_.take(buttons, 7)}
-            </ButtonGroup>
-            <ButtonGroup size='small' fullWidth>
-                {_.takeRight(buttons, 7)}
-            </ButtonGroup>
+            {buttons}
         </Box>
     );
 });

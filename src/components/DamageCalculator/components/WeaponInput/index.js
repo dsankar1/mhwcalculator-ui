@@ -6,6 +6,14 @@ import ElementInput from './ElementInput';
 import WeaponSelect from './WeaponSelect';
 import SharpnessSelect from './SharpnessSelect';
 
+const grid = {
+    xs: 12,
+    sm: 4,
+    md: 12,
+    lg: 6,
+    xl: 4
+};
+
 export const weaponTypeConfig = [
     WeaponType.GREAT_SWORD,
     WeaponType.DUAL_BLADES,
@@ -45,7 +53,7 @@ export const WeaponInput = React.memo(props => {
                     onChange={weaponType => handleChange(BuildAccessor.WEAPON_TYPE, weaponType)}
                 />
             </Grid>
-            <Grid item xs={12} sm={4}>
+            <Grid item {...grid}>
                 <TextField
                     fullWidth
                     type='number'
@@ -55,7 +63,7 @@ export const WeaponInput = React.memo(props => {
                     onChange={e => handleChange(BuildAccessor.ATTACK, e.target.value)}
                 />
             </Grid>
-            <Grid item xs={12} sm={4}>
+            <Grid item {...grid}>
                 <TextField
                     fullWidth
                     type='number'
@@ -72,13 +80,12 @@ export const WeaponInput = React.memo(props => {
                     }}
                 />
             </Grid>
-            <Grid item xs={12} sm={4}>
+            <Grid item {...grid}>
                 <ElementInput
                     fullWidth
                     label='Element'
-                    disabled={isBowgun}
-                    title={isBowgun ? 'Element isn\'t available on bowguns' : 'Element'}
-                    value={isBowgun ? '' : _.get(props.value, BuildAccessor.ELEMENT)}
+                    title='Element'
+                    value={_.get(props.value, BuildAccessor.ELEMENT)}
                     hidden={Boolean(_.get(props.value, BuildAccessor.HIDDEN_ELEMENT))}
                     onChange={e => handleChange(BuildAccessor.ELEMENT, e.target.value)}
                     onHiddenChange={(__, hiddenElement) => handleChange(BuildAccessor.HIDDEN_ELEMENT, hiddenElement)}

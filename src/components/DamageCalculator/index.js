@@ -3,7 +3,7 @@ import qs from 'qs';
 import React from 'react';
 import useWindowScroll from '@react-hook/window-scroll';
 import { Refresh, KeyboardArrowUp } from '@material-ui/icons';
-import { makeStyles, Container, Grid, Card, CardHeader, CardContent, Divider, IconButton, Tooltip, Fab, Fade } from '@material-ui/core';
+import { makeStyles, Container, Grid, Card, CardHeader, CardContent, IconButton, Tooltip, Fab, Fade } from '@material-ui/core';
 import { SubtitleContext } from '../../App';
 import calculateDamage, { BuildAccessor, WeaponType, Sharpness } from './calculator';
 import ResultTable from './components/ResultTable';
@@ -13,17 +13,18 @@ import AugmentsInput from './components/AugmentsInput';
 import SkillsInput from './components/SkillsInput';
 import ItemsInput from './components/ItemsInput';
 
+const defaultBuild = {
+    weaponType: WeaponType.GREAT_SWORD,
+    sharpness: Sharpness.BLUE
+};
+
 const getInitialBuild = location => {
     const rawQuery = qs.parse(_.get(location, 'search'), {
         ignoreQueryPrefix: true
     });
+
     const query = _.transform(rawQuery, (acc, value, key) => {
-        if (_.isEqual(key, 'buffs')) {
-            const split = _.split(value, /,\s?/);
-            _.set(acc, key, split);
-        } else {
-            _.set(acc, key, value);
-        }
+        _.set(acc, key, value);
     }, {});
 
     let cached = {};
@@ -36,18 +37,23 @@ const getInitialBuild = location => {
         console.error(e);
     }
 
-    return _.defaults(query, cached, {
-        attack: 693,
-        element: 100,
-        hiddenElement: true,
-        weaponType: WeaponType.LONG_SWORD,
-        sharpness: Sharpness.BLUE
-    });
+    return {
+        ...defaultBuild,
+        ...cached,
+        ...query
+    };
 }
 
 const useStyles = makeStyles(theme => ({
     container: {
         padding: theme.spacing(1)
+    },
+    marginTop: {
+        marginTop: theme.spacing(1)
+    },
+    resetBtn: {
+        padding: theme.spacing(1),
+        marginLeft: theme.spacing(1)
     },
     fab: {
         position: 'fixed',
@@ -64,6 +70,11 @@ export const DamageCalculator = props => {
     const classes = useStyles();
     const setSubtitle = React.useContext(SubtitleContext);
     const [build, setBuild] = React.useState(getInitialBuild(props.location));
+
+    const handleReset = React.useCallback(() => {
+        localStorage.removeItem('build');
+        setBuild(defaultBuild);
+    }, [setBuild]);
 
     React.useEffect(() => {
         setSubtitle('Damage Calculator');
@@ -85,43 +96,43 @@ export const DamageCalculator = props => {
         return calculateDamage({ ...cleanedBuild, buffs });
     }, [build]);
 
+    console.log('Results', results);
+
     return (
-        <Container className={classes.container}>
+        <Container maxWidth='xl' className={classes.container}>
             <Grid spacing={1} container>
-                <Grid item xs={12}>
+                <Grid item xs={12} md={8}>
                     <Card>
-                        <CardHeader
-                            title='Results'
-                            action={
-                                <IconButton>
-                                    <Tooltip
-                                        title='Reset Build'
-                                        enterDelay={1000}
-                                    >
-                                        <Refresh />
-                                    </Tooltip>
-                                </IconButton>
-                            }
-                        />
-                        <Divider />
                         <CardContent>
                             <ResultTable combos={results.combos} />
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={12} md={9}>
+                <Grid item xs={12} md={4}>
                     <Card>
                         <CardHeader
                             title='Weapon'
                             action={
-                                <SearchBar
-                                    onChange={weapon => {
-                                        setBuild(build => ({ ...build, ...weapon }));
-                                    }}
-                                />
+                                <React.Fragment>
+                                    <SearchBar
+                                        onChange={weapon => {
+                                            setBuild(build => ({ ...build, ...weapon }));
+                                        }}
+                                    />
+                                    <IconButton
+                                        className={classes.resetBtn}
+                                        onClick={handleReset}
+                                    >
+                                        <Tooltip
+                                            title='Reset Build'
+                                            enterDelay={1000}
+                                        >
+                                            <Refresh />
+                                        </Tooltip>
+                                    </IconButton>
+                                </React.Fragment>
                             }
                         />
-                        <Divider />
                         <CardContent>
                             <WeaponInput
                                 value={_.pick(build, [
@@ -138,38 +149,46 @@ export const DamageCalculator = props => {
                             />
                         </CardContent>
                     </Card>
-                </Grid>
-                <Grid item xs={12} md={3}>
                     <AugmentsInput
                         grid={{
                             xs: 12,
                             sm: 4,
-                            md: 12
+                            md: 12,
+                            lg: 6,
+                            xl: 4
                         }}
                         value={_.get(build, 'augments')}
                         onChange={augments => {
                             setBuild(build => ({ ...build, augments }));
                         }}
+                        className={classes.marginTop}
                     />
-                </Grid>
-                <Grid item xs={12} sm={7}>
                     <SkillsInput
                         grid={{
                             xs: 12,
-                            sm: 6
+                            sm: 4,
+                            md: 12,
+                            lg: 6,
+                            xl: 4
                         }}
                         value={_.get(build, 'skills')}
                         onChange={skills => {
                             setBuild(build => ({ ...build, skills }));
                         }}
+                        className={classes.marginTop}
                     />
-                </Grid>
-                <Grid item xs={12} sm={5}>
                     <ItemsInput
+                        grid={{
+                            xs: 12,
+                            sm: 4,
+                            md: 12,
+                            lg: 6
+                        }}
                         value={_.get(build, 'items')}
                         onChange={items => {
                             setBuild(build => ({ ...build, items }));
                         }}
+                        className={classes.marginTop}
                     />
                 </Grid>
             </Grid>

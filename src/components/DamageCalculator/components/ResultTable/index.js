@@ -3,15 +3,16 @@ import React from 'react';
 import { makeStyles, TableContainer, Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
+    table: {
+        tableLayout: 'fixed'
+    },
     stickyHeader: {
         backgroundColor: theme.palette.background.paper
     }
 }));
 
 export const ResultTable = React.memo(props => {
-    console.log('Combos', props.combos);
-
-    const classes = useStyles();
+    const classes = useStyles(props);
 
     const combos = _.map(props.combos, combo => {
         const physicalDamage = _.reduce(_.map(combo.damageValues, 'physical'), _.add);
@@ -37,13 +38,19 @@ export const ResultTable = React.memo(props => {
     });
 
     return (
-        <TableContainer style={{ maxHeight: 300 }}>
-            <Table stickyHeader classes={{ stickyHeader: classes.stickyHeader }}>
+        <TableContainer>
+            <Table
+                size='small'
+                stickyHeader
+                classes={{
+                    root: classes.table,
+                    stickyHeader: classes.stickyHeader
+                }}>
                 <TableHead>
                     <TableRow>
                         <TableCell>Combo Name</TableCell>
-                        <TableCell>Total Physical</TableCell>
-                        <TableCell>Total Element</TableCell>
+                        <TableCell>Physical Damage</TableCell>
+                        <TableCell>Element Damage</TableCell>
                         <TableCell>Total Damage</TableCell>
                     </TableRow>
                 </TableHead>

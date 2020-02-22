@@ -6,7 +6,7 @@ export const ItemsInput = React.memo(props => {
     return (
         <BuffsInput
             {...props}
-            title='Items/Equipment'
+            title='Items & Equipment'
             config={items}
         />
     );

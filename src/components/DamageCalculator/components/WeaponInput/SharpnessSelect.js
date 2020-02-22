@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, ButtonGroup, Button } from '@material-ui/core';
+import CheckIcon from '@material-ui/icons/Check'
 import { Sharpness } from '../../calculator';
 
 const useStyles = makeStyles(theme => ({
@@ -17,13 +18,12 @@ const useStyles = makeStyles(theme => ({
         marginTop: theme.spacing(1)
     },
     button: {
-        minWidth: '80px'
+        color: theme.palette.common.black
     },
     red: {
-        color: '#f44336',
+        backgroundColor: '#f44336',
         '&:hover': {
-            color: theme.palette.common.black,
-            backgroundColor: '#f44336'
+            backgroundColor: '#f44336',
         }
     },
     redSelected: {
@@ -31,10 +31,9 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: '#f44336'
     },
     orange: {
-        color: '#d9662c',
+        backgroundColor: '#d9662c',
         '&:hover': {
-            color: theme.palette.common.black,
-            backgroundColor: '#d9662c'
+            backgroundColor: '#d9662c',
         }
     },
     orangeSelected: {
@@ -42,10 +41,9 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: '#d9662c'
     },
     yellow: {
-        color: '#d9d12c',
+        backgroundColor: '#d9d12c',
         '&:hover': {
-            color: theme.palette.common.black,
-            backgroundColor: '#d9d12c'
+            backgroundColor: '#d9d12c',
         }
     },
     yellowSelected: {
@@ -53,10 +51,9 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: '#d9d12c'
     },
     green: {
-        color: '#70d92c',
+        backgroundColor: '#70d92c',
         '&:hover': {
-            color: theme.palette.common.black,
-            backgroundColor: '#70d92c'
+            backgroundColor: '#70d92c',
         }
     },
     greenSelected: {
@@ -64,10 +61,9 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: '#70d92c'
     },
     blue: {
-        color: '#42a5f5',
+        backgroundColor: '#42a5f5',
         '&:hover': {
-            color: theme.palette.common.black,
-            backgroundColor: '#42a5f5'
+            backgroundColor: '#42a5f5',
         }
     },
     blueSelected: {
@@ -75,10 +71,9 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: '#42a5f5'
     },
     white: {
-        color: theme.palette.grey[500],
+        backgroundColor: '#eeeeee',
         '&:hover': {
-            color: theme.palette.common.black,
-            backgroundColor: '#eeeeee'
+            backgroundColor: '#eeeeee',
         }
     },
     whiteSelected: {
@@ -86,10 +81,9 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: '#eeeeee'
     },
     purple: {
-        color: '#cc99ff',
+        backgroundColor: '#cc99ff',
         '&:hover': {
-            color: theme.palette.common.black,
-            backgroundColor: '#cc99ff'
+            backgroundColor: '#cc99ff',
         }
     },
     purpleSelected: {
@@ -122,15 +116,10 @@ export const SharpnessSelect = React.memo(props => {
         return (
             <Button
                 key={sharpness}
-                disableRipple
-                disableFocusRipple
-                disableTouchRipple
                 onClick={() => handleChange(sharpness)}
-                className={clsx(classes.button, classes[sharpness], {
-                    [classes[sharpness + 'Selected']]: selected
-                })}
+                className={clsx(classes.button, classes[sharpness])}
             >
-                {sharpness}
+                {selected && <CheckIcon fontSize='small' />}
             </Button>
         );
     });

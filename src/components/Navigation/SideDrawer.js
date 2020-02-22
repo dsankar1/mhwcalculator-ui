@@ -33,8 +33,8 @@ const useStyles = makeStyles(theme => ({
         }),
         width: 0,
         overflowX: 'hidden',
-        [theme.breakpoints.up('xl')]: {
-            width: theme.spacing(9) + 1,
+        [theme.breakpoints.up('lg')]: {
+            width: theme.spacing(9) + 1
         }
     }
 }));

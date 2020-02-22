@@ -61,6 +61,7 @@ export default [
     },
     {
         name: 'Normal Shots',
+        [BuffAccessor.COMBO_DEPENDENT]: true,
         levels: [
             {
                 [BuffAccessor.ATTACK_MULT]: 1.1
@@ -72,6 +73,7 @@ export default [
     },
     {
         name: 'Spread/Power Shots',
+        [BuffAccessor.COMBO_DEPENDENT]: true,
         levels: [
             {
                 [BuffAccessor.ATTACK_MULT]: 1.1
@@ -83,6 +85,7 @@ export default [
     },
     {
         name: 'Piercing Shots',
+        [BuffAccessor.COMBO_DEPENDENT]: true,
         levels: [
             {
                 [BuffAccessor.ATTACK_MULT]: 1.1

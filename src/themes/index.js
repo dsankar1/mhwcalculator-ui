@@ -51,8 +51,13 @@ export const baseTheme = createMuiTheme({
             root: {
                 [query]: {
                     fontSize: '0.875rem'
+                },
+                '&$selected': {
+                    color: '#000 !important',
+                    backgroundColor: '#81c784 !important'
                 }
-            }
+            },
+            selected: {}
         },
         MuiOutlinedInput: {
             root: {
@@ -79,7 +84,8 @@ export const lightTheme = createMuiTheme({
             primary: '#212121'
         },
         background: {
-            default: '#efefef'
+            default: '#ddd',
+            paper: '#f7f7f7'
         },
         primary: {
             main: '#81c784'
@@ -91,14 +97,11 @@ export const lightTheme = createMuiTheme({
     overrides: {
         ...baseTheme.overrides,
         MuiTableCell: {
-            root: {
-                padding: '8px'
-            },
             head: {
                 fontWeight: 400
             },
             stickyHeader: {
-                backgroundColor: '#fff'
+                backgroundColor: '#f7f7f7'
             }
         }
     }
@@ -125,9 +128,6 @@ export const darkTheme = createMuiTheme({
     overrides: {
         ...baseTheme.overrides,
         MuiTableCell: {
-            root: {
-                padding: '8px'
-            },
             head: {
                 fontWeight: 400
             },
