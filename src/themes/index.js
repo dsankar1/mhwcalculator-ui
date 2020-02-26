@@ -5,12 +5,6 @@ const query = '@media (min-width: 600px)';
 export const baseTheme = createMuiTheme({
     overrides: {
         MuiCardHeader: {
-            root: {
-                padding: '8px 8px 8px 16px'
-            },
-            title: {
-                fontSize: '1.25rem'
-            },
             content: {
                 flex: '0 0 auto',
                 marginRight: '16px'
@@ -97,8 +91,8 @@ export const lightTheme = createMuiTheme({
     overrides: {
         ...baseTheme.overrides,
         MuiTableCell: {
-            head: {
-                fontWeight: 400
+            root: {
+                whiteSpace: 'nowrap'
             },
             stickyHeader: {
                 backgroundColor: '#f7f7f7'
@@ -128,8 +122,8 @@ export const darkTheme = createMuiTheme({
     overrides: {
         ...baseTheme.overrides,
         MuiTableCell: {
-            head: {
-                fontWeight: 400
+            root: {
+                whiteSpace: 'nowrap'
             },
             stickyHeader: {
                 backgroundColor: '#303030'

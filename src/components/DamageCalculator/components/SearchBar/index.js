@@ -4,6 +4,7 @@ import React from 'react';
 import { Error } from '@material-ui/icons';
 import { Autocomplete } from '@material-ui/lab';
 import { makeStyles, LinearProgress, Snackbar, Box, TextField, Typography } from '@material-ui/core';
+import { Sharpness } from '../../calculator/sharpness';
 
 const instance = axios.create({
     baseURL: 'https://mhw-db.com',
@@ -61,20 +62,22 @@ const getOptionLabel = option => _.get(option, 'name', option);
 const getSharpness = durability => {
     const maxDurability = _.last(durability);
     let sharpness;
-    if (_.get(maxDurability, 'purple')) {
-        sharpness = 'purple'
-    } else if (_.get(maxDurability, 'white')) {
-        sharpness = 'white'
-    } else if (_.get(maxDurability, 'blue')) {
-        sharpness = 'blue'
-    } else if (_.get(maxDurability, 'green')) {
-        sharpness = 'green'
-    } else if (_.get(maxDurability, 'yellow')) {
-        sharpness = 'yellow'
-    } else if (_.get(maxDurability, 'orange')) {
-        sharpness = 'orange'
-    } else if (_.get(maxDurability, 'red')) {
-        sharpness = 'red'
+    if (_.isPlainObject(maxDurability)) {
+        if (Boolean(maxDurability.purple)) {
+            sharpness = Sharpness.PURPLE;
+        } else if (Boolean(maxDurability.white)) {
+            sharpness = Sharpness.WHITE;
+        } else if (Boolean(maxDurability.blue)) {
+            sharpness = Sharpness.BLUE;
+        } else if (Boolean(maxDurability.green)) {
+            sharpness = Sharpness.GREEN;
+        } else if (Boolean(maxDurability.yellow)) {
+            sharpness = Sharpness.YELLOW;
+        } else if (Boolean(maxDurability.orange)) {
+            sharpness = Sharpness.ORANGE;
+        } else if (Boolean(maxDurability.red)) {
+            sharpness = Sharpness.RED;
+        }
     }
     return sharpness;
 }
@@ -118,22 +121,27 @@ export const SearchBar = React.memo(props => {
                 setImporting(true);
                 const response = await getWeaponInfo(importId);
                 if (_.has(response, 'data')) {
-                    const weaponType = _.camelCase(_.get(response, ['data', 'type'], ''));
+                    const weaponType = _.camelCase(_.get(response, ['data', 'type']));
                     const attack = +_.get(response, ['data', 'attack', 'display'], 0);
                     const element = +_.get(response, ['data', 'elements', 0, 'damage'], 0);
                     const hiddenElement = _.get(response, ['data', 'elements', 0, 'hidden'], false);
                     const affinityPct = +_.get(response, ['data', 'attributes', 'affinity'], 0);
-                    const sharpness = getSharpness(_.get(response, ['data', 'durability'], []));
+                    const sharpness = getSharpness(_.get(response, ['data', 'durability']));
+
+                    const build = {
+                        weaponType,
+                        attack,
+                        element,
+                        hiddenElement,
+                        affinityPct
+                    };
+
+                    if (!_.isNil(sharpness)) {
+                        _.set(build, 'sharpness', sharpness);
+                    }
 
                     if (_.isFunction(props.onChange)) {
-                        _.attempt(props.onChange, {
-                            weaponType,
-                            attack,
-                            element,
-                            hiddenElement,
-                            affinityPct,
-                            sharpness
-                        });
+                        _.attempt(props.onChange, build);
                     }
                 }
             } catch (err) {

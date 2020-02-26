@@ -18,6 +18,7 @@ const useStyles = makeStyles(theme => ({
         marginTop: theme.spacing(1)
     },
     button: {
+        padding: 0,
         color: theme.palette.common.black
     },
     red: {

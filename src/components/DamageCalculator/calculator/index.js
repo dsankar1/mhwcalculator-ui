@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { attackBloatMap, criticalElementMultMap, combosMap } from './weaponType';
+import { attackBloatMap, criticalElementMultMap, combosMap, WeaponType } from './weaponType';
 import { attackMultMap, elementMultMap } from './sharpness';
 
 export * from './weaponType';
@@ -7,14 +7,18 @@ export * from './sharpness';
 
 export const evaluateCondition = (condition, data) => {
     const accessor = _.get(condition, 'accessor');
-    const target = _.get(data, accessor);
-    const operator = _.toLower(_.get(condition, 'operator'));
+    const target = _.get(data, accessor, '');
+    const operator = _.get(condition, 'operator');
     const value = _.get(condition, 'value');
     const group = _.map(_.get(condition, 'group'), condition => {
         return evaluateCondition(condition, data);
     });
 
     switch(operator) {
+        case 'startsWith':
+            return _.startsWith(target, value);
+        case 'endsWith':
+            return _.endsWith(target, value);
         case '==':
             return _.isEqual(target, value);
         case '!=':
@@ -27,11 +31,14 @@ export const evaluateCondition = (condition, data) => {
             return _.lt(target, value);
         case '<=':
             return _.lte(target, value);
-        case 'and':
+        case '&&':
             return _.every(group, Boolean);
-        case 'or':
+        case '||':
             return _.some(group, Boolean);
         default:
+            if (!_.isNil(operator)) {
+                console.error('Operator not recognized:', operator);
+            }
             return true;
     }
 }
@@ -73,6 +80,8 @@ export const BuffAccessor = {
     CRITICAL_ATTACK_MULT: 'criticalAttackMult'
 };
 
+export const attackMultCap = 1 + (1 / 20.75);
+
 export const getBuffAggregator = (baseTrueAttack, baseTrueElement) => buffs => {
     let totalTrueAttack = 0
     let totalTrueElement = 0;
@@ -85,13 +94,14 @@ export const getBuffAggregator = (baseTrueAttack, baseTrueElement) => buffs => {
 
     _.forEach(buffs, buff => {
         const buffEntry = {
-            original: buff
+            original: buff,
+            name: _.get(buff, 'name')
         };
 
         if (_.has(buff, BuffAccessor.TRUE_ATTACK) || _.has(buff, BuffAccessor.ATTACK_MULT)) {
             let trueAttack = +_.get(buff, BuffAccessor.TRUE_ATTACK, 0);
-            const attackMult = +_.get(buff, BuffAccessor.ATTACK_MULT, 1);
-            trueAttack = (attackMult - 1) * baseTrueAttack + trueAttack;
+            const attackMult = Math.min(+_.get(buff, BuffAccessor.ATTACK_MULT, 1), attackMultCap);
+            trueAttack = Math.round((attackMult - 1) * baseTrueAttack + trueAttack);
             totalTrueAttack += trueAttack;
             _.set(buffEntry, BuffAccessor.TRUE_ATTACK, trueAttack);
         }
@@ -99,7 +109,7 @@ export const getBuffAggregator = (baseTrueAttack, baseTrueElement) => buffs => {
         if (_.has(buff, BuffAccessor.TRUE_ELEMENT) || _.has(buff, BuffAccessor.ELEMENT_MULT)) {
             let trueElement = baseTrueElement > 0 ? +_.get(buff, BuffAccessor.TRUE_ELEMENT, 0) : 0;
             const elementMult = +_.get(buff, BuffAccessor.ELEMENT_MULT, 1);
-            trueElement = (elementMult - 1) * baseTrueElement + trueElement;
+            trueElement = Math.round((elementMult - 1) * baseTrueElement + trueElement);
             totalTrueElement += trueElement;
             _.set(buffEntry, BuffAccessor.TRUE_ELEMENT, trueElement);
         }
@@ -209,10 +219,10 @@ export const DamageType = {
 export const calculateDamage = build => {
     const weaponType = _.get(build, BuildAccessor.WEAPON_TYPE);
     const weaponBloat = _.get(attackBloatMap, weaponType);
-    const baseTrueAttack = +_.get(build, BuildAccessor.ATTACK, 0) / weaponBloat;
+    const baseTrueAttack = _.round(+_.get(build, BuildAccessor.ATTACK, 0) / weaponBloat, 2);
 
     const hiddenElement = Boolean(_.get(build, BuildAccessor.HIDDEN_ELEMENT));
-    const baseHiddenTrueElement = +_.get(build, BuildAccessor.ELEMENT, 0) / 10;
+    const baseHiddenTrueElement = _.round(+_.get(build, BuildAccessor.ELEMENT, 0) / 10, 2);
 
     const baseAffinityPct = +_.get(build, BuildAccessor.AFFINITY_PCT, 0);
 
@@ -242,18 +252,20 @@ export const calculateDamage = build => {
     const trueAttackBuff = _.get(generalBuffs, BuffAccessor.TRUE_ATTACK);
     const trueAttack = baseTrueAttack + trueAttackBuff;
 
-    const trueElementBuffCap = getTrueElementBuffCap(baseHiddenTrueElement);   
-    const trueElementBuff = Math.min(_.get(generalBuffs, BuffAccessor.TRUE_ELEMENT), trueElementBuffCap);
+    const trueElementBuffCap = getTrueElementBuffCap(baseHiddenTrueElement);
+    const trueElementBuff = _.get(generalBuffs, BuffAccessor.TRUE_ELEMENT);
+    const trueElementBuffCapped = Math.min(trueElementBuff, trueElementBuffCap);
     const trueElement = baseTrueElement + trueElementBuff;
 
     const affinityPctBuff = _.get(generalBuffs, BuffAccessor.AFFINITY_PCT);
-    const affinityPct = _.clamp(baseAffinityPct + affinityPctBuff, -100, 100);
+    const affinityPct = baseAffinityPct + affinityPctBuff;
+    const affinityPctCapped = _.clamp(affinityPct, -100, 100);
 
     const criticalAttackMult = _.get(generalBuffs, BuffAccessor.CRITICAL_ATTACK_MULT);
     const criticalElementMult = _.get(criticalElementMultMap, weaponType);
-    const affinityAttackMult = calculateAffinityDamageMult(affinityPct, criticalAttackMult);
+    const affinityAttackMult = calculateAffinityDamageMult(affinityPctCapped, criticalAttackMult);
     const criticalElement = _.get(generalBuffs, BuffAccessor.CRITICAL_ELEMENT);
-    const affinityElementMult = criticalElement ? calculateAffinityDamageMult(affinityPct, criticalElementMult) : 1;
+    const affinityElementMult = criticalElement ? calculateAffinityDamageMult(affinityPctCapped, criticalElementMult) : 1;
 
     const hitzoneSeverMult = +_.get(build, BuildAccessor.HITZONE_SEVER_MULT, 1);
     const hitzoneBluntMult = +_.get(build, BuildAccessor.HITZONE_BLUNT_MULT, 1);
@@ -261,8 +273,8 @@ export const calculateDamage = build => {
     const hitzoneElementalMult = +_.get(build, BuildAccessor.HITZONE_ELEMENTAL_MULT, 1);
 
     const combos = _.map(_.get(combosMap, weaponType), combo => {
-        const ignoreAffinity = Boolean(_.get(combo, ComboAccessor.IGNORE_AFFINITY));
         const ignoreSharpness = Boolean(_.get(combo, ComboAccessor.IGNORE_SHARPNESS));
+        const ignoreAffinity = Boolean(_.get(combo, ComboAccessor.IGNORE_AFFINITY));
         const damageType = _.toLower(_.get(combo, ComboAccessor.DAMAGE_TYPE));
         const motionValues = _.get(combo, ComboAccessor.MOTION_VALUES);
 
@@ -272,12 +284,17 @@ export const calculateDamage = build => {
         let physical = Math.round(trueAttack + _.get(comboBuffs, BuffAccessor.TRUE_ATTACK));
         let elemental = Math.round(trueElement + _.get(comboBuffs, BuffAccessor.TRUE_ELEMENT)) * hitzoneElementalMult;
 
-        if (!ignoreAffinity) {
+        if (
+            !_.isEqual(weaponType, WeaponType.LIGHT_BOWGUN)
+            && !_.isEqual(weaponType, WeaponType.HEAVY_BOWGUN)
+            && !_.isEqual(weaponType, WeaponType.BOW)
+            && !ignoreSharpness
+        ) {
             physical *= sharpnessAttackMult;
             elemental *= sharpnessElementMult;
         }
 
-        if (!ignoreSharpness) {
+        if (!ignoreAffinity) {
             physical *= affinityAttackMult;
             elemental *= affinityElementMult;
         }
@@ -319,13 +336,15 @@ export const calculateDamage = build => {
         ...resolverData,
         attack: Math.round(trueAttack * weaponBloat),
         element: Math.round(trueElement * 10),
-        trueAttack: Math.round(trueAttack),
-        trueElement: Math.round(trueElement),
+        trueAttack: trueAttack,
+        trueElement: trueElement,
         affinityPct,
         trueAttackBuff,
-        trueElementBuffCap,
         trueElementBuff,
+        trueElementBuffCap,
+        trueElementBuffCapped,
         affinityPctBuff,
+        affinityPctCapped,
         freeElement,
         criticalElement,
         criticalAttackMult,
@@ -334,7 +353,7 @@ export const calculateDamage = build => {
         affinityElementMult,
         sharpnessAttackMult,
         sharpnessElementMult,
-        buffs: generalBuffList,
+        buffs: _.sortBy(generalBuffList, 'name'),
         combos: _.sortBy(combos, 'name')
     };
 }

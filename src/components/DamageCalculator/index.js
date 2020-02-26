@@ -3,15 +3,16 @@ import qs from 'qs';
 import React from 'react';
 import useWindowScroll from '@react-hook/window-scroll';
 import { Refresh, KeyboardArrowUp } from '@material-ui/icons';
-import { makeStyles, Container, Grid, Card, CardHeader, CardContent, IconButton, Tooltip, Fab, Fade } from '@material-ui/core';
+import { makeStyles, Container, Grid, Card, CardHeader, CardContent, IconButton, Tooltip, Fab, Fade, Divider } from '@material-ui/core';
 import { SubtitleContext } from '../../App';
 import calculateDamage, { BuildAccessor, WeaponType, Sharpness } from './calculator';
-import ResultTable from './components/ResultTable';
 import SearchBar from './components/SearchBar';
 import WeaponInput from './components/WeaponInput';
 import AugmentsInput from './components/AugmentsInput';
 import SkillsInput from './components/SkillsInput';
 import ItemsInput from './components/ItemsInput';
+import StatTable from './components/StatTable';
+import ComboTable from './components/ComboTable';
 
 const defaultBuild = {
     weaponType: WeaponType.GREAT_SWORD,
@@ -96,16 +97,19 @@ export const DamageCalculator = props => {
         return calculateDamage({ ...cleanedBuild, buffs });
     }, [build]);
 
-    console.log('Results', results);
-
     return (
         <Container maxWidth='xl' className={classes.container}>
             <Grid spacing={1} container>
                 <Grid item xs={12} md={8}>
                     <Card>
-                        <CardContent>
-                            <ResultTable combos={results.combos} />
-                        </CardContent>
+                        <CardHeader title='Stats' />
+                        <Divider />
+                        <StatTable {...results} />
+                    </Card>
+                    <Card className={classes.marginTop}>
+                        <CardHeader title='Combos' />
+                        <Divider />
+                        <ComboTable combos={results.combos} />
                     </Card>
                 </Grid>
                 <Grid item xs={12} md={4}>

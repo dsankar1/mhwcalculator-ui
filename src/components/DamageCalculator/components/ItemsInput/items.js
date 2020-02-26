@@ -1,4 +1,4 @@
-import { BuffAccessor } from '../../calculator';
+import { BuffAccessor, WeaponType } from '../../calculator';
 
 export default [
     {
@@ -104,6 +104,60 @@ export default [
             {
                 name: 'Hunting Horn Element Boost L',
                 [BuffAccessor.ELEMENT_MULT]: 1.15
+            }
+        ]
+    },
+    {
+        name: 'Arrow Coating',
+        [BuffAccessor.COMBO_DEPENDENT]: true,
+        levels: [
+            {
+                name: 'Close-Range Coating',
+                [BuffAccessor.ATTACK_MULT]: [
+                    {
+                        operator: '&&',
+                        group: [
+                            {
+                                accessor: 'combo.damageType',
+                                operator: '==',
+                                value: 'projectile'
+                            },
+                            {
+                                accessor: 'build.weaponType',
+                                operator: '==',
+                                value: WeaponType.BOW
+                            }
+                        ],
+                        return: 1.2
+                    },
+                    {
+                        return: 1
+                    }
+                ]
+            },
+            {
+                name: 'Power Coating',
+                [BuffAccessor.ATTACK_MULT]: [
+                    {
+                        operator: '&&',
+                        group: [
+                            {
+                                accessor: 'combo.damageType',
+                                operator: '==',
+                                value: 'projectile'
+                            },
+                            {
+                                accessor: 'build.weaponType',
+                                operator: '==',
+                                value: WeaponType.BOW
+                            }
+                        ],
+                        return: 1.3
+                    },
+                    {
+                        return: 1
+                    }
+                ]
             }
         ]
     }

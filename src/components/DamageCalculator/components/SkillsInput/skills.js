@@ -2,11 +2,25 @@ import { BuffAccessor, Sharpness } from '../../calculator';
 
 export default [
     {
+        name: 'Critical Draw',
+        levels: [
+            {
+                [BuffAccessor.AFFINITY_PCT]: 30
+            },
+            {
+                [BuffAccessor.AFFINITY_PCT]: 60
+            },
+            {
+                [BuffAccessor.AFFINITY_PCT]: 100
+            }
+        ]
+    },
+    {
         name: 'Non-elemental Boost',
         description: 'Powers up non-elemental weapons you have equipped.',
         [BuffAccessor.ATTACK_MULT]: [
             {
-                accessor: 'baseTrueFreeElement',
+                accessor: 'baseTrueElement',
                 operator: '==',
                 value: 0,
                 return: 1.1
@@ -24,7 +38,7 @@ export default [
     {
         name: 'Affinity Sliding',
         description: 'Sliding increases your affinity for a short time.',
-        [BuffAccessor.AFFINITY_PCT]: 1.3
+        [BuffAccessor.AFFINITY_PCT]: 30
     },
     {
         name: 'Bludgeoner',
@@ -64,10 +78,70 @@ export default [
         [BuffAccessor.COMBO_DEPENDENT]: true,
         levels: [
             {
-                [BuffAccessor.ATTACK_MULT]: 1.1
+                [BuffAccessor.ATTACK_MULT]: [
+                    {
+                        operator: '&&',
+                        group: [
+                            {
+                                accessor: 'combo.damageType',
+                                operator: '==',
+                                value: 'projectile'
+                            },
+                            {
+                                operator: '||',
+                                group: [
+                                    {
+                                        accessor: 'combo.name',
+                                        operator: 'startsWith',
+                                        value: 'Charged Shot'
+                                    },
+                                    {
+                                        accessor: 'combo.name',
+                                        operator: 'startsWith',
+                                        value: 'Normal'
+                                    }
+                                ]
+                            }
+                        ],
+                        return: 1.1
+                    },
+                    {
+                        return: 1
+                    }
+                ]
             },
             {
-                [BuffAccessor.ATTACK_MULT]: 1.2
+                [BuffAccessor.ATTACK_MULT]: [
+                    {
+                        operator: '&&',
+                        group: [
+                            {
+                                accessor: 'combo.damageType',
+                                operator: '==',
+                                value: 'projectile'
+                            },
+                            {
+                                operator: '||',
+                                group: [
+                                    {
+                                        accessor: 'combo.name',
+                                        operator: 'startsWith',
+                                        value: 'Charged Shot'
+                                    },
+                                    {
+                                        accessor: 'combo.name',
+                                        operator: 'startsWith',
+                                        value: 'Normal'
+                                    }
+                                ]
+                            }
+                        ],
+                        return: 1.2
+                    },
+                    {
+                        return: 1
+                    }
+                ]
             }
         ]
     },
@@ -76,10 +150,70 @@ export default [
         [BuffAccessor.COMBO_DEPENDENT]: true,
         levels: [
             {
-                [BuffAccessor.ATTACK_MULT]: 1.1
+                [BuffAccessor.ATTACK_MULT]: [
+                    {
+                        operator: '&&',
+                        group: [
+                            {
+                                accessor: 'combo.damageType',
+                                operator: '==',
+                                value: 'projectile'
+                            },
+                            {
+                                operator: '||',
+                                group: [
+                                    {
+                                        accessor: 'combo.name',
+                                        operator: 'startsWith',
+                                        value: 'Power Shot'
+                                    },
+                                    {
+                                        accessor: 'combo.name',
+                                        operator: 'startsWith',
+                                        value: 'Spread'
+                                    }
+                                ]
+                            }
+                        ],
+                        return: 1.1
+                    },
+                    {
+                        return: 1
+                    }
+                ]
             },
             {
-                [BuffAccessor.ATTACK_MULT]: 1.15
+                [BuffAccessor.ATTACK_MULT]: [
+                    {
+                        operator: '&&',
+                        group: [
+                            {
+                                accessor: 'combo.damageType',
+                                operator: '==',
+                                value: 'projectile'
+                            },
+                            {
+                                operator: '||',
+                                group: [
+                                    {
+                                        accessor: 'combo.name',
+                                        operator: 'startsWith',
+                                        value: 'Power Shot'
+                                    },
+                                    {
+                                        accessor: 'combo.name',
+                                        operator: 'startsWith',
+                                        value: 'Spread'
+                                    }
+                                ]
+                            }
+                        ],
+                        return: 1.15
+                    },
+                    {
+                        return: 1
+                    }
+                ]
             }
         ]
     },
@@ -88,10 +222,70 @@ export default [
         [BuffAccessor.COMBO_DEPENDENT]: true,
         levels: [
             {
-                [BuffAccessor.ATTACK_MULT]: 1.1
+                [BuffAccessor.ATTACK_MULT]: [
+                    {
+                        operator: '&&',
+                        group: [
+                            {
+                                accessor: 'combo.damageType',
+                                operator: '==',
+                                value: 'projectile'
+                            },
+                            {
+                                operator: '||',
+                                group: [
+                                    {
+                                        accessor: 'combo.name',
+                                        operator: 'startsWith',
+                                        value: 'Dragon Piercer'
+                                    },
+                                    {
+                                        accessor: 'combo.name',
+                                        operator: 'startsWith',
+                                        value: 'Pierce'
+                                    }
+                                ]
+                            }
+                        ],
+                        return: 1.1
+                    },
+                    {
+                        return: 1
+                    }
+                ]
             },
             {
-                [BuffAccessor.ATTACK_MULT]: 1.2
+                [BuffAccessor.ATTACK_MULT]: [
+                    {
+                        operator: '&&',
+                        group: [
+                            {
+                                accessor: 'combo.damageType',
+                                operator: '==',
+                                value: 'projectile'
+                            },
+                            {
+                                operator: '||',
+                                group: [
+                                    {
+                                        accessor: 'combo.name',
+                                        operator: 'startsWith',
+                                        value: 'Dragon Piercer'
+                                    },
+                                    {
+                                        accessor: 'combo.name',
+                                        operator: 'startsWith',
+                                        value: 'Pierce'
+                                    }
+                                ]
+                            }
+                        ],
+                        return: 1.2
+                    },
+                    {
+                        return: 1
+                    }
+                ]
             }
         ]
     },
@@ -245,11 +439,11 @@ export default [
             },
             {
                 [BuffAccessor.TRUE_ELEMENT]: 10,
-                elementPct: 1.05
+                [BuffAccessor.ELEMENT_MULT]: 1.05
             },
             {
                 [BuffAccessor.TRUE_ELEMENT]: 10,
-                elementPct: 1.1
+                [BuffAccessor.ELEMENT_MULT]: 1.1
             }
         ]
     },
