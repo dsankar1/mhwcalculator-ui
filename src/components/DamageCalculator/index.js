@@ -2,7 +2,7 @@ import _ from 'lodash';
 import qs from 'qs';
 import React from 'react';
 import { Refresh } from '@material-ui/icons';
-import { makeStyles, Container, Grid, Card, CardHeader, CardContent, IconButton, Tooltip } from '@material-ui/core';
+import { makeStyles, Container, Grid, Card, CardHeader, CardContent, IconButton, Tooltip, Divider } from '@material-ui/core';
 import { SubtitleContext } from '../../App';
 import calculateDamage, { BuildAccessor, WeaponType, Sharpness } from './calculator';
 import SearchBar from './components/SearchBar';
@@ -101,11 +101,13 @@ export const DamageCalculator = props => {
             <Grid spacing={1} container>
                 <Grid item xs={12} md={8}>
                     <Card>
-                        <CardHeader title='Stats' />
+                        <CardHeader title='Build Stats' />
+                        <Divider />
                         <StatTable {...results} />
                     </Card>
                     <Card className={classes.marginTop}>
                         <CardHeader title='Combos' />
+                        <Divider />
                         <ComboTable {...results} />
                     </Card>
                 </Grid>
@@ -134,6 +136,7 @@ export const DamageCalculator = props => {
                                 </React.Fragment>
                             }
                         />
+                        <Divider />
                         <CardContent>
                             <WeaponInput
                                 value={_.pick(build, [

@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React from 'react';
-import { Card, CardHeader, CardContent, Switch } from '@material-ui/core';
+import { Card, CardHeader, CardContent, Switch, Divider } from '@material-ui/core';
 import MultiInput, { formatConfig } from '../MultiInput';
 
 const selectAll = config => {
@@ -35,6 +35,7 @@ export const BuffsInput = React.memo(props => {
                     />
                 }
             />
+            <Divider />
             <CardContent>
                 <MultiInput {...props} config={props.config} />
             </CardContent>

@@ -69,7 +69,7 @@ export const baseTheme = createMuiTheme({
         },
         MuiTableCell: {
             root: {
-                //whiteSpace: 'nowrap'
+                // whiteSpace: 'nowrap'
             },
             head: {
                 borderColor: '#81c784'
