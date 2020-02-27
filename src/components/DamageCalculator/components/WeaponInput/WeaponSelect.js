@@ -9,19 +9,14 @@ const useStyles = makeStyles(theme => ({
     box: {
         display: 'flex',
         flexWrap: 'wrap',
-        justifyContent: 'center',
-        overflowX: 'auto',
-        [theme.breakpoints.down('xs')]: {
-            overflowX: 'scroll',
-            webkitOverflowScrolling: 'touch'
-        }
+        justifyContent: 'center'
     },
     buttonGroup: {
         marginBottom: theme.spacing(1)
     },
     button: {
-        minHeight: '72px',
         minWidth: '72px',
+        minHeight: '72px',
         margin: theme.spacing(0.5)
     },
     selected: {

@@ -3,11 +3,13 @@ import React from 'react';
 import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
 
 export const StatTable = React.memo(props => {
-    console.log('Props', props);
-
     const baseTrueAttack = _.get(props, 'baseTrueAttack');
     const baseTrueElement = _.get(props, 'baseTrueElement');
     const baseAffinityPct = _.get(props, 'baseAffinityPct');
+
+    const trueAttackBuff = _.get(props, 'trueAttackBuff');
+    const trueElementBuff = _.get(props, 'trueElementBuff');
+    const affinityPctBuff = _.get(props, 'affinityPctBuff');
 
     const attack = _.get(props, 'attack');
     const element = _.get(props, 'element');
@@ -44,9 +46,9 @@ export const StatTable = React.memo(props => {
                 <TableHead>
                     <TableRow>
                         <TableCell />
-                        <TableCell align='right'>True Attack</TableCell>
-                        <TableCell align='right'>Affinity</TableCell>
-                        <TableCell align='right'>True Element</TableCell>
+                        <TableCell align='right'>True Attack (Display)</TableCell>
+                        <TableCell align='right'>Affinity Percent</TableCell>
+                        <TableCell align='right'>True Element (Display)</TableCell>
                         <TableCell align='right'>Free Element</TableCell>
                         <TableCell align='right'>Critical Boost</TableCell>
                     </TableRow>
@@ -59,12 +61,20 @@ export const StatTable = React.memo(props => {
                         <TableCell align='right'>{criticalAttackMult}</TableCell>
                     </TableRow>
                     <TableRow>
-                        <TableCell>Base</TableCell>
+                        <TableCell>Weapon</TableCell>
                         <TableCell align='right'>{baseTrueAttack}</TableCell>
                         <TableCell align='right'>{baseAffinityPct}</TableCell>
                         <TableCell align='right'>{baseTrueElement}</TableCell>
-                        <TableCell align='right'>0</TableCell>
-                        <TableCell align='right'>1.25</TableCell>
+                        <TableCell align='right'>-</TableCell>
+                        <TableCell align='right'>-</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell>Subtotal</TableCell>
+                        <TableCell align='right'>{trueAttackBuff}</TableCell>
+                        <TableCell align='right'>{affinityPctBuff}</TableCell>
+                        <TableCell align='right'>{trueElementBuff}</TableCell>
+                        <TableCell align='right'>{freeElement}</TableCell>
+                        <TableCell align='right'>{criticalAttackMult}</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

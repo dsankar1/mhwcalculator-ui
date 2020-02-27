@@ -66,6 +66,14 @@ export const baseTheme = createMuiTheme({
             sizeSmall: {
                 fontSize: '0.875rem'
             }
+        },
+        MuiTableCell: {
+            root: {
+                //whiteSpace: 'nowrap'
+            },
+            head: {
+                borderColor: '#81c784'
+            }
         }
     }
 });
@@ -87,17 +95,6 @@ export const lightTheme = createMuiTheme({
         secondary: {
             main: '#81c784'
         }
-    },
-    overrides: {
-        ...baseTheme.overrides,
-        MuiTableCell: {
-            root: {
-                whiteSpace: 'nowrap'
-            },
-            stickyHeader: {
-                backgroundColor: '#f7f7f7'
-            }
-        }
     }
 });
 
@@ -117,17 +114,6 @@ export const darkTheme = createMuiTheme({
         },
         secondary: {
             main: '#81c784'
-        }
-    },
-    overrides: {
-        ...baseTheme.overrides,
-        MuiTableCell: {
-            root: {
-                whiteSpace: 'nowrap'
-            },
-            stickyHeader: {
-                backgroundColor: '#303030'
-            }
         }
     }
 });

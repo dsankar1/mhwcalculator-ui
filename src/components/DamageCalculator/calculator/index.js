@@ -252,20 +252,18 @@ export const calculateDamage = build => {
     const trueAttackBuff = _.get(generalBuffs, BuffAccessor.TRUE_ATTACK);
     const trueAttack = baseTrueAttack + trueAttackBuff;
 
-    const trueElementBuffCap = getTrueElementBuffCap(baseHiddenTrueElement);
     const trueElementBuff = _.get(generalBuffs, BuffAccessor.TRUE_ELEMENT);
-    const trueElementBuffCapped = Math.min(trueElementBuff, trueElementBuffCap);
-    const trueElement = baseTrueElement + trueElementBuff;
+    const trueElementBuffCap = getTrueElementBuffCap(baseHiddenTrueElement);
+    const trueElement = baseTrueElement + Math.min(trueElementBuff, trueElementBuffCap);
 
     const affinityPctBuff = _.get(generalBuffs, BuffAccessor.AFFINITY_PCT);
-    const affinityPct = baseAffinityPct + affinityPctBuff;
-    const affinityPctCapped = _.clamp(affinityPct, -100, 100);
+    const affinityPct = _.clamp(baseAffinityPct + affinityPctBuff, -100, 100);
 
     const criticalAttackMult = _.get(generalBuffs, BuffAccessor.CRITICAL_ATTACK_MULT);
     const criticalElementMult = _.get(criticalElementMultMap, weaponType);
-    const affinityAttackMult = calculateAffinityDamageMult(affinityPctCapped, criticalAttackMult);
+    const affinityAttackMult = calculateAffinityDamageMult(affinityPct, criticalAttackMult);
     const criticalElement = _.get(generalBuffs, BuffAccessor.CRITICAL_ELEMENT);
-    const affinityElementMult = criticalElement ? calculateAffinityDamageMult(affinityPctCapped, criticalElementMult) : 1;
+    const affinityElementMult = criticalElement ? calculateAffinityDamageMult(affinityPct, criticalElementMult) : 1;
 
     const hitzoneSeverMult = +_.get(build, BuildAccessor.HITZONE_SEVER_MULT, 1);
     const hitzoneBluntMult = +_.get(build, BuildAccessor.HITZONE_BLUNT_MULT, 1);
@@ -342,9 +340,7 @@ export const calculateDamage = build => {
         trueAttackBuff,
         trueElementBuff,
         trueElementBuffCap,
-        trueElementBuffCapped,
         affinityPctBuff,
-        affinityPctCapped,
         freeElement,
         criticalElement,
         criticalAttackMult,

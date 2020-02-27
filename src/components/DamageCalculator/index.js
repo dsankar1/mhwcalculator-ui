@@ -1,9 +1,8 @@
 import _ from 'lodash';
 import qs from 'qs';
 import React from 'react';
-import useWindowScroll from '@react-hook/window-scroll';
-import { Refresh, KeyboardArrowUp } from '@material-ui/icons';
-import { makeStyles, Container, Grid, Card, CardHeader, CardContent, IconButton, Tooltip, Fab, Fade, Divider } from '@material-ui/core';
+import { Refresh } from '@material-ui/icons';
+import { makeStyles, Container, Grid, Card, CardHeader, CardContent, IconButton, Tooltip } from '@material-ui/core';
 import { SubtitleContext } from '../../App';
 import calculateDamage, { BuildAccessor, WeaponType, Sharpness } from './calculator';
 import SearchBar from './components/SearchBar';
@@ -85,7 +84,7 @@ export const DamageCalculator = props => {
         localStorage.setItem('build', JSON.stringify(build));
     }, [build]);
 
-    const scrollY = useWindowScroll(60);
+    // const scrollY = useWindowScroll(60);
 
     const results = React.useMemo(() => {
         const cleanedBuild = _.omit(build, ['augments', 'skills', 'items']);
@@ -103,13 +102,11 @@ export const DamageCalculator = props => {
                 <Grid item xs={12} md={8}>
                     <Card>
                         <CardHeader title='Stats' />
-                        <Divider />
                         <StatTable {...results} />
                     </Card>
                     <Card className={classes.marginTop}>
                         <CardHeader title='Combos' />
-                        <Divider />
-                        <ComboTable combos={results.combos} />
+                        <ComboTable {...results} />
                     </Card>
                 </Grid>
                 <Grid item xs={12} md={4}>
@@ -196,7 +193,7 @@ export const DamageCalculator = props => {
                     />
                 </Grid>
             </Grid>
-            <Fade in={scrollY > 100}>
+            {/* <Fade in={scrollY > 100}>
                 <Fab
                     color='primary'
                     aria-label='Back to top'
@@ -209,7 +206,7 @@ export const DamageCalculator = props => {
                 >
                     <KeyboardArrowUp fontSize='large' />
                 </Fab>
-            </Fade>
+            </Fade> */}
         </Container>
     );
 }
