@@ -265,10 +265,10 @@ export const calculateDamage = build => {
     const criticalElement = _.get(generalBuffs, BuffAccessor.CRITICAL_ELEMENT);
     const affinityElementMult = criticalElement ? calculateAffinityDamageMult(affinityPct, criticalElementMult) : 1;
 
-    const hitzoneSeverMult = +_.get(build, BuildAccessor.HITZONE_SEVER_MULT, 1);
-    const hitzoneBluntMult = +_.get(build, BuildAccessor.HITZONE_BLUNT_MULT, 1);
-    const hitzoneProjectileMult = +_.get(build, BuildAccessor.HITZONE_PROJECTILE_MULT, 1);
-    const hitzoneElementalMult = +_.get(build, BuildAccessor.HITZONE_ELEMENTAL_MULT, 1);
+    const hitzoneSeverMult = +_.get(build, BuildAccessor.HITZONE_SEVER_MULT, 0.8);
+    const hitzoneBluntMult = +_.get(build, BuildAccessor.HITZONE_BLUNT_MULT, 0.8);
+    const hitzoneProjectileMult = +_.get(build, BuildAccessor.HITZONE_PROJECTILE_MULT, 0.8);
+    const hitzoneElementalMult = +_.get(build, BuildAccessor.HITZONE_ELEMENTAL_MULT, 0.3);
 
     const combos = _.map(_.get(combosMap, weaponType), combo => {
         const ignoreSharpness = Boolean(_.get(combo, ComboAccessor.IGNORE_SHARPNESS));
@@ -279,8 +279,8 @@ export const calculateDamage = build => {
         const comboBuffResolver = getBuffResolver({ ...resolverData, combo });
         const [comboBuffs, comboBuffList] = _.flow(comboBuffResolver, buffAggregator)(unresolvedComboBuffs);
 
-        let physical = Math.round(trueAttack + _.get(comboBuffs, BuffAccessor.TRUE_ATTACK));
-        let elemental = Math.round(trueElement + _.get(comboBuffs, BuffAccessor.TRUE_ELEMENT)) * hitzoneElementalMult;
+        let basePhysical = Math.round(trueAttack + _.get(comboBuffs, BuffAccessor.TRUE_ATTACK));
+        let baseElemental = Math.round(trueElement + _.get(comboBuffs, BuffAccessor.TRUE_ELEMENT)) * hitzoneElementalMult;
 
         if (
             !_.isEqual(weaponType, WeaponType.LIGHT_BOWGUN)
@@ -288,37 +288,36 @@ export const calculateDamage = build => {
             && !_.isEqual(weaponType, WeaponType.BOW)
             && !ignoreSharpness
         ) {
-            physical *= sharpnessAttackMult;
-            elemental *= sharpnessElementMult;
-        }
-
-        if (!ignoreAffinity) {
-            physical *= affinityAttackMult;
-            elemental *= affinityElementMult;
+            basePhysical *= sharpnessAttackMult;
+            baseElemental *= sharpnessElementMult;
         }
 
         switch(damageType) {
             case DamageType.SEVER:
-                physical *= hitzoneSeverMult;
+                basePhysical *= hitzoneSeverMult;
                 break;
             case DamageType.BLUNT:
-                physical *= hitzoneBluntMult;
+                basePhysical *= hitzoneBluntMult;
                 break;
             case DamageType.PROJECTILE:
-                physical *= hitzoneProjectileMult;
+                basePhysical *= hitzoneProjectileMult;
                 break;
             default:
                 console.warn(`Damage type ${damageType} not recognized`);
         }
 
-        elemental = Math.floor(elemental);
-
         const damageValues = _.map(motionValues, motionValue => {
-            const motionValuePhysical = Math.floor(physical * (motionValue / 100));
+            const mvBasePhysical = basePhysical * (motionValue / 100);
+            const effectivePhysical = mvBasePhysical * (ignoreAffinity ? 1 : affinityAttackMult);
+            const effectiveElemental = baseElemental * (ignoreAffinity ? 1 : affinityElementMult);
+
             return {
-                elemental,
-                physical: motionValuePhysical,
-                total: motionValuePhysical + elemental
+                basePhysical: mvBasePhysical,
+                baseElemental,
+                baseTotal: mvBasePhysical + baseElemental,
+                effectivePhysical,
+                effectiveElemental,
+                effectiveTotal: effectivePhysical + effectiveElemental
             }
         });
 

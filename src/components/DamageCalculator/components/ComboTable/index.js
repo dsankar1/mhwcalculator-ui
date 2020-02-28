@@ -8,9 +8,8 @@ export const ComboTable = React.memo(props => {
     const rows = _.map(props.combos, combo => {
         const hitCount = _.size(combo.motionValues);
         const motionValueSum = _.reduce(combo.motionValues, _.add);
-        const physicalDamage = _.reduce(_.map(combo.damageValues, 'physical'), _.add);
-        const elementalDamage = _.reduce(_.map(combo.damageValues, 'elemental'), _.add);
-        const totalDamage = _.reduce(_.map(combo.damageValues, 'total'), _.add);
+        const baseDamage = _.reduce(_.map(combo.damageValues, 'baseTotal'), _.add);
+        const effectiveDamage = _.reduce(_.map(combo.damageValues, 'effectiveTotal'), _.add);
 
         return (
             <TableRow key={combo.name} hover>
@@ -24,13 +23,10 @@ export const ComboTable = React.memo(props => {
                     {motionValueSum}
                 </TableCell>
                 <TableCell align='right'>
-                    {physicalDamage}
+                    {baseDamage}
                 </TableCell>
                 <TableCell align='right'>
-                    {elementalDamage}
-                </TableCell>
-                <TableCell align='right'>
-                    {totalDamage}
+                    {effectiveDamage}
                 </TableCell>
             </TableRow>
         );
@@ -43,10 +39,9 @@ export const ComboTable = React.memo(props => {
                     <TableRow>
                         <TableCell />
                         <TableCell align='right'>Hit Count</TableCell>
-                        <TableCell align='right'>Motion Value Sum</TableCell>
-                        <TableCell align='right'>Physical Damage (Base + Affinity)</TableCell>
-                        <TableCell align='right'>Elemental Damage (Base + Affinity)</TableCell>
-                        <TableCell align='right'>Total Damage (Base + Affinity)</TableCell>
+                        <TableCell align='right'>Motion Value</TableCell>
+                        <TableCell align='right'>Base Damage</TableCell>
+                        <TableCell align='right'>Effective Damage</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

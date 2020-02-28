@@ -101,7 +101,7 @@ export const DamageCalculator = props => {
             <Grid spacing={1} container>
                 <Grid item xs={12} md={8}>
                     <Card>
-                        <CardHeader title='Build Stats' />
+                        <CardHeader title='Final Stats' />
                         <Divider />
                         <StatTable {...results} />
                     </Card>
