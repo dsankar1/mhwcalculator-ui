@@ -6,6 +6,7 @@ import { makeStyles, Container, Grid, Card, CardHeader, CardContent, IconButton,
 import { SubtitleContext } from '../../App';
 import calculateDamage, { BuildAccessor, WeaponType, Sharpness } from './calculator';
 import SearchBar from './components/SearchBar';
+import DefenseInput from './components/DefenseInput';
 import WeaponInput from './components/WeaponInput';
 import AugmentsInput from './components/AugmentsInput';
 import SkillsInput from './components/SkillsInput';
@@ -14,8 +15,12 @@ import StatTable from './components/StatTable';
 import ComboTable from './components/ComboTable';
 
 const defaultBuild = {
-    weaponType: WeaponType.GREAT_SWORD,
-    sharpness: Sharpness.BLUE
+    [BuildAccessor.WEAPON_TYPE]: WeaponType.GREAT_SWORD,
+    [BuildAccessor.SHARPNESS]: Sharpness.BLUE,
+    [BuildAccessor.HITZONE_SEVER_MULT]: 0.8,
+    [BuildAccessor.HITZONE_BLUNT_MULT]: 0.8,
+    [BuildAccessor.HITZONE_PROJECTILE_MULT]: 0.8,
+    [BuildAccessor.HITZONE_ELEMENTAL_MULT]: 0.3
 };
 
 const getInitialBuild = location => {
@@ -149,6 +154,23 @@ export const DamageCalculator = props => {
                                 ])}
                                 onChange={weapon => {
                                     setBuild(build => ({ ...build, ...weapon }));
+                                }}
+                            />
+                        </CardContent>
+                    </Card>
+                    <Card className={classes.marginTop}>
+                        <CardHeader title='Monster Defense' />
+                        <Divider />
+                        <CardContent>
+                            <DefenseInput
+                                value={_.pick(build, [
+                                    BuildAccessor.HITZONE_SEVER_MULT,
+                                    BuildAccessor.HITZONE_BLUNT_MULT,
+                                    BuildAccessor.HITZONE_PROJECTILE_MULT,
+                                    BuildAccessor.HITZONE_ELEMENTAL_MULT
+                                ])}
+                                onChange={defenses => {
+                                    setBuild(build => ({ ...build, ...defenses }));
                                 }}
                             />
                         </CardContent>

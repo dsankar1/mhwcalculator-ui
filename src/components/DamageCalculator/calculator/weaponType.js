@@ -584,7 +584,7 @@ export const combos = [
     },
     {
         weaponType: WeaponType.SWORD_AND_SHIELD,
-        damageType: 'sever + blunt',
+        damageType: 'blunt',
         motionValues: [
             10,
             20
@@ -714,7 +714,7 @@ export const combos = [
     },
     {
         weaponType: WeaponType.SWORD_AND_SHIELD,
-        damageType: 'sever + blunt',
+        damageType: 'blunt',
         motionValues: [
             29,
             40
@@ -1328,6 +1328,8 @@ export const combos = [
     },
     {
         weaponType: WeaponType.HUNTING_HORN,
+        ignoreSharpness: true,
+        ignoreAffinity: true,
         damageType: 'blunt',
         motionValues: [
             27

@@ -265,10 +265,10 @@ export const calculateDamage = build => {
     const criticalElement = _.get(generalBuffs, BuffAccessor.CRITICAL_ELEMENT);
     const affinityElementMult = criticalElement ? calculateAffinityDamageMult(affinityPct, criticalElementMult) : 1;
 
-    const hitzoneSeverMult = +_.get(build, BuildAccessor.HITZONE_SEVER_MULT, 0.8);
-    const hitzoneBluntMult = +_.get(build, BuildAccessor.HITZONE_BLUNT_MULT, 0.8);
-    const hitzoneProjectileMult = +_.get(build, BuildAccessor.HITZONE_PROJECTILE_MULT, 0.8);
-    const hitzoneElementalMult = +_.get(build, BuildAccessor.HITZONE_ELEMENTAL_MULT, 0.3);
+    const hitzoneSeverMult = +_.get(build, BuildAccessor.HITZONE_SEVER_MULT, 1);
+    const hitzoneBluntMult = +_.get(build, BuildAccessor.HITZONE_BLUNT_MULT, 1);
+    const hitzoneProjectileMult = +_.get(build, BuildAccessor.HITZONE_PROJECTILE_MULT, 1);
+    const hitzoneElementalMult = +_.get(build, BuildAccessor.HITZONE_ELEMENTAL_MULT, 1);
 
     const combos = _.map(_.get(combosMap, weaponType), combo => {
         const ignoreSharpness = Boolean(_.get(combo, ComboAccessor.IGNORE_SHARPNESS));
@@ -306,10 +306,12 @@ export const calculateDamage = build => {
                 console.warn(`Damage type ${damageType} not recognized`);
         }
 
+        baseElemental = Math.floor(baseElemental);
+
         const damageValues = _.map(motionValues, motionValue => {
-            const mvBasePhysical = basePhysical * (motionValue / 100);
-            const effectivePhysical = mvBasePhysical * (ignoreAffinity ? 1 : affinityAttackMult);
-            const effectiveElemental = baseElemental * (ignoreAffinity ? 1 : affinityElementMult);
+            const mvBasePhysical = Math.floor(basePhysical * (motionValue / 100));
+            const effectivePhysical = Math.floor(mvBasePhysical * (ignoreAffinity ? 1 : affinityAttackMult));
+            const effectiveElemental = Math.floor(baseElemental * (ignoreAffinity ? 1 : affinityElementMult));
 
             return {
                 basePhysical: mvBasePhysical,

@@ -16,17 +16,19 @@ export const StatTable = React.memo(props => {
     const trueAttack = _.get(props, 'trueAttack');
     const trueElement = _.get(props, 'trueElement');
     const affinityPct = _.get(props, 'affinityPct');
-    const criticalAttackMult = _.get(props, 'criticalAttackMult');
     const freeElement = _.get(props, 'freeElement');
+    const criticalAttackMult = _.get(props, 'criticalAttackMult');
+    const criticalElement = _.get(props, 'criticalElement') ? 'Yes' : '-';
 
     const buffs = _.get(props, 'buffs');
 
     const rows = _.map(buffs, buff => {
-        const criticalAttackMult = _.defaultTo(buff.criticalAttackMult, '-');
-        const freeElement = _.defaultTo(buff.freeElement, '-');
         const trueAttack = _.defaultTo(buff.trueAttack, '-');
         const trueElement = _.defaultTo(buff.trueElement, '-');
         const affinityPct = _.defaultTo(buff.affinityPct, '-');
+        const freeElement = _.defaultTo(buff.freeElement, '-');
+        const criticalAttackMult = _.defaultTo(buff.criticalAttackMult, '-');
+        const criticalElement = buff.criticalElement ? 'Yes' : '-';
 
         return (
             <TableRow key={buff.name} hover>
@@ -36,6 +38,7 @@ export const StatTable = React.memo(props => {
                 <TableCell align='right'>{trueElement}</TableCell>
                 <TableCell align='right'>{freeElement}</TableCell>
                 <TableCell align='right'>{criticalAttackMult}</TableCell>
+                <TableCell align='right'>{criticalElement}</TableCell>
             </TableRow>
         );
     });
@@ -51,6 +54,7 @@ export const StatTable = React.memo(props => {
                         <TableCell align='right'>True Element (Display)</TableCell>
                         <TableCell align='right'>Free Element</TableCell>
                         <TableCell align='right'>Critical Boost</TableCell>
+                        <TableCell align='right'>Critical Element</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell>Total</TableCell>
@@ -59,12 +63,14 @@ export const StatTable = React.memo(props => {
                         <TableCell align='right'>{trueElement} ({element})</TableCell>
                         <TableCell align='right'>{freeElement}</TableCell>
                         <TableCell align='right'>{criticalAttackMult}</TableCell>
+                        <TableCell align='right'>{criticalElement}</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell>Weapon</TableCell>
                         <TableCell align='right'>{baseTrueAttack}</TableCell>
                         <TableCell align='right'>{baseAffinityPct}</TableCell>
                         <TableCell align='right'>{baseTrueElement}</TableCell>
+                        <TableCell align='right'>-</TableCell>
                         <TableCell align='right'>-</TableCell>
                         <TableCell align='right'>-</TableCell>
                     </TableRow>
@@ -75,6 +81,7 @@ export const StatTable = React.memo(props => {
                         <TableCell align='right'>{trueElementBuff}</TableCell>
                         <TableCell align='right'>{freeElement}</TableCell>
                         <TableCell align='right'>{criticalAttackMult}</TableCell>
+                        <TableCell align='right'>{criticalElement}</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
